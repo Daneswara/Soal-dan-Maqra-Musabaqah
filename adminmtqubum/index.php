@@ -34,9 +34,12 @@ if (isset($_POST['optionsRadios'])) {
     } else if ($kategori == "30 Juz") {
         $id = 7;
         $index = "1-30";
+    } else if ($kategori == "Tafsir") {
+        $id = 8;
+        $index = "1-30";
     } else {
         $input = $_POST['custom'];
-        $id = 8;
+        $id = 9;
         $kategori = "custom";
         $index = $input;
     }
@@ -441,14 +444,15 @@ if (isset($_GET['editpaket'])) {
             $query_mysql = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY urutan") or die(mysqli_error($koneksi));
 
             while ($data = mysqli_fetch_array($query_mysql)) {
-                echo "<div class='row'><h6 style='padding-left: 20px'>" . $data['jenis'] . " ". $data['nama'] . " (Juz " . $data['index'] . ")";
+                echo "<div class='row'><h6 style='padding-left: 20px'>" . $data['jenis'] . " " . $data['nama'] . " (Juz " . $data['index'] . ")";
                 echo "<button onclick='hapusKategori(" . $data['id'] . ");' class='btn btn-danger btn-xs' style='margin-left: 8px'>Delete Kategori</button></h6>";
                 $index = $data['index'];
+                $nama = $data['nama'];
                 $id_kategori = $data['id']; //lanjutkan buat paket dan edit paket tambah id kategori
                 $query_mysql2 = mysqli_query($koneksi, "SELECT * FROM paket WHERE id_kategori = '$id_kategori' ORDER BY id") or die(mysqli_error($koneksi));
                 while ($data2 = mysqli_fetch_array($query_mysql2)) {
                     echo '<div class="col-xs-2 col-md-2" style="margin-bottom: 70px;  margin-top: 10px; margin-right:30px">
-                    <a href="?kategori=' . $index . '&id='.$id_kategori. '&namapaket=' . $data2['namapaket'] . '&nopaket=' . $data2['id'] . '#popup2">
+                    <a href="?kategori=' . $index . '&id=' . $id_kategori . '&namapaket=' . $data2['namapaket'] . '&nopaket=' . $data2['id'] . '#popup2">
                         <img src="../gambar/kotak.png" class="img-responsive center-block">
                             <dt><div class="tengah">Paket ' . $data2['namapaket'] . '</div></dt></img>
                         
@@ -456,12 +460,21 @@ if (isset($_GET['editpaket'])) {
                 </div>';
                 }
                 echo "<div class='col-xs-2 col-md-2' style='margin-bottom: 70px; margin-top: 10px; margin-right:30px'>";
-                echo '<a href="?kategori=' . $index . '&id='.$id_kategori.'#popup2">';
-                echo "<img src='../gambar/tambah.png' class='img-responsive center-block'>
+                if ($nama == "Tafsir") {
+                    echo '<a href="input_soal_tasfir.php?id=' . $id_kategori . '">';
+                    echo "<img src='../gambar/tambah.png' class='img-responsive center-block'>
                         <dt><div class='tengah'>Tambah</div></dt>
                     
                     </a>
                 </div></div>";
+                } else {
+                    echo '<a href="?kategori=' . $index . '&id=' . $id_kategori . '#popup2">';
+                    echo "<img src='../gambar/tambah.png' class='img-responsive center-block'>
+                        <dt><div class='tengah'>Tambah</div></dt>
+                    
+                    </a>
+                </div></div>";
+                }
             }
             ?>
         </div>
@@ -522,11 +535,11 @@ if (isset($_GET['editpaket'])) {
                                     Tilawah Dewasa (Juz 1-30)
                                 </label>
                                 <label class="radio">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios7" value="Tafsir Bahasa Indonesia_30 Juz" data-toggle="radio">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios7" value="Tafsir Bahasa Indonesia_Tafsir" data-toggle="radio">
                                     Tafsir Bahasa Indonesia (Juz 1-30)
                                 </label>
                                 <label class="radio">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios7" value="Tafsir Bahasa Arab_30 Juz" data-toggle="radio">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios7" value="Tafsir Bahasa Arab_Tafsir" data-toggle="radio">
                                     Tafsir Bahasa Arab (Juz 1-30)
                                 </label>
                                 <label class="radio">
@@ -1124,98 +1137,98 @@ if (isset($_GET['editpaket'])) {
             </form>
         </div>
     </div>
-<script type="text/javascript">
-    $(document).ready(function () {
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-        $("#surat1").change(function () {
-            $.post("../ajax/ayat.php", {surah: $("#surat1").val(), kategori: <?php echo "'" . $where . "'" ?>})
-                    .success(function (data) {
-                        $("#ayat1").html(data);
-                        $("#ayat1").change();
-                    });
+            $("#surat1").change(function () {
+                $.post("../ajax/ayat.php", {surah: $("#surat1").val(), kategori: <?php echo "'" . $where . "'" ?>})
+                        .success(function (data) {
+                            $("#ayat1").html(data);
+                            $("#ayat1").change();
+                        });
+            });
+            $("#surat2").change(function () {
+                $.post("../ajax/ayat.php", {surah: $("#surat2").val(), kategori: <?php echo "'" . $where . "'" ?>})
+                        .success(function (data) {
+                            $("#ayat2").html(data);
+                            $("#ayat2").change();
+                        });
+            });
+            $("#surat3").change(function () {
+                $.post("../ajax/ayat.php", {surah: $("#surat3").val(), kategori: <?php echo "'" . $where . "'" ?>})
+                        .success(function (data) {
+                            $("#ayat3").html(data);
+                            $("#ayat3").change();
+                        });
+            });
+            $("#surat4").change(function () {
+                $.post("../ajax/ayat.php", {surah: $("#surat4").val(), kategori: <?php echo "'" . $where . "'" ?>})
+                        .success(function (data) {
+                            $("#ayat4").html(data);
+                            $("#ayat4").change();
+                        });
+            });
+            $("#surat5").change(function () {
+                $.post("../ajax/ayat.php", {surah: $("#surat5").val(), kategori: <?php echo "'" . $where . "'" ?>})
+                        .success(function (data) {
+                            $("#ayat5").html(data);
+                            $("#ayat5").change();
+                        });
+            });
+            $("#surat6").change(function () {
+                $.post("../ajax/ayat.php", {surah: $("#surat6").val(), kategori: <?php echo "'" . $where . "'" ?>})
+                        .success(function (data) {
+                            $("#ayat6").html(data);
+                            $("#ayat6").change();
+                        });
+            });
+            $("#surat7").change(function () {
+                $.post("../ajax/ayat.php", {surah: $("#surat7").val(), kategori: <?php echo "'" . $where . "'" ?>})
+                        .success(function (data) {
+                            $("#ayat7").html(data);
+                            $("#ayat7").change();
+                        });
+            });
+            $("#surat8").change(function () {
+                $.post("../ajax/ayat.php", {surah: $("#surat8").val(), kategori: <?php echo "'" . $where . "'" ?>})
+                        .success(function (data) {
+                            $("#ayat8").html(data);
+                            $("#ayat8").change();
+                        });
+            });
+            $("#surat9").change(function () {
+                $.post("../ajax/ayat.php", {surah: $("#surat9").val(), kategori: <?php echo "'" . $where . "'" ?>})
+                        .success(function (data) {
+                            $("#ayat9").html(data);
+                            $("#ayat9").change();
+                        });
+            });
+            $("#surat10").change(function () {
+                $.post("../ajax/ayat.php", {surah: $("#surat10").val(), kategori: <?php echo "'" . $where . "'" ?>})
+                        .success(function (data) {
+                            $("#ayat10").html(data);
+                            $("#ayat10").change();
+                        });
+            });
+            $("#surat66").change(function () {
+                $.post("../ajax/ayat.php", {surah: $("#surat66").val(), kategori: <?php echo "'" . $where . "'" ?>})
+                        .success(function (data) {
+                            $("#ayat66").html(data);
+                            $("#ayat66").change();
+                        });
+            });
+            $("#surat11").change(function () {
+                $.post("../ajax/ayat.php", {surah: $("#surat11").val(), kategori: <?php echo "'" . $where . "'" ?>})
+                        .success(function (data) {
+                            $("#ayat11").html(data);
+                            $("#ayat11").change();
+                        });
+            });
         });
-        $("#surat2").change(function () {
-            $.post("../ajax/ayat.php", {surah: $("#surat2").val(), kategori: <?php echo "'" . $where . "'" ?>})
-                    .success(function (data) {
-                        $("#ayat2").html(data);
-                        $("#ayat2").change();
-                    });
-        });
-        $("#surat3").change(function () {
-            $.post("../ajax/ayat.php", {surah: $("#surat3").val(), kategori: <?php echo "'" . $where . "'" ?>})
-                    .success(function (data) {
-                        $("#ayat3").html(data);
-                        $("#ayat3").change();
-                    });
-        });
-        $("#surat4").change(function () {
-            $.post("../ajax/ayat.php", {surah: $("#surat4").val(), kategori: <?php echo "'" . $where . "'" ?>})
-                    .success(function (data) {
-                        $("#ayat4").html(data);
-                        $("#ayat4").change();
-                    });
-        });
-        $("#surat5").change(function () {
-            $.post("../ajax/ayat.php", {surah: $("#surat5").val(), kategori: <?php echo "'" . $where . "'" ?>})
-                    .success(function (data) {
-                        $("#ayat5").html(data);
-                        $("#ayat5").change();
-                    });
-        });
-        $("#surat6").change(function () {
-            $.post("../ajax/ayat.php", {surah: $("#surat6").val(), kategori: <?php echo "'" . $where . "'" ?>})
-                    .success(function (data) {
-                        $("#ayat6").html(data);
-                        $("#ayat6").change();
-                    });
-        });
-        $("#surat7").change(function () {
-            $.post("../ajax/ayat.php", {surah: $("#surat7").val(), kategori: <?php echo "'" . $where . "'" ?>})
-                    .success(function (data) {
-                        $("#ayat7").html(data);
-                        $("#ayat7").change();
-                    });
-        });
-        $("#surat8").change(function () {
-            $.post("../ajax/ayat.php", {surah: $("#surat8").val(), kategori: <?php echo "'" . $where . "'" ?>})
-                    .success(function (data) {
-                        $("#ayat8").html(data);
-                        $("#ayat8").change();
-                    });
-        });
-        $("#surat9").change(function () {
-            $.post("../ajax/ayat.php", {surah: $("#surat9").val(), kategori: <?php echo "'" . $where . "'" ?>})
-                    .success(function (data) {
-                        $("#ayat9").html(data);
-                        $("#ayat9").change();
-                    });
-        });
-        $("#surat10").change(function () {
-            $.post("../ajax/ayat.php", {surah: $("#surat10").val(), kategori: <?php echo "'" . $where . "'" ?>})
-                    .success(function (data) {
-                        $("#ayat10").html(data);
-                        $("#ayat10").change();
-                    });
-        });
-        $("#surat66").change(function () {
-            $.post("../ajax/ayat.php", {surah: $("#surat66").val(), kategori: <?php echo "'" . $where . "'" ?>})
-                    .success(function (data) {
-                        $("#ayat66").html(data);
-                        $("#ayat66").change();
-                    });
-        });
-        $("#surat11").change(function () {
-            $.post("../ajax/ayat.php", {surah: $("#surat11").val(), kategori: <?php echo "'" . $where . "'" ?>})
-                    .success(function (data) {
-                        $("#ayat11").html(data);
-                        $("#ayat11").change();
-                    });
-        });
-    });
-</script>
-<script src="../dist/js/vendor/jquery.min.js"></script>
-<script src="../dist/js/vendor/video.js"></script>
-<script src="../dist/js/flat-ui.min.js"></script>
-<script src="../docs/assets/js/application.js"></script>
+    </script>
+    <script src="../dist/js/vendor/jquery.min.js"></script>
+    <script src="../dist/js/vendor/video.js"></script>
+    <script src="../dist/js/flat-ui.min.js"></script>
+    <script src="../docs/assets/js/application.js"></script>
 
 </body>

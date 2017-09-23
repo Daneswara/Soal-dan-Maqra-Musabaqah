@@ -417,8 +417,8 @@ function getNamaSurat($surat) {
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse-8">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.php">Penjurian</a></li>
-                        <li ><a href="tafsir.php">Tafsir</a></li>
+                        <li><a href="index.php">Penjurian</a></li>
+                        <li class="active"><a href="tafsir.php">Tafsir</a></li>
                         <li><a href="linkmushaf.php">Link Mushaf</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -439,24 +439,21 @@ function getNamaSurat($surat) {
                         <div class="form-group">
                             <select name="kategori" class="form-control select select-primary" data-toggle="select" required>
                                 <?php
-                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM kategori WHERE nama != 'Tafsir' ORDER BY urutan") or die(mysqli_error($koneksi));
+                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM kategori where nama = 'Tafsir' ORDER BY urutan") or die(mysqli_error($koneksi));
 
                                 while ($data = mysqli_fetch_array($query_mysql)) {
-                                    if ($pilihan == $data['index']) {
-                                        echo "<option value=" . $data['index'] . " selected> " . $data['jenis'] . " " . $data['nama'] . " (Juz " . $data['index'] . ")" . "</option>";
+                                    if ($pilihan == $data['id']) {
+                                        echo "<option value=" . $data['id'] . " selected> " . $data['jenis'] . " (Juz " . $data['index'] . ")" . "</option>";
                                     } else {
-                                        echo "<option value=" . $data['index'] . "> " . $data['jenis'] . " " . $data['nama'] . " (Juz " . $data['index'] . ")" . "</option>";
+                                        echo "<option value=" . $data['id'] . "> " . $data['jenis']. " (Juz " . $data['index'] . ")" . "</option>";
                                     }
                                 }
                                 ?>
 
                             </select></div>
                     </div> <!-- /.col-xs-3 -->
-                    <div class="col-xs-3">
+                    <div class="col-xs-6">
                         <button type="submit" formaction="acakpaket.php" class="btn btn-block btn-lg btn-primary">Acak Paket</button>
-                    </div> <!-- /.col-xs-3 -->
-                    <div class="col-xs-3">
-                        <button type="submit" formaction="acakmanual.php" class="btn btn-block btn-lg btn-primary">Acak Otomatis</button>
                     </div> <!-- /.col-xs-3 -->
                 </form>
             </div> <!-- /.row -->
