@@ -78,21 +78,7 @@ if (isset($_GET['soal1']) || isset($_GET['surat1'])) {
     $kanan = array();
     $gambar = array();
     $i = 0;
-    while ($data = mysqli_fetch_array($query_mysql)) {
-        $nos = $data['nosurat'];
-        $noa = $data['ayat'];
-        $idnya = $data['id'];
-        $acakmanual = mysqli_query($koneksi, "INSERT INTO penjurian VALUES('', $nos, $noa)") or die(mysqli_error($koneksi));
-        $deletedata = mysqli_query($koneksi, "DELETE FROM mutasyabihat WHERE id=$idnya") or die(mysqli_error($koneksi));
-        $surat[$i] = $nos;
-        $ayat[$i] = $noa;
-        $kanan[$i] = getHalaman($surat[$i], $ayat[$i]);
-        $namasurat[$i] = getNamaSurat($surat[$i]);
-
-        $ig = $i + 1;
-        $gambar[$i] = "gambar/kotak$ig.png";
-        $i++;
-    }
+    
     if ($jumlahsoalmudah == 1) {
         $surat[$i] = $_GET['surat1'];
         $ayat[$i] = $_GET['ayat1'];
@@ -276,6 +262,22 @@ if (isset($_GET['soal1']) || isset($_GET['surat1'])) {
 
         $ig = $i + 1;
         $gambar[$i] = "gambar/okotak$ig.png";
+    }
+    $i++;
+    while ($data = mysqli_fetch_array($query_mysql)) {
+        $nos = $data['nosurat'];
+        $noa = $data['ayat'];
+        $idnya = $data['id'];
+        $acakmanual = mysqli_query($koneksi, "INSERT INTO penjurian VALUES('', $nos, $noa)") or die(mysqli_error($koneksi));
+        $deletedata = mysqli_query($koneksi, "DELETE FROM mutasyabihat WHERE id=$idnya") or die(mysqli_error($koneksi));
+        $surat[$i] = $nos;
+        $ayat[$i] = $noa;
+        $kanan[$i] = getHalaman($surat[$i], $ayat[$i]);
+        $namasurat[$i] = getNamaSurat($surat[$i]);
+
+        $ig = $i + 1;
+        $gambar[$i] = "gambar/kotak$ig.png";
+        $i++;
     }
 }
 

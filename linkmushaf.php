@@ -10,6 +10,7 @@ if(isset($_GET["surat1"]) && isset($_GET["ayat1"])){
     
     $hal = getHalaman($tempsurat, $tempayat);
     $namasurat = getNamaSurat($tempsurat);
+    $namasurat = str_replace("'", "petik", $namasurat);
     echo "<script type=\"text/javascript\">  window.open('mushaf.php?kanan=$hal&surah=$tempsurat&ayat=$tempayat&namasurat=$namasurat')</script>";
 }
 

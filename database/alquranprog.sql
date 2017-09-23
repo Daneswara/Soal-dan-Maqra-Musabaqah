@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2017 at 04:50 AM
+-- Generation Time: Sep 23, 2017 at 09:37 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -2141,7 +2141,17 @@ INSERT INTO `halaman` (`id`, `no_halaman`, `nosurat`, `ayatawal`, `mushaf`) VALU
 (601, 601, 103, 1, 'Mushaf/601.png'),
 (602, 602, 106, 1, 'Mushaf/602.png'),
 (603, 603, 109, 1, 'Mushaf/603.png'),
-(604, 604, 112, 1, 'Mushaf/604.png');
+(604, 604, 112, 1, 'Mushaf/604.png'),
+(605, 600, 101, 1, 'Mushaf/600.png'),
+(606, 602, 107, 1, 'Mushaf/602.png'),
+(607, 603, 110, 1, 'Mushaf/603.png'),
+(608, 604, 113, 1, 'Mushaf/604.png'),
+(609, 601, 104, 1, 'Mushaf/601.png'),
+(610, 599, 100, 1, 'Mushaf/599.png'),
+(611, 598, 98, 1, 'Mushaf/598.png'),
+(612, 597, 96, 1, 'Mushaf/597.png'),
+(613, 596, 94, 1, 'Mushaf/596.png'),
+(614, 595, 92, 1, 'Mushaf/595.png');
 
 -- --------------------------------------------------------
 
@@ -2235,6 +2245,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (47, 2, 2, 146),
 (48, 2, 2, 147),
 (49, 2, 2, 159),
+(50, 2, 2, 160),
 (51, 2, 2, 161),
 (52, 2, 2, 162),
 (53, 2, 2, 164),
@@ -2258,7 +2269,9 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (71, 2, 2, 245),
 (72, 2, 2, 252),
 (73, 2, 3, 277),
+(74, 3, 2, 271),
 (75, 3, 2, 278),
+(76, 3, 2, 284),
 (77, 3, 3, 1),
 (78, 3, 3, 2),
 (79, 3, 3, 10),
@@ -2268,8 +2281,10 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (83, 3, 3, 23),
 (84, 3, 3, 24),
 (85, 3, 3, 28),
+(86, 3, 3, 32),
 (87, 3, 3, 40),
 (88, 3, 3, 44),
+(89, 3, 3, 47),
 (90, 3, 3, 51),
 (91, 3, 3, 60),
 (92, 3, 3, 63),
@@ -2278,6 +2293,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (95, 3, 3, 88),
 (96, 3, 3, 89),
 (97, 3, 3, 90),
+(98, 3, 3, 91),
 (99, 3, 4, 1),
 (100, 4, 3, 98),
 (101, 4, 3, 101),
@@ -2299,6 +2315,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (117, 4, 3, 184),
 (118, 4, 3, 185),
 (119, 4, 3, 188),
+(120, 4, 3, 190),
 (121, 4, 3, 198),
 (122, 5, 4, 37),
 (123, 5, 4, 43),
@@ -2326,6 +2343,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (145, 5, 4, 149),
 (146, 6, 4, 146),
 (147, 6, 4, 152),
+(148, 6, 4, 155),
 (149, 6, 4, 167),
 (150, 6, 4, 170),
 (151, 6, 4, 171),
@@ -2373,6 +2391,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (193, 7, 6, 21),
 (194, 7, 6, 22),
 (195, 7, 6, 24),
+(196, 7, 6, 25),
 (197, 7, 6, 29),
 (198, 7, 6, 31),
 (199, 7, 6, 37),
@@ -2766,6 +2785,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (587, 16, 19, 49),
 (588, 16, 19, 60),
 (589, 16, 19, 65),
+(590, 16, 19, 73),
 (591, 16, 19, 74),
 (592, 16, 19, 75),
 (593, 16, 19, 76),
@@ -2906,6 +2926,8 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (728, 19, 26, 1),
 (729, 19, 26, 2),
 (730, 19, 26, 2),
+(731, 19, 26, 5),
+(732, 19, 26, 6),
 (733, 19, 26, 14),
 (734, 19, 26, 16),
 (735, 19, 26, 24),
@@ -3537,28 +3559,6 @@ CREATE TABLE `penjurian` (
   `ayat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `penjurian`
---
-
-INSERT INTO `penjurian` (`id`, `nosurat`, `ayat`) VALUES
-(1, 4, 11),
-(2, 2, 271),
-(3, 2, 284),
-(4, 3, 32),
-(5, 2, 41),
-(6, 3, 47),
-(7, 3, 91),
-(8, 3, 190),
-(9, 12, 8),
-(10, 2, 160),
-(11, 4, 155),
-(12, 6, 25),
-(13, 27, 29),
-(14, 19, 73),
-(15, 26, 5),
-(16, 26, 6);
-
 -- --------------------------------------------------------
 
 --
@@ -3570,14 +3570,6 @@ CREATE TABLE `penjurianpaket` (
   `id_paket` int(11) NOT NULL,
   `indexkategori` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `penjurianpaket`
---
-
-INSERT INTO `penjurianpaket` (`id`, `id_paket`, `indexkategori`) VALUES
-(1, 18, '1-5'),
-(2, 19, '1-5');
 
 -- --------------------------------------------------------
 
@@ -3611,13 +3603,7 @@ INSERT INTO `soal` (`id`, `kategori`, `soal`, `surat`, `ayat`, `suratakhir`, `ay
 (12, 16, 3, 29, 3, 0, 0),
 (13, 16, 4, 2, 136, 0, 0),
 (14, 16, 5, 4, 20, 0, 0),
-(16, 18, 1, 2, 18, 0, 0),
-(17, 19, 1, 1, 1, 2, 1),
-(18, 19, 2, 1, 1, 2, 1),
-(19, 19, 3, 3, 1, 4, 1),
-(20, 19, 4, 1, 1, 3, 1),
-(21, 19, 5, 3, 1, 4, 1),
-(22, 19, 6, 2, 1, 1, 1);
+(16, 18, 1, 2, 18, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -3749,7 +3735,7 @@ ALTER TABLE `daftarsurah`
 -- AUTO_INCREMENT for table `halaman`
 --
 ALTER TABLE `halaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=605;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=615;
 --
 -- AUTO_INCREMENT for table `kategori`
 --
@@ -3764,7 +3750,7 @@ ALTER TABLE `mutasyabihat`
 -- AUTO_INCREMENT for table `paket`
 --
 ALTER TABLE `paket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `pengaturan`
 --
@@ -3774,17 +3760,17 @@ ALTER TABLE `pengaturan`
 -- AUTO_INCREMENT for table `penjurian`
 --
 ALTER TABLE `penjurian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `penjurianpaket`
 --
 ALTER TABLE `penjurianpaket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `soal`
 --
 ALTER TABLE `soal`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `user`
 --

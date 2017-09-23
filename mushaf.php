@@ -147,11 +147,11 @@ $qori = $pengaturan['qori'];
         ?>
 
         <div class="untukbutton">
-            <button class="btn tn-block btn-lg btn-info fui-arrow-left" onclick="window.close();" style="width: 120px"> Kembali</button>
+            <button class="btn tn-block btn-lg btn-primary fui-arrow-left" onclick="window.close();" style="width: 120px"> Kembali</button>
             <br>
-            <button id="mr" class="btn tn-block btn-lg btn-info fui-play " style="margin-top: 7px; width: 120px" onclick="playAt()" > Play</button> <br>
-            <button id="perbesar" class="btn tn-block btn-lg btn-info fui-eye "  style="margin-top: 7px; width: 120px" onclick="zoom()"> Perbesar</button><br>
-            <button class="btn tn-block btn-lg btn-info fui-time "  style="margin-top: 7px; width: 120px" onclick="alarm()"> Alarm</button>
+            <button id="mr" class="btn tn-block btn-lg btn-primary fui-play " style="margin-top: 7px; width: 120px" onclick="playAt()" > Play</button> <br>
+            <button id="perbesar" class="btn tn-block btn-lg btn-primary fui-eye "  style="margin-top: 7px; width: 120px" onclick="zoom()"> Perbesar</button><br>
+            <button class="btn tn-block btn-lg btn-primary fui-time "  style="margin-top: 7px; width: 120px" onclick="alarm()"> Alarm</button>
             <audio id="audio" >
                 <source src="audio/<?php echo $qori; ?>/<?php echo sprintf("%03d", $surah) . sprintf("%03d", $ayat) ?>.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
