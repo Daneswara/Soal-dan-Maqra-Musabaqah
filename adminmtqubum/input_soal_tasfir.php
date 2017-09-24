@@ -7,11 +7,9 @@ if (empty($_SESSION['admin_login'])) {
 if (isset($_GET['jenis'])) {
     $jenis = $_GET['jenis'];
     $id_paket = $_GET['id'];
-} else {
-    $jenis = "";
-    $id_paket = "";
 }
-if (isset($_POST['surat1']) && isset($_POST['ayat1'])) {
+
+if (isset($_GET['tambah']) && isset($_POST['surat1']) && isset($_POST['ayat1'])) {
     $surat = $_POST["surat1"];
     $ayat = $_POST["ayat1"];
     $jenis = $_GET['jenis'];
@@ -55,7 +53,39 @@ if (isset($_POST['surat1']) && isset($_POST['ayat1'])) {
     }
     header('location: index.php?note=3');
 }
+if (isset($_GET['update'])) {
+    $jenis = $_GET['jenis'];
+    $id_paket = $_GET['id'];
+    if (isset($_POST["surat1"]) && isset($_POST["ayat1"])) {
+        $surat = $_POST["surat1"];
+        $ayat = $_POST["ayat1"];
+        $hal = getHalaman($surat, $ayat);
+        $namasurat = getNamaSurat($surat);
+        $namasurat = str_replace("'", "petik", $namasurat);
+        $link = "mushaf.php?kanan=$hal&surah=$surat&ayat=$ayat&namasurat=$namasurat";
 
+        // edit soal
+        $querytambah = mysqli_query($koneksi, "UPDATE soal_tafsir SET soal = '$surat-$ayat', jawaban = '$link' WHERE paket = $id_paket AND soalke = 1;") or die(mysqli_error($koneksi));
+        if ($querytambah) {
+            //header('location: index.php?note=3');
+        } else {
+            header('location: index.php?note=41');
+        }
+    }
+    $i = 2;
+    while (isset($_POST["soal$i"]) || isset($_POST["jawaban$i"]) && $_POST["soal$i"] != "" || $_POST["jawaban$i"] != "") {
+        $tempsoal = $_POST["soal$i"];
+        $tempjawaban = $_POST["jawaban$i"];
+        $querytambah = mysqli_query($koneksi, "UPDATE soal_tafsir SET soal = '$tempsoal', jawaban = '$tempjawaban' WHERE paket = $id_paket AND soalke = $i;") or die(mysqli_error($koneksi));
+        if ($querytambah) {
+            //header('location: index.php?note=3');
+        } else {
+            header('location: index.php?note=41');
+        }
+        $i++;
+    }
+    header('location: index.php?note=4');
+}
 function getNamaSurat($surat) {
     include "../koneksi.php";
     $queryview = mysqli_query($koneksi, "SELECT * FROM `daftarsurah` WHERE nosurat = $surat LIMIT 1") or die(mysqli_error($koneksi));
@@ -89,24 +119,19 @@ if (isset($_GET['delete'])) {
         header('location: juri.php?note=31');
     }
 }
-if (isset($_GET['update'])) {
-    $id = $_GET['update'];
-    $nama = $_POST['namabaru'];
-    $username = $_POST['usernamebaru'];
-    $password = md5($_POST['passwordbaru']);
-
-    $query_mysql = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' OR id =$id") or die(mysqli_error($koneksi));
-    $cek = mysqli_num_rows($query_mysql);
-    if ($cek <= 1) {
-        $queryupdate = mysqli_query($koneksi, "UPDATE user SET nama = '$nama', username = '$username', password ='$password' WHERE id = $id");
-
-        if ($queryupdate) {
-            header('location: juri.php?note=2');
-        } else {
-            header('location: juri.php?note=21');
-        }
-    } else {
-        header('location: juri.php?note=21');
+if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
+    $jenis = $_GET['namapaket'];
+    $id_paket = $_GET['nopaket'];
+    $dbsoal = array();
+    $dbjawab = array();
+    $dbsoalke = array();
+    $query_view = mysqli_query($koneksi, "SELECT * FROM soal_tafsir WHERE paket = '$id_paket' ORDER BY soalke") or die(mysqli_error($koneksi));
+    $i = 0;
+    while ($data = mysqli_fetch_array($query_view)) {
+        $dbsoal[$i] = $data['soal'];
+        $dbjawab[$i] = $data['jawaban'];
+        $dbsoalke[$i] = $data['soalke'];
+        $i++;
     }
 }
 ?>
@@ -253,129 +278,160 @@ if (isset($_GET['update'])) {
                     <button class="btn btn-block btn-lg btn-danger" onclick="#">Tambah Paket Soal - <?php echo $jenis; ?></button>
                 </div>
             </div>
-            <form action="input_soal_tasfir.php?id=<?php echo $id_paket; ?>&jenis=<?php echo $jenis; ?>" method="POST">
-                <div class="row">
-                    <?php
-                    $jumlahsoal = 15;
-                    for ($i = 1; $i <= $jumlahsoal; $i++) {
-                        if ($i == 1) {
-                            echo '<div class="col-xs-12"><div class="col-xs-2">
+
+
+            <?php
+            if (isset($_GET['nopaket'])) {
+                $id_paket = $_GET['nopaket'];
+                echo "<form action='input_soal_tasfir.php?update=1&id=$id_paket&jenis=$jenis' method='POST'>
+                <div class='row'>";
+            } else {
+                echo "<form action='input_soal_tasfir.php?tambah=1&id=$id_paket&jenis=$jenis' method='POST'>
+                <div class='row'>";
+            }
+            $jumlahsoal = 15;
+            for ($i = 1; $i <= $jumlahsoal; $i++) {
+                if ($i == 1) {
+                    echo '<div class="col-xs-12"><div class="col-xs-2">
                         <div class="form-group">
                             Soal ke-' . $i . '
                         </div></div>
                     <div class="col-xs-5"><div class="form-group"><select name="surat1" id="surat1" class="form-control select select-primary" data-toggle="select" required>';
+                    if (isset($dbsoal[0])) {
+                        $soalpertama = explode("-", $dbsoal[0]);
+                    }
+                    $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah ORDER BY nosurat") or die(mysqli_error($koneksi));
+                    $temp = "";
+                    while ($data = mysqli_fetch_array($query_mysql)) {
+                        if ($data['nama'] == $temp) {
+                            
+                        } else if ($soalpertama[0] == $data['nosurat']) {
+                            echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                        } else {
+                            echo "<option value=" . $data['nosurat'] . ">" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                        }
+                        $temp = $data['nama'];
+                    }
 
-                            $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah ORDER BY nosurat") or die(mysqli_error($koneksi));
-                            $temp = "";
-                            while ($data = mysqli_fetch_array($query_mysql)) {
-                                if ($data['nama'] == $temp) {
-                                    
-                                } else if ($tempsurat == $data['nosurat']) {
-                                    echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
-                                } else {
-                                    echo "<option value=" . $data['nosurat'] . ">" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
-                                }
-                                $temp = $data['nama'];
-                            }
-
-                            echo '</select></div></div> <!-- /.col-xs-3 -->
+                    echo '</select></div></div> <!-- /.col-xs-3 -->
                     <div class="col-xs-5">
                         <div class="form-group">
                             <select name="ayat1" id="ayat1" class="form-control select select-primary" data-toggle="select" required>';
-                            if (isset($tempayat)) {
-                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE nosurat = $tempsurat ORDER BY nosurat") or die(mysqli_error($koneksi));
-                                echo "edit surat" . $where;
-                                while ($data = mysqli_fetch_array($query_mysql)) {
 
-                                    for ($a = $data['awal']; $a <= $data['akhir']; $a++) {
-                                        if ($tempayat == $a) {
-                                            echo "<option value=" . $a . " selected>" . $a . "</option>";
-                                        } else {
-                                            echo "<option value=" . $a . ">" . $a . "</option>";
-                                        }
-                                    }
+                    if (isset($soalpertama[0])) {
+                        $tempsurat = $soalpertama[0];
+                        $tempayat = $soalpertama[1];
+                        $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE nosurat = $tempsurat ORDER BY nosurat") or die(mysqli_error($koneksi));
+                        //echo "edit surat" . $where;
+                        while ($data = mysqli_fetch_array($query_mysql)) {
+
+                            for ($a = $data['awal']; $a <= $data['akhir']; $a++) {
+                                if ($tempayat == $a) {
+                                    echo "<option value=" . $a . " selected>" . $a . "</option>";
+                                } else {
+                                    echo "<option value=" . $a . ">" . $a . "</option>";
                                 }
                             }
-                            echo '</select></div>
+                        }
+                    }
+                    echo '</select></div>
                     </div></div>';
-                        } else {
-                            echo '<div class="col-xs-12"><div class="col-xs-2">
+                } else {
+                    echo '<div class="col-xs-12"><div class="col-xs-2">
                         <div class="form-group">
                             Soal ke-' . $i . '
                         </div></div>
                     <div class="col-xs-5">
-                        <div class="form-group">
-                            <textarea type="text" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control"></textarea>
-                        </div>
+                        <div class="form-group">';
+                    if (isset($dbsoalke[$i - 1])) {
+                        if ($dbsoalke[($i - 1)] == $i) {
+                            echo '<textarea type="text" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control">' . $dbsoal[($i - 1)] . '</textarea>';
+                        } else {
+                            echo '<textarea type="text" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control" disabled></textarea>';
+                        }
+                    } else {
+                        echo '<textarea type="text" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control" disabled></textarea>';
+                    }
+
+                    echo '</div>
                     </div> <!-- /.col-xs-3 -->
                     <div class="col-xs-5">
-                        <div class="form-group">
-                            <textarea type="text" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control"></textarea>
-                        </div>
-                    </div></div>';
+                        <div class="form-group">';
+                    if (isset($dbsoalke[$i - 1])) {
+                        if ($dbsoalke[($i - 1)] == $i) {
+                            echo '<textarea type="text" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control">' . $dbjawab[($i - 1)] . '</textarea>';
+                        } else {
+                            echo '<textarea type="text" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control" disabled></textarea>';
                         }
+                    } else {
+                        echo '<textarea type="text" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control" disabled></textarea>';
                     }
-                    ?>
-                    <!-- /.col-xs-3 -->
-                    <div class="col-xs-offset-2 col-xs-10">
-                        <button class="btn btn-block btn-lg btn-primary">Tambah Paket Soal Tafsir</button>
-                    </div> <!-- /.col-xs-3 -->
+
+                    echo '</div>
+                    </div></div>';
+                }
+            }
+            ?>
+            <!-- /.col-xs-3 -->
+            <div class="col-xs-offset-2 col-xs-10">
+                <button class="btn btn-block btn-lg btn-primary">Tambah Paket Soal Tafsir</button>
+            </div> <!-- /.col-xs-3 -->
+
+        </div></form>
+
+    <div id="popup">
+        <div class="window">
+            <?php
+            $id = $_GET['edit'];
+
+            $query = mysqli_query($koneksi, "SELECT * FROM user WHERE id = $id");
+            $res = mysqli_fetch_array($query);
+            ?>
+            <a href="#" class="close-button" title="Close">X</a>
+            <h2>Edit</h2>
+            <form action="juri.php?update=<?php echo $id; ?>" method="POST">
+                <div class="row">
+
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <input type="text" name="namabaru" placeholder="Nama" value="<?php echo $res['nama'] ?>" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="usernamebaru" placeholder="Username" value="<?php echo $res['username'] ?>" class="form-control" required/>
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="password" name="passwordbaru" placeholder="Password Baru" class="form-control" required/>
+                        </div>
+
+                        <button class="btn btn-block btn-lg btn-primary">Edit Juri</button>
+                    </div>
 
                 </div></form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#surat1").change(function () {
+                $.post("../ajax/ayatgoto.php", {surah: $("#surat1").val()})
+                        .success(function (data) {
+                            $("#ayat1").html(data);
+                            $("#ayat1").change();
+                        });
+            });
+            if ($("#ayat1").val() == "" || $("#ayat1").val() == "0" || $("#ayat1").val() == null) {
+                $.post("../ajax/ayatgoto.php", {surah: $("#surat1").val()})
+                        .success(function (data) {
+                            $("#ayat1").html(data);
+                            $("#ayat1").change();
+                        });
+            }
+        });
+    </script>
+    <script src="../dist/js/vendor/jquery.min.js"></script>
+    <script src="../dist/js/vendor/video.js"></script>
+    <script src="../dist/js/flat-ui.min.js"></script>
+    <script src="../docs/assets/js/application.js"></script>
 
-            <div id="popup">
-                <div class="window">
-                    <?php
-                    $id = $_GET['edit'];
-
-                    $query = mysqli_query($koneksi, "SELECT * FROM user WHERE id = $id");
-                    $res = mysqli_fetch_array($query);
-                    ?>
-                    <a href="#" class="close-button" title="Close">X</a>
-                    <h2>Edit</h2>
-                    <form action="juri.php?update=<?php echo $id; ?>" method="POST">
-                        <div class="row">
-
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <input type="text" name="namabaru" placeholder="Nama" value="<?php echo $res['nama'] ?>" class="form-control" required/>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="usernamebaru" placeholder="Username" value="<?php echo $res['username'] ?>" class="form-control" required/>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <input type="password" name="passwordbaru" placeholder="Password Baru" class="form-control" required/>
-                                </div>
-
-                                <button class="btn btn-block btn-lg btn-primary">Edit Juri</button>
-                            </div>
-
-                        </div></form>
-                </div>
-            </div>
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $("#surat1").change(function () {
-                        $.post("../ajax/ayatgoto.php", {surah: $("#surat1").val()})
-                                .success(function (data) {
-                                    $("#ayat1").html(data);
-                                    $("#ayat1").change();
-                                });
-                    });
-                    if ($("#ayat1").val() == "" || $("#ayat1").val() == "0" || $("#ayat1").val() == null) {
-                        $.post("../ajax/ayatgoto.php", {surah: $("#surat1").val()})
-                                .success(function (data) {
-                                    $("#ayat1").html(data);
-                                    $("#ayat1").change();
-                                });
-                    }
-                });
-            </script>
-            <script src="../dist/js/vendor/jquery.min.js"></script>
-            <script src="../dist/js/vendor/video.js"></script>
-            <script src="../dist/js/flat-ui.min.js"></script>
-            <script src="../docs/assets/js/application.js"></script>
-
-    </body>
+</body>
