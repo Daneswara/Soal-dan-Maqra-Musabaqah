@@ -125,12 +125,12 @@ if (isset($_GET['uploadExcel'])) {
 //            echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
 //            echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
 
-            if (file_exists("Excel/" . $_FILES["file"]["name"])) {
+            if (file_exists("Excel/".$_FILES["file"]["name"])) {
                 echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Excel dengan nama sama sudah ada, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
 //                echo $_FILES["file"]["name"] . " already exists. ";
                 header('location: pengaturan.php?note=62');
             } else {
-                move_uploaded_file($_FILES["file"]["tmp_name"], "Excel/" . $_FILES["file"]["name"]);
+                move_uploaded_file($_FILES["file"]["tmp_name"], "Excel/".$_FILES["file"]["name"]);
 //                $query = mysqli_query($koneksi, "UPDATE pengaturan SET link_video = '".$_FILES["file"]["name"]."' LIMIT 1");
 //                echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
                 echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Excel berhasil terupload', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
@@ -140,7 +140,7 @@ if (isset($_GET['uploadExcel'])) {
 //  Include PHPExcel_IOFactory\
                 include './PHPExcel/IOFactory.php';
 
-                $inputFileName = './Excel/' . $_FILES["file"]["name"];
+                $inputFileName = './Excel/'.$_FILES["file"]["name"];
 
 //  Read your Excel workbook
                 try {
@@ -161,7 +161,7 @@ if (isset($_GET['uploadExcel'])) {
                 for ($row = 2; $row <= $highestRow; $row++) {
                     //  Read a row of data into an array
                     for ($col = 0; $col <= $colNumber; $col++) {
-                        $data[$row - 2][$col] = $sheet->getCellByColumnAndRow($col, $row, "kosong");
+                        $data[$row - 2][$col] = $sheet->getCellByColumnAndRow($col, $row, true);
                         echo $data[$row - 2][$col] . ' ';
                     }
                     echo '<br>';
@@ -176,16 +176,18 @@ if (isset($_GET['uploadExcel'])) {
                     $temp = "";
                     $temp2 = "";
                     for ($row = 0; $row < count($data); $row++) {
-                        $idpaket = explode("-", $data[$row][4]);
-                        if ($temp != $idpaket[0]) {
-                            $querytambah = mysqli_query($koneksi, "INSERT INTO kategori VALUES($idpaket[0], " . $data[$row][1] . ",'" . $data[$row][0] . "','" . $data[$row][2] . "');") or die(mysqli_error($koneksi));
-                            $temp = $idpaket[0];
+                        //$idpaket = explode("-", $data[$row][5]); // id urutan nama jenis index
+                        if ($temp != $data[$row][0]) {
+                            $querytambah = mysqli_query($koneksi, "INSERT INTO kategori VALUES(".$data[$row][0].", " . $data[$row][3] . ",'" . $data[$row][2] . "','" . $data[$row][1] . "','" . $data[$row][4] . "');") or die(mysqli_error($koneksi));
+                            $temp = $data[$row][0];
                         }
-                        if ($temp2 != $data[$row][3]) {
-                            $querytambah = mysqli_query($koneksi, "INSERT INTO paket VALUES(" . $data[$row][3] . ", '" . $data[$row][2] . "', '" . $data[$row][4] . "');") or die(mysqli_error($koneksi));
-                            $temp2 = $data[$row][3];
+                        if ($temp2 != $data[$row][5] && $data[$row][5] != null && $data[$row][5] != "") {
+                            $querytambah = mysqli_query($koneksi, "INSERT INTO paket VALUES(" . $data[$row][5] . ", '" . $data[$row][0] . "', '" . $data[$row][4] . "', '" . $data[$row][6] . "');") or die(mysqli_error($koneksi));
+                            $temp2 = $data[$row][5];
                         }
-                        $querytambah = mysqli_query($koneksi, "INSERT INTO soal VALUES(NULL, " . $data[$row][3] . "," . $data[$row][5] . "," . $data[$row][6] . "," . $data[$row][7] . ");") or die(mysqli_error($koneksi));
+                        if ($data[$row][8] != null && $data[$row][8] != "") {
+                            $querytambah = mysqli_query($koneksi, "INSERT INTO soal VALUES(NULL, " . $data[$row][5] . "," . $data[$row][7] . "," . $data[$row][8] . "," . $data[$row][9] . "," . $data[$row][10] . "," . $data[$row][11] . ");") or die(mysqli_error($koneksi));
+                        }
                     }
 
 
@@ -411,7 +413,7 @@ $username = $user['username'];
                                     </td>
                                     <td width="50%">
                                         <select id="jumlahsoalmudah" name="jumlahsoalmudah" class="form-control select select-primary" data-toggle="select">
-                                            <?php echo "<option value='$jumlahsoalmudah' selected>$jumlahsoalmudah Soal</option>"; ?>
+<?php echo "<option value='$jumlahsoalmudah' selected>$jumlahsoalmudah Soal</option>"; ?>
 
 
                                         </select>
