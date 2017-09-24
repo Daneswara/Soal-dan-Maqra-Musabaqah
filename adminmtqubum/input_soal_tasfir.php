@@ -4,23 +4,80 @@ session_start();
 if (empty($_SESSION['admin_login'])) {
     header('location: login.php');
 }
-if (isset($_POST['nama'])) {
-    $nama = $_POST['nama'];
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
-    $query_mysql = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username'") or die(mysqli_error($koneksi));
-    $cek = mysqli_num_rows($query_mysql);
-    if ($cek == 0) {
-        $querytambah = mysqli_query($koneksi, "INSERT INTO user VALUES(NULL, '$username', '$password', '$nama')") or die(mysqli_error($koneksi));
-        if ($querytambah) {
-            header('location: juri.php?note=1');
-        } else {
-            header('location: juri.php?note=12');
-        }
-    } else {
-        header('location: juri.php?note=12');
-    }
+if (isset($_GET['jenis'])) {
+    $jenis = $_GET['jenis'];
+    $id_paket = $_GET['id'];
+} else {
+    $jenis = "";
+    $id_paket = "";
 }
+if (isset($_POST['surat1']) && isset($_POST['ayat1'])) {
+    $surat = $_POST["surat1"];
+    $ayat = $_POST["ayat1"];
+    $jenis = $_GET['jenis'];
+    $id_kategori = $_GET['id'];
+    $hal = getHalaman($surat, $ayat);
+    $namasurat = getNamaSurat($surat);
+    $namasurat = str_replace("'", "petik", $namasurat);
+    $link = "mushaf.php?kanan=$hal&surah=$surat&ayat=$ayat&namasurat=$namasurat";
+
+    // tambah paket
+    $cekisipaket = mysqli_query($koneksi, "SELECT * FROM paket WHERE id_kategori=$id_kategori") or die(mysqli_error($koneksi));
+    $cek = mysqli_num_rows($cekisipaket);
+    $cek = $cek + 1;
+    $querypaket = mysqli_query($koneksi, "INSERT INTO paket VALUES(NULL, $id_kategori, '1-30', '$id_kategori-$cek');") or die(mysqli_error($koneksi));
+    if ($querypaket) {
+        //header('location: index.php?note=3');
+    } else {
+        header('location: index.php?note=31');
+    }
+    // tambah soal
+    $queryview = mysqli_query($koneksi, "SELECT * FROM paket ORDER BY id DESC LIMIT 1") or die(mysqli_error($koneksi));
+    $paket = mysqli_fetch_array($queryview);
+    $id_paket = $paket['id'];
+    $querytambah = mysqli_query($koneksi, "INSERT INTO soal_tafsir VALUES(NULL, $id_paket, 1, '$surat-$ayat', '$link');") or die(mysqli_error($koneksi));
+    if ($querytambah) {
+        //header('location: index.php?note=3');
+    } else {
+        header('location: index.php?note=31');
+    }
+    $i = 2;
+    while (isset($_POST["soal$i"]) && isset($_POST["jawaban$i"]) && $_POST["soal$i"] != "" && $_POST["jawaban$i"] != "") {
+        $tempsoal = $_POST["soal$i"];
+        $tempjawaban = $_POST["jawaban$i"];
+        $querytambah = mysqli_query($koneksi, "INSERT INTO soal_tafsir VALUES(NULL, $id_paket, '$i', '$tempsoal', '$tempjawaban');") or die(mysqli_error($koneksi));
+        if ($querytambah) {
+            //header('location: index.php?note=3');
+        } else {
+            header('location: index.php?note=31');
+        }
+        $i++;
+    }
+    header('location: index.php?note=3');
+}
+
+function getNamaSurat($surat) {
+    include "../koneksi.php";
+    $queryview = mysqli_query($koneksi, "SELECT * FROM `daftarsurah` WHERE nosurat = $surat LIMIT 1") or die(mysqli_error($koneksi));
+    $surah = mysqli_fetch_array($queryview);
+    $namasurat = $surah['nama'];
+    return $namasurat;
+}
+
+function getHalaman($surat, $ayat) {
+    include "../koneksi.php";
+    $queryview = mysqli_query($koneksi, "SELECT * FROM `halaman` WHERE nosurat = $surat and ayatawal <= $ayat ORDER BY no_halaman DESC LIMIT 1") or die(mysqli_error($koneksi));
+    $halaman = mysqli_fetch_array($queryview);
+    $kanan = $halaman['no_halaman'];
+    if (mysqli_num_rows($queryview) == 0) {
+        $surat = $surat - 1;
+        $queryview = mysqli_query($koneksi, "SELECT * FROM `halaman` WHERE nosurat = $surat ORDER BY no_halaman DESC LIMIT 1") or die(mysqli_error($koneksi));
+        $halaman = mysqli_fetch_array($queryview);
+        $kanan = $halaman['no_halaman'];
+    }
+    return $kanan;
+}
+
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
 
@@ -191,7 +248,12 @@ if (isset($_GET['update'])) {
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </nav>
-            <form action="juri.php" method="POST">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <button class="btn btn-block btn-lg btn-danger" onclick="#">Tambah Paket Soal - <?php echo $jenis; ?></button>
+                </div>
+            </div>
+            <form action="input_soal_tasfir.php?id=<?php echo $id_paket; ?>&jenis=<?php echo $jenis; ?>" method="POST">
                 <div class="row">
                     <?php
                     $jumlahsoal = 15;

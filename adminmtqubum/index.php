@@ -448,20 +448,31 @@ if (isset($_GET['editpaket'])) {
                 echo "<button onclick='hapusKategori(" . $data['id'] . ");' class='btn btn-danger btn-xs' style='margin-left: 8px'>Delete Kategori</button></h6>";
                 $index = $data['index'];
                 $nama = $data['nama'];
+                $jenis = $data['jenis'];
                 $id_kategori = $data['id']; //lanjutkan buat paket dan edit paket tambah id kategori
                 $query_mysql2 = mysqli_query($koneksi, "SELECT * FROM paket WHERE id_kategori = '$id_kategori' ORDER BY id") or die(mysqli_error($koneksi));
                 while ($data2 = mysqli_fetch_array($query_mysql2)) {
-                    echo '<div class="col-xs-2 col-md-2" style="margin-bottom: 70px;  margin-top: 10px; margin-right:30px">
+                    if ($nama == "Tafsir") {
+                        echo '<div class="col-xs-2 col-md-2" style="margin-bottom: 70px;  margin-top: 10px; margin-right:30px">
+                    <a href="input_soal_tasfir.php?id=' . $id_kategori . '&jenis=' . $jenis . '&namapaket=' . $data2['namapaket'] . '&nopaket=' . $data2['id'] . '">
+                        <img src="../gambar/kotak.png" class="img-responsive center-block">
+                            <dt><div class="tengah">Paket ' . $data2['namapaket'] . '</div></dt></img>
+                        
+                    </a>
+                </div>';
+                    } else {
+                        echo '<div class="col-xs-2 col-md-2" style="margin-bottom: 70px;  margin-top: 10px; margin-right:30px">
                     <a href="?kategori=' . $index . '&id=' . $id_kategori . '&namapaket=' . $data2['namapaket'] . '&nopaket=' . $data2['id'] . '#popup2">
                         <img src="../gambar/kotak.png" class="img-responsive center-block">
                             <dt><div class="tengah">Paket ' . $data2['namapaket'] . '</div></dt></img>
                         
                     </a>
                 </div>';
+                    }
                 }
                 echo "<div class='col-xs-2 col-md-2' style='margin-bottom: 70px; margin-top: 10px; margin-right:30px'>";
                 if ($nama == "Tafsir") {
-                    echo '<a href="input_soal_tasfir.php?id=' . $id_kategori . '">';
+                    echo '<a href="input_soal_tasfir.php?id=' . $id_kategori . '&jenis=' . $jenis . '">';
                     echo "<img src='../gambar/tambah.png' class='img-responsive center-block'>
                         <dt><div class='tengah'>Tambah</div></dt>
                     
