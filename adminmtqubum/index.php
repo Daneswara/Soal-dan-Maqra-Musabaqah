@@ -65,8 +65,16 @@ if (isset($_GET['deletekategori'])) {
     $querydel = mysqli_query($koneksi, "SELECT * FROM paket WHERE `id_kategori` = $id;") or die(mysqli_error($koneksi));
     $idpaket = mysqli_fetch_array($querydel);
     $paket = $idpaket['id'];
-
-    $queryhapus = mysqli_query($koneksi, "DELETE FROM soal WHERE kategori = $paket;");
+    
+    $querycek = mysqli_query($koneksi, "SELECT * FROM kategori WHERE `id` = $id;") or die(mysqli_error($koneksi));
+    $idkat = mysqli_fetch_array($querycek);
+    $namakat = $idkat['nama'];
+    if($namakat == "Tafsir"){
+        $queryhapus = mysqli_query($koneksi, "DELETE FROM soal_tafsir WHERE paket = $paket;");
+    } else {
+        $queryhapus = mysqli_query($koneksi, "DELETE FROM soal WHERE kategori = $paket;");
+    }
+    
     $queryhapus = mysqli_query($koneksi, "DELETE FROM paket WHERE id_kategori = $id;");
     $queryhapus = mysqli_query($koneksi, "DELETE FROM kategori WHERE id = $id;");
 

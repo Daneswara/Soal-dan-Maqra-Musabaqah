@@ -86,6 +86,7 @@ if (isset($_GET['update'])) {
     }
     header('location: index.php?note=4');
 }
+
 function getNamaSurat($surat) {
     include "../koneksi.php";
     $queryview = mysqli_query($koneksi, "SELECT * FROM `daftarsurah` WHERE nosurat = $surat LIMIT 1") or die(mysqli_error($koneksi));
@@ -108,15 +109,18 @@ function getHalaman($surat, $ayat) {
     return $kanan;
 }
 
-if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
-
-    $queryhapus = mysqli_query($koneksi, "DELETE FROM user WHERE id = $id");
-
+if (isset($_GET['deletepaket'])) {
+    $id = $_GET['deletepaket'];
+    $queryhapus = mysqli_query($koneksi, "DELETE FROM `soal_tafsir` WHERE `paket` = $id;");
     if ($queryhapus) {
-        header('location: juri.php?note=3');
+        $queryhapus2 = mysqli_query($koneksi, "DELETE FROM paket WHERE id = $id;");
+        if ($queryhapus2) {
+            header('location: index.php?note=5');
+        } else {
+            header('location: index.php?note=51');
+        }
     } else {
-        header('location: juri.php?note=31');
+        header('location: index.php?note=51');
     }
 }
 if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
@@ -190,6 +194,18 @@ if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
                     type: 'warning'},
                 function () {
                     window.location = "juri.php?delete=" + id;
+                });
+            }
+            function hapusPaket(id) {
+                swal({title: 'Apakah anda yakin ingin mengapus paket?',
+                    text: 'anda tidak akan dapat mengembalikan paket soal yang telah dihapus!',
+                    confirmButtonColor: '#DD6B55',
+                    closeOnConfirm: false,
+                    confirmButtonText: 'Iya hapus!', cancelButtonText: 'Batal',
+                    showCancelButton: true,
+                    type: 'warning'},
+                function () {
+                    window.location = "index.php?deletepaket=" + id;
                 });
             }
         </script>
@@ -349,8 +365,10 @@ if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
                         } else {
                             echo '<textarea type="text" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control" disabled></textarea>';
                         }
-                    } else {
+                    } elseif (isset($_GET['nopaket'])) {
                         echo '<textarea type="text" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control" disabled></textarea>';
+                    } else {
+                        echo '<textarea type="text" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control"></textarea>';
                     }
 
                     echo '</div>
@@ -363,8 +381,10 @@ if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
                         } else {
                             echo '<textarea type="text" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control" disabled></textarea>';
                         }
-                    } else {
+                    } elseif (isset($_GET['nopaket'])) {
                         echo '<textarea type="text" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control" disabled></textarea>';
+                    } else {
+                        echo '<textarea type="text" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control"></textarea>';
                     }
 
                     echo '</div>
@@ -373,9 +393,20 @@ if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
             }
             ?>
             <!-- /.col-xs-3 -->
-            <div class="col-xs-offset-2 col-xs-10">
-                <button class="btn btn-block btn-lg btn-primary">Tambah Paket Soal Tafsir</button>
-            </div> <!-- /.col-xs-3 -->
+
+            <?php
+            if (isset($_GET['nopaket'])) {
+                echo '<div class="col-xs-offset-2 col-xs-5">';
+                echo "<div class='btn btn-block btn-lg btn-danger' onclick='hapusPaket(" . $_GET['nopaket'] . ");'>Delete Paket Soal</div></div>";
+                echo '<div class="col-xs-5">';
+                echo "<button type='submit' class='btn btn-block btn-lg btn-primary'>Edit Paket Soal</button></div>";
+            } else {
+                echo '<div class="col-xs-offset-2 col-xs-10">';
+                echo '<button class="btn btn-block btn-lg btn-primary">Tambah Paket Soal Tafsir</button></div>';
+            }
+            ?>
+
+            <!-- /.col-xs-3 -->
 
         </div></form>
 
