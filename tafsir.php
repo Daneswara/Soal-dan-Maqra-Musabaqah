@@ -453,7 +453,7 @@ function getNamaSurat($surat) {
                             </select></div>
                     </div> <!-- /.col-xs-3 -->
                     <div class="col-xs-6">
-                        <button type="submit" formaction="acakpaket.php" class="btn btn-block btn-lg btn-primary">Acak Paket</button>
+                        <button type="submit" formaction="acakpaket_tafsir.php" class="btn btn-block btn-lg btn-primary">Acak Paket</button>
                     </div> <!-- /.col-xs-3 -->
                 </form>
             </div> <!-- /.row -->
