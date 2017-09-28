@@ -7,11 +7,13 @@ include "koneksi.php";
  * and open the template in the editor.
  */
 $index = $_GET['kategori'];
-
+$pecah = explode("_",$index);
+$idkat = $pecah[1];
+//echo $idkat;
 $cek = false;
 while ($cek == false) {
-    $querypaket = mysqli_query($koneksi, "SELECT * FROM paket WHERE indexkategori = '$index' ORDER BY id") or die(mysqli_error($koneksi));
-    $ceksoal = mysqli_query($koneksi, "SELECT * FROM penjurianpaket WHERE indexkategori = '$index' ORDER BY id") or die(mysqli_error($koneksi));
+    $querypaket = mysqli_query($koneksi, "SELECT * FROM paket WHERE id_kategori = $idkat ORDER BY id") or die(mysqli_error($koneksi));
+    $ceksoal = mysqli_query($koneksi, "SELECT * FROM penjurianpaket WHERE id_kategori = $idkat ORDER BY id") or die(mysqli_error($koneksi));
     $jumlahsoal = mysqli_num_rows($querypaket);
     $jumlahriwayatsoal = mysqli_num_rows($ceksoal);
     if ($jumlahsoal > $jumlahriwayatsoal) {
@@ -21,12 +23,12 @@ while ($cek == false) {
         while ($data = mysqli_fetch_array($querypaket)) {
             if ($i == $random) {
                 $paket = $data['id'];
-                echo $paket;
+                //echo $paket;
                 $kategori = $data['indexkategori'];
                 $ceksoal = mysqli_query($koneksi, "SELECT * FROM penjurianpaket WHERE id_paket = $paket") or die(mysqli_error($koneksi));
                 $soaldidb = mysqli_num_rows($ceksoal);
                 if ($soaldidb == 0) {
-                    $acakpaket = mysqli_query($koneksi, "INSERT INTO penjurianpaket VALUES('', $paket ,'$kategori')") or die(mysqli_error($koneksi));
+                    $acakpaket = mysqli_query($koneksi, "INSERT INTO penjurianpaket VALUES('', $paket ,'$kategori', '$idkat')") or die(mysqli_error($koneksi));
                     $cek = true;
                 }
             }

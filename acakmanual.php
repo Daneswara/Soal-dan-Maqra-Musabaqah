@@ -6,8 +6,12 @@ include "koneksi.php";
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-$kategori = $_GET['kategori'];
+$getkat = $_GET['kategori'];
+$pecah = explode("_",$getkat);
+
+$kategori = $pecah[0];
 $index = $_GET['kategori'];
+
 if (strpos($kategori, "-") != false) {
     $kat = explode("-", $kategori);
     $where = "juz >= $kat[0] AND juz <= $kat[1]";
@@ -66,7 +70,8 @@ while ($data = mysqli_fetch_array($querypaket)) {
 //    echo $nilai . " ";
 //}
 
-$kategori = $_GET['kategori'];
+//$kategori = $_GET['kategori'];
+$kategori = $pecah[0];
 if (strpos($kategori, "-") != false) {
     $kat = explode("-", $kategori);
     $where = "kategori >= $kat[0] AND kategori <= $kat[1]";
