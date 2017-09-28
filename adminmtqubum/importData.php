@@ -9,7 +9,7 @@ include "../koneksi.php";
 //  Include PHPExcel_IOFactory\
 include './PHPExcel/IOFactory.php';
 
-$inputFileName = './Excel/Bank Soal.xls';
+$inputFileName = './Excel/Bank Soal'.date("d/m/Y").'.xls';
 
 //  Read your Excel workbook
 try {
@@ -45,16 +45,16 @@ if ($data[0][0] != null) {
     $temp = "";
     $temp2 = "";
     for ($row = 0; $row < count($data); $row++) {
-        $idpaket = explode("-", $data[$row][4]);
+        $idpaket = explode("-", $data[$row][5]);// id urutan nama jenis index
         if($temp != $idpaket[0]){
-            $querytambah = mysqli_query($koneksi, "INSERT INTO kategori VALUES($idpaket[0], ".$data[$row][1].",'".$data[$row][0]."','".$data[$row][2]."');") or die(mysqli_error($koneksi));
+            $querytambah = mysqli_query($koneksi, "INSERT INTO kategori VALUES($idpaket[0], ".$data[$row][2].",'".$data[$row][1]."','".$data[$row][0]."','".$data[$row][3]."');") or die(mysqli_error($koneksi));
             $temp =$idpaket[0];
         }
-        if($temp2 != $data[$row][3]){
-            $querytambah = mysqli_query($koneksi, "INSERT INTO paket VALUES(".$data[$row][3].", '".$data[$row][2]."', '".$data[$row][4]."');") or die(mysqli_error($koneksi));
-            $temp2 =$data[$row][3];
+        if($temp2 != $data[$row][4]){
+            $querytambah = mysqli_query($koneksi, "INSERT INTO paket VALUES(".$data[$row][4].", '".$idpaket[0]."', '".$data[$row][3]."', '".$data[$row][5]."');") or die(mysqli_error($koneksi));
+            $temp2 =$data[$row][4];
         }
-        $querytambah = mysqli_query($koneksi, "INSERT INTO soal VALUES(NULL, ".$data[$row][3].",".$data[$row][5].",".$data[$row][6].",".$data[$row][7].");") or die(mysqli_error($koneksi));
+        $querytambah = mysqli_query($koneksi, "INSERT INTO soal VALUES(NULL, ".$data[$row][4].",".$data[$row][6].",".$data[$row][7].",".$data[$row][8].",".$data[$row][9].",".$data[$row][10].");") or die(mysqli_error($koneksi));
     }
     
     
