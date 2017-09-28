@@ -125,11 +125,11 @@ if (isset($_GET['uploadExcel'])) {
 //            echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
 //            echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
 
-            if (file_exists("Excel/".$_FILES["file"]["name"])) {
-                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Excel dengan nama sama sudah ada, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
-//                echo $_FILES["file"]["name"] . " already exists. ";
-                header('location: pengaturan.php?note=62');
-            } else {
+            //if (file_exists("Excel/".$_FILES["file"]["name"])) {
+              //  echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Excel dengan nama sama sudah ada, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+//              //  echo $_FILES["file"]["name"] . " already exists. ";
+                //header('location: pengaturan.php?note=62');
+            //} else {
                 move_uploaded_file($_FILES["file"]["tmp_name"], "Excel/".$_FILES["file"]["name"]);
 //                $query = mysqli_query($koneksi, "UPDATE pengaturan SET link_video = '".$_FILES["file"]["name"]."' LIMIT 1");
 //                echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
@@ -162,9 +162,9 @@ if (isset($_GET['uploadExcel'])) {
                     //  Read a row of data into an array
                     for ($col = 0; $col <= $colNumber; $col++) {
                         $data[$row - 2][$col] = $sheet->getCellByColumnAndRow($col, $row, true);
-                        echo $data[$row - 2][$col] . ' ';
+                        //echo $data[$row - 2][$col] . ' ';
                     }
-                    echo '<br>';
+                    // '<br>';
 
                     //  Insert row data array into your database of choice here
                 }
@@ -197,7 +197,7 @@ if (isset($_GET['uploadExcel'])) {
                         header('location: pengaturan.php?note=61');
                     }
                 }
-            }
+            //}
         }
     } else {
         header('location: pengaturan.php?note=63');
