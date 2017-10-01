@@ -442,10 +442,10 @@ function getNamaSurat($surat) {
                                 $query_mysql = mysqli_query($koneksi, "SELECT * FROM kategori where nama = 'Tafsir' ORDER BY urutan") or die(mysqli_error($koneksi));
 
                                 while ($data = mysqli_fetch_array($query_mysql)) {
-                                    if ($pilihan == $data['id']) {
-                                        echo "<option value=" . $data['id'] . " selected> " . $data['jenis'] . " (Juz " . $data['index'] . ")" . "</option>";
+                                    if ($pilihan == $data['index']."_".$data['id']) {
+                                        echo "<option value=" . $data['index']."_".$data['id'] . " selected> " . $data['jenis'] . " (Juz " . $data['index'] . ")" . "</option>";
                                     } else {
-                                        echo "<option value=" . $data['id'] . "> " . $data['jenis']. " (Juz " . $data['index'] . ")" . "</option>";
+                                        echo "<option value=" . $data['index']."_".$data['id'] . "> " . $data['jenis']. " (Juz " . $data['index'] . ")" . "</option>";
                                     }
                                 }
                                 ?>
