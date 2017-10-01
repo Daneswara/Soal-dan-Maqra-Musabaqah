@@ -89,32 +89,6 @@ if (isset($_GET['nopaket'])) {
             }
         }
         ?>
-        <script type='text/javascript'>
-            function konfirmasi(id) {
-                swal({title: 'Apakah anda yakin ingin mengapus?',
-                    text: 'anda tidak akan dapat mengembalikan data yang telah dihapus!',
-                    confirmButtonColor: '#DD6B55',
-                    closeOnConfirm: false,
-                    confirmButtonText: 'Iya hapus!', cancelButtonText: 'Batal',
-                    showCancelButton: true,
-                    type: 'warning'},
-                function () {
-                    window.location = "juri.php?delete=" + id;
-                });
-            }
-            function hapusPaket(id) {
-                swal({title: 'Apakah anda yakin ingin mengapus paket?',
-                    text: 'anda tidak akan dapat mengembalikan paket soal yang telah dihapus!',
-                    confirmButtonColor: '#DD6B55',
-                    closeOnConfirm: false,
-                    confirmButtonText: 'Iya hapus!', cancelButtonText: 'Batal',
-                    showCancelButton: true,
-                    type: 'warning'},
-                function () {
-                    window.location = "index.php?deletepaket=" + id;
-                });
-            }
-        </script>
         <style>
             body {
                 padding-bottom: 20px;
@@ -180,8 +154,9 @@ if (isset($_GET['nopaket'])) {
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse-8">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.php">Bank Soal</a></li>
-                        <li><a href="juri.php">Daftar Juri</a></li>
+                        <li><a href="index.php">Penjurian</a></li>
+                        <li class="active"><a href="tafsir.php">Tafsir</a></li>
+                        <li><a href="linkmushaf.php">Link Mushaf</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -195,7 +170,12 @@ if (isset($_GET['nopaket'])) {
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </nav>
-            <div class="col-xs-12">
+            <div class="col-xs-2">
+                <div class="form-group">
+                    <button class="btn btn-block btn-lg btn-primary" onclick="window.close();"> Kembali</button>
+                </div>
+            </div>
+            <div class="col-xs-10">
                 <div class="form-group">
                     <button class="btn btn-block btn-lg btn-danger" onclick="#"> Paket Soal - <?php echo $id_paket; ?></button>
                 </div>
@@ -246,56 +226,6 @@ if (isset($_GET['nopaket'])) {
 
         </div></form>
 
-    <div id="popup">
-        <div class="window">
-            <?php
-            $id = $_GET['edit'];
-
-            $query = mysqli_query($koneksi, "SELECT * FROM user WHERE id = $id");
-            $res = mysqli_fetch_array($query);
-            ?>
-            <a href="#" class="close-button" title="Close">X</a>
-            <h2>Edit</h2>
-            <form action="juri.php?update=<?php echo $id; ?>" method="POST">
-                <div class="row">
-
-                    <div class="col-xs-12">
-                        <div class="form-group">
-                            <input type="text" name="namabaru" placeholder="Nama" value="<?php echo $res['nama'] ?>" class="form-control" required/>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="usernamebaru" placeholder="Username" value="<?php echo $res['username'] ?>" class="form-control" required/>
-                        </div>
-
-
-                        <div class="form-group">
-                            <input type="password" name="passwordbaru" placeholder="Password Baru" class="form-control" required/>
-                        </div>
-
-                        <button class="btn btn-block btn-lg btn-primary">Edit Juri</button>
-                    </div>
-
-                </div></form>
-        </div>
-    </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#surat1").change(function () {
-                $.post("ajax/ayatgoto.php", {surah: $("#surat1").val()})
-                        .success(function (data) {
-                            $("#ayat1").html(data);
-                            $("#ayat1").change();
-                        });
-            });
-            if ($("#ayat1").val() == "" || $("#ayat1").val() == "0" || $("#ayat1").val() == null) {
-                $.post("ajax/ayatgoto.php", {surah: $("#surat1").val()})
-                        .success(function (data) {
-                            $("#ayat1").html(data);
-                            $("#ayat1").change();
-                        });
-            }
-        });
-    </script>
     <script src="dist/js/vendor/jquery.min.js"></script>
     <script src="dist/js/vendor/video.js"></script>
     <script src="dist/js/flat-ui.min.js"></script>
