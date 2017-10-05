@@ -41,6 +41,7 @@ if (isset($_POST['optionsRadios'])) {
         $input = $_POST['custom'];
         $id = 9;
         $kategori = "custom";
+        $tipe = "custom";
         $index = $input;
     }
     $query_mysql = mysqli_query($koneksi, "SELECT * FROM `kategori` WHERE `index` = '$index' AND `jenis` = '$tipe'") or die(mysqli_error($koneksi));
