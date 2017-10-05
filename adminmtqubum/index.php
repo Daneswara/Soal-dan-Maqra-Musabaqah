@@ -66,16 +66,16 @@ if (isset($_GET['deletekategori'])) {
     $querydel = mysqli_query($koneksi, "SELECT * FROM paket WHERE `id_kategori` = $id;") or die(mysqli_error($koneksi));
     $idpaket = mysqli_fetch_array($querydel);
     $paket = $idpaket['id'];
-    
+
     $querycek = mysqli_query($koneksi, "SELECT * FROM kategori WHERE `id` = $id;") or die(mysqli_error($koneksi));
     $idkat = mysqli_fetch_array($querycek);
     $namakat = $idkat['nama'];
-    if($namakat == "Tafsir"){
+    if ($namakat == "Tafsir") {
         $queryhapus = mysqli_query($koneksi, "DELETE FROM soal_tafsir WHERE paket = $paket;");
     } else {
         $queryhapus = mysqli_query($koneksi, "DELETE FROM soal WHERE kategori = $paket;");
     }
-    
+
     $queryhapus = mysqli_query($koneksi, "DELETE FROM paket WHERE id_kategori = $id;");
     $queryhapus = mysqli_query($koneksi, "DELETE FROM kategori WHERE id = $id;");
 
@@ -461,22 +461,45 @@ if (isset($_GET['editpaket'])) {
                 $id_kategori = $data['id']; //lanjutkan buat paket dan edit paket tambah id kategori
                 $query_mysql2 = mysqli_query($koneksi, "SELECT * FROM paket WHERE id_kategori = '$id_kategori' ORDER BY id") or die(mysqli_error($koneksi));
                 while ($data2 = mysqli_fetch_array($query_mysql2)) {
-                    if ($nama == "Tafsir") {
-                        echo '<div class="col-xs-2 col-md-2" style="margin-bottom: 70px;  margin-top: 10px; margin-right:30px">
+                    $idpaketnya = $data2['id'];
+                    $query_mysql3 = mysqli_query($koneksi, "SELECT * FROM penjurianpaket WHERE id_paket = '$idpaketnya';") or die(mysqli_error($koneksi));
+                    $cek = mysqli_num_rows($query_mysql3);
+                    if ($cek > 0) {
+                        if ($nama == "Tafsir") {
+                            echo '<div class="col-xs-2 col-md-2" style="margin-bottom: 70px;  margin-top: 10px; margin-right:30px">
+                    <a href="input_soal_tasfir.php?id=' . $id_kategori . '&jenis=' . $jenis . '&namapaket=' . $data2['namapaket'] . '&nopaket=' . $data2['id'] . '">
+                        <img src="../gambar/kotakmerah.png" class="img-responsive center-block">
+                            <dt><div class="tengah">Paket ' . $data2['namapaket'] . '</div></dt></img>
+                        
+                    </a>
+                </div>';
+                        } else {
+                            echo '<div class="col-xs-2 col-md-2" style="margin-bottom: 70px;  margin-top: 10px; margin-right:30px">
+                    <a href="?kategori=' . $index . '&id=' . $id_kategori . '&namapaket=' . $data2['namapaket'] . '&nopaket=' . $data2['id'] . '#popup2">
+                        <img src="../gambar/kotakmerah.png" class="img-responsive center-block">
+                            <dt><div class="tengah">Paket ' . $data2['namapaket'] . '</div></dt></img>
+                        
+                    </a>
+                </div>';
+                        }
+                    } else {
+                        if ($nama == "Tafsir") {
+                            echo '<div class="col-xs-2 col-md-2" style="margin-bottom: 70px;  margin-top: 10px; margin-right:30px">
                     <a href="input_soal_tasfir.php?id=' . $id_kategori . '&jenis=' . $jenis . '&namapaket=' . $data2['namapaket'] . '&nopaket=' . $data2['id'] . '">
                         <img src="../gambar/kotak.png" class="img-responsive center-block">
                             <dt><div class="tengah">Paket ' . $data2['namapaket'] . '</div></dt></img>
                         
                     </a>
                 </div>';
-                    } else {
-                        echo '<div class="col-xs-2 col-md-2" style="margin-bottom: 70px;  margin-top: 10px; margin-right:30px">
+                        } else {
+                            echo '<div class="col-xs-2 col-md-2" style="margin-bottom: 70px;  margin-top: 10px; margin-right:30px">
                     <a href="?kategori=' . $index . '&id=' . $id_kategori . '&namapaket=' . $data2['namapaket'] . '&nopaket=' . $data2['id'] . '#popup2">
                         <img src="../gambar/kotak.png" class="img-responsive center-block">
                             <dt><div class="tengah">Paket ' . $data2['namapaket'] . '</div></dt></img>
                         
                     </a>
                 </div>';
+                        }
                     }
                 }
                 echo "<div class='col-xs-2 col-md-2' style='margin-bottom: 70px; margin-top: 10px; margin-right:30px'>";
