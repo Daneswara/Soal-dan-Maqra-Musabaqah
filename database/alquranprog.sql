@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2017 at 07:57 AM
+-- Generation Time: Oct 06, 2017 at 08:42 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -1426,7 +1426,7 @@ INSERT INTO `daftarsurah` (`id`, `kategori`, `nosurat`, `nama`, `awal`, `akhir`)
 (41, 19, 27, 'An-Naml', 1, 59),
 (42, 20, 27, 'An-Naml', 60, 93),
 (43, 20, 28, 'Al-Qashash', 1, 88),
-(44, 20, 29, 'AlAnkabut', 1, 44),
+(44, 20, 29, 'Al-Ankabut', 1, 44),
 (45, 21, 29, 'Al-Ankabut', 45, 69),
 (46, 21, 30, 'Ar-Rum', 1, 60),
 (47, 21, 31, 'Luqman', 1, 34),
@@ -4022,7 +4022,7 @@ CREATE TABLE `soal` (
 
 INSERT INTO `soal` (`id`, `kategori`, `soal`, `surat`, `ayat`, `suratakhir`, `ayatakhir`) VALUES
 (1, 5, 1, 8, 20, 0, 0),
-(2, 5, 2, 2, 3, 0, 0),
+(2, 5, 2, 2, 2, 0, 0),
 (3, 5, 3, 3, 155, 0, 0),
 (4, 15, 1, 19, 23, 0, 0),
 (5, 15, 2, 24, 4, 0, 0),
@@ -4442,7 +4442,7 @@ INSERT INTO `soal` (`id`, `kategori`, `soal`, `surat`, `ayat`, `suratakhir`, `ay
 (419, 424, 1, 3, 156, 0, 0),
 (420, 425, 1, 3, 157, 0, 0),
 (421, 426, 1, 3, 158, 0, 0),
-(422, 427, 1, 19, 1, 22, 4);
+(422, 427, 1, 17, 1, 20, 1);
 
 -- --------------------------------------------------------
 
@@ -4614,7 +4614,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `mutasyabihat`
 --
 ALTER TABLE `mutasyabihat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1302;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1301;
 --
 -- AUTO_INCREMENT for table `paket`
 --
