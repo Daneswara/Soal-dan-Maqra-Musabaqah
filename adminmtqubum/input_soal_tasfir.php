@@ -259,6 +259,8 @@ if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
             #popup:target {
                 visibility: visible;
             }
+
+
         </style>
 
         <div class="container">
@@ -313,18 +315,26 @@ if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
                             Soal ke-' . $i . '
                         </div></div>
                     <div class="col-xs-5"><div class="form-group"><select name="surat1" id="surat1" class="form-control select select-primary" data-toggle="select" required>';
+
+                    $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah ORDER BY nosurat") or die(mysqli_error($koneksi));
+                    $temp = "";
                     if (isset($dbsoal[0])) {
                         $soalpertama = explode("-", $dbsoal[0]);
                     }
-                    $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah ORDER BY nosurat") or die(mysqli_error($koneksi));
-                    $temp = "";
                     while ($data = mysqli_fetch_array($query_mysql)) {
-                        if ($data['nama'] == $temp) {
-                            
-                        } else if ($soalpertama[0] == $data['nosurat']) {
-                            echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                        if (isset($dbsoal[0])) {
+                            $soalpertama = explode("-", $dbsoal[0]);
+                            if ($data['nama'] == $temp) {
+                                
+                            } else if ($soalpertama[0] == $data['nosurat']) {
+                                echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                            }
                         } else {
-                            echo "<option value=" . $data['nosurat'] . ">" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                            if ($data['nama'] == $temp) {
+                                
+                            } else {
+                                echo "<option value=" . $data['nosurat'] . ">" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                            }
                         }
                         $temp = $data['nama'];
                     }
@@ -361,14 +371,14 @@ if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
                         <div class="form-group">';
                     if (isset($dbsoalke[$i - 1])) {
                         if ($dbsoalke[($i - 1)] == $i) {
-                            echo '<textarea type="text" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control">' . $dbsoal[($i - 1)] . '</textarea>';
+                            echo '<textarea id="soal' . $i . '" type="text" spellcheck="false" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control">' . $dbsoal[($i - 1)] . '</textarea>';
                         } else {
-                            echo '<textarea type="text" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control" disabled></textarea>';
+                            echo '<textarea id="soal' . $i . '" type="text" spellcheck="false" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control" disabled></textarea>';
                         }
                     } elseif (isset($_GET['nopaket'])) {
-                        echo '<textarea type="text" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control" disabled></textarea>';
+                        echo '<textarea id="soal' . $i . '" type="text" spellcheck="false" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control" disabled></textarea>';
                     } else {
-                        echo '<textarea type="text" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control"></textarea>';
+                        echo '<textarea id="soal' . $i . '" type="text" spellcheck="false" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control"></textarea>';
                     }
 
                     echo '</div>
@@ -377,14 +387,14 @@ if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
                         <div class="form-group">';
                     if (isset($dbsoalke[$i - 1])) {
                         if ($dbsoalke[($i - 1)] == $i) {
-                            echo '<textarea type="text" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control">' . $dbjawab[($i - 1)] . '</textarea>';
+                            echo '<textarea id="jawaban' . $i . '" type="text" spellcheck="false" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control">' . $dbjawab[($i - 1)] . '</textarea>';
                         } else {
-                            echo '<textarea type="text" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control" disabled></textarea>';
+                            echo '<textarea id="jawaban' . $i . '" type="text" spellcheck="false" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control" disabled></textarea>';
                         }
                     } elseif (isset($_GET['nopaket'])) {
-                        echo '<textarea type="text" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control" disabled></textarea>';
+                        echo '<textarea id="jawaban' . $i . '" type="text" spellcheck="false" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control" disabled></textarea>';
                     } else {
-                        echo '<textarea type="text" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control"></textarea>';
+                        echo '<textarea id="jawaban' . $i . '" type="text" spellcheck="false" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control"></textarea>';
                     }
 
                     echo '</div>
@@ -457,6 +467,18 @@ if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
                             $("#ayat1").html(data);
                             $("#ayat1").change();
                         });
+            }
+            for (i = 2; i <= 15; i++) {
+                document.getElementById("soal"+i).addEventListener('keyup', function () {
+                    this.style.overflow = 'hidden';
+                    this.style.height = 85;
+                    this.style.height = this.scrollHeight + 'px';
+                }, false);
+                document.getElementById("jawaban"+i).addEventListener('keyup', function () {
+                    this.style.overflow = 'hidden';
+                    this.style.height = 85;
+                    this.style.height = this.scrollHeight + 'px';
+                }, false);
             }
         });
     </script>
