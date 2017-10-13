@@ -214,6 +214,12 @@ if (isset($_GET['nopaket'])) {
                 }
             }
             ?>
+            <div class="col-xs-10 col-xs-offset-2">
+                <div class="form-group">
+                    <a target='_blank' href='hasilsoaljawabtafsir.php?nopaket=<?php echo $id_paket;?>' class="btn btn-block btn-lg btn-danger"> Lihat Jawaban Paket Soal - <?php echo $id_paket;?></a>
+                </div>
+            </div>
+            
             <!-- /.col-xs-3 -->
 
 
