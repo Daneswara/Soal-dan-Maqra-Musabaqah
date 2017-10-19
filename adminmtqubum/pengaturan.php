@@ -19,10 +19,10 @@ if (isset($_GET['operasi'])) {
             header('location: pengaturan.php?note=31');
         }
     } else if ($operasi == "resetPerlombaan") {
-        $queryoperasi = mysqli_query($koneksi, "TRUNCATE penjurian");
-        $queryoperasi = mysqli_query($koneksi, "TRUNCATE penjurianpaket");
+        $queryoperasi = mysqli_query($koneksi, "TRUNCATE penjurian;");
+        $queryoperasi = mysqli_query($koneksi, "TRUNCATE penjurianpaket;");
 
-        $queryoperasi = mysqli_query($koneksi, "TRUNCATE mutasyabihat");
+        $queryoperasi = mysqli_query($koneksi, "TRUNCATE mutasyabihat;");
         $table_name = "mutasyabihat";
         $path = realpath(dirname(__FILE__));
         $path = str_replace("\\", "/", $path);
@@ -30,6 +30,9 @@ if (isset($_GET['operasi'])) {
         $sql = "LOAD DATA INFILE '$backup_file' INTO TABLE $table_name";
 
         $query_mysql = mysqli_query($koneksi, $sql) or die(mysqli_error($koneksi));
+
+        $update = mysqli_query($koneksi, "UPDATE soal_fahmil SET `status` = 0 WHERE status = 1;") or die(mysqli_error($koneksi));
+
         if ($queryoperasi) {
             header('location: pengaturan.php?note=4');
         } else if ($query_mysql) {
@@ -613,10 +616,10 @@ if (isset($_GET['note'])) {
                                     <td width="50%">
                                     </td>
                                     <td>
-                                        <h5 style="text-align: center">Soal Tafsir </h5>
+                                        <h5 style="text-align: center">Soal Fahmil </h5>
                                         <input id="file" name="file" type="file" class="form-control"></input>
-                                        <button type="submit" style="margin-top: 10px" class="btn btn-block btn-lg btn-primary">Upload Soal Tafsir (xls)</button>
-                                        <a href="exportSoalFahmil.php" target="_blank" style="margin-top: 15px" class="btn btn-block btn-lg btn-primary">Export Soal Tafsir</a>
+                                        <button type="submit" style="margin-top: 10px" class="btn btn-block btn-lg btn-primary">Upload Soal Fahmil (xls)</button>
+                                        <a href="exportSoalFahmil.php" target="_blank" style="margin-top: 15px" class="btn btn-block btn-lg btn-primary">Export Soal Fahmil</a>
                                     </td>
                                 </tr>
                             </table>

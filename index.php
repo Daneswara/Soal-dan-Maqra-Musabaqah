@@ -419,6 +419,7 @@ function getNamaSurat($surat) {
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index.php">Penjurian</a></li>
                         <li ><a href="tafsir.php">Tafsir</a></li>
+                        <li ><a href="fahmil.php">Fahmil</a></li>
                         <li><a href="linkmushaf.php">Link Mushaf</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

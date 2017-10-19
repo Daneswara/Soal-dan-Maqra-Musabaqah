@@ -5,8 +5,8 @@ if (empty($_SESSION['user_login'])) {
     header('location: login.php');
 }
 
-if (isset($_GET['paket'])) {
-    $psoal = $_GET['paket'];
+if (isset($_GET['acak'])) {
+    $psoal = $_GET['acak'];
 }
 
 
@@ -68,7 +68,6 @@ function getNamaSurat($surat) {
             }
         }
         if (isset($_GET['note'])) {
-            $pilihan = $_GET['pilihan'];
             $notifikasi = $_GET['note'];
             if ($notifikasi == 1) {
                 echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Paket soal telah diacak', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
@@ -112,8 +111,8 @@ function getNamaSurat($surat) {
                 <div class="collapse navbar-collapse" id="navbar-collapse-8">
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Penjurian</a></li>
-                        <li class="active"><a href="tafsir.php">Tafsir</a></li>
-                        <li ><a href="fahmil.php">Fahmil</a></li>
+                        <li><a href="tafsir.php">Tafsir</a></li>
+                        <li class="active"><a href="fahmil.php">Fahmil</a></li>
                         <li><a href="linkmushaf.php">Link Mushaf</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -129,28 +128,11 @@ function getNamaSurat($surat) {
                 </div><!-- /.navbar-collapse -->
             </nav>
             <div class="row">
-                <form method="GET">
+            <div class="col-xs-3">
+            </div>
                     <div class="col-xs-6">
-                        <div class="form-group">
-                            <select name="kategori" class="form-control select select-primary" data-toggle="select" required>
-                                <?php
-                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM kategori where nama = 'Tafsir' ORDER BY urutan") or die(mysqli_error($koneksi));
-
-                                while ($data = mysqli_fetch_array($query_mysql)) {
-                                    if ($pilihan == $data['index']."_".$data['id']) {
-                                        echo "<option value=" . $data['index']."_".$data['id'] . " selected> " . $data['jenis'] . " (Juz " . $data['index'] . ")" . "</option>";
-                                    } else {
-                                        echo "<option value=" . $data['index']."_".$data['id'] . "> " . $data['jenis']. " (Juz " . $data['index'] . ")" . "</option>";
-                                    }
-                                }
-                                ?>
-
-                            </select></div>
+                        <a href="acakpaket_fahmil.php" class="btn btn-block btn-lg btn-primary">Acak Soal Fahmil</a>
                     </div> <!-- /.col-xs-3 -->
-                    <div class="col-xs-6">
-                        <button type="submit" formaction="acakpaket_tafsir.php" class="btn btn-block btn-lg btn-primary">Acak Paket</button>
-                    </div> <!-- /.col-xs-3 -->
-                </form>
             </div> <!-- /.row -->
             <body>
                 <style>
@@ -242,8 +224,7 @@ function getNamaSurat($surat) {
                         <!--<dl class="palette palette-alizarin" style="height: 200px">-->
                         <?php
                         if (isset($psoal)) {
-                            echo '<h5><div class="tengah2" style="padding-top: 50px; padding-left: 0px">Paket ';
-                            echo $psoal;
+                            echo '<h5><div class="tengah2" style="padding-top: 50px; padding-left: 0px">Paket Fahmil';
                         } else {
                             echo '<h5><div class="tengah2" style="padding-top: 50px; padding-left: 0px">Paket ';
                             echo "?";
@@ -257,7 +238,7 @@ function getNamaSurat($surat) {
             <?php
             $margin = "470px";
             if (isset($psoal)) {
-                echo "<a target='_blank' href='hasilsoaljawabtafsir.php?nopaket=$psoal'>";
+                echo "<a target='_blank' href='hasilsoaljawabfahmil.php?acak=1'>";
             }
             ?>
             <div class="col-md-2" style="margin-left: <?php echo $margin; ?>">
@@ -265,7 +246,7 @@ function getNamaSurat($surat) {
                 <!--                        <dl class="palette palette-alizarin" style="height: 140px">-->
                 <dt><div class="tengah2"><?php
                     if (isset($psoal)) {
-                        echo "Soal & Jawaban <br> Paket $psoal";
+                        echo "Soal & Jawaban <br> Fahmil";
                     }
                     ?></div></dt>
                 <!--</dl>-->
@@ -275,7 +256,7 @@ function getNamaSurat($surat) {
                 echo "</a>";
             }
             if ($psoal) {
-                echo "<a target='_blank' href='hasilsoaltafsir.php?nopaket=$psoal'>";
+                echo "<a target='_blank' href='hasilsoalfahmil.php?acak=1'>";
             }
             ?>
             <div class="col-md-2">
@@ -283,7 +264,7 @@ function getNamaSurat($surat) {
                 <!--<dl class="palette palette-alizarin" style="height: 140px">-->
                 <dt><div class="tengah2"><?php
                     if (isset($psoal)) {
-                        echo "Soal <br>Paket $psoal";
+                        echo "Soal <br>Fahmil";
                     }
                     ?></div></dt>
                 <!--</dl>-->
