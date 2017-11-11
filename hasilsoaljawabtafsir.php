@@ -188,13 +188,21 @@ if (isset($_GET['nopaket'])) {
                 if ($i == 1) {
                     $soalnya = $dbsoal[$i - 1];
                     $datasoal1 = explode("-", $soalnya);
-                    $namasurat = getNamaSurat($datasoal1[0]);
+//                    $namasurat = getNamaSurat($datasoal1[0]);
+                    // batas
+                    $surat = $datasoal1[0];
+                    $ayat = $datasoal1[1];
+                    $hal = getHalaman($surat, $ayat);
+                    $namasurat = getNamaSurat($surat);
+                    $namasurat = str_replace("'", "petik", $namasurat);
+                    $link = "mushaf.php?kanan=$hal&surah=$surat&ayat=$ayat&namasurat=$namasurat";
+                    // batas link
                     echo '<div class="col-xs-12"><div class="col-xs-2">
                         <div class="form-group">
                             Soal ke-' . $i . '
                         </div></div>
                     <div class="col-xs-10"><div class="form-group">
-                    <a href="' . $dbjawab[$i - 1] . '" class="btn btn-block btn-lg btn-primary" target="_black"> ' . $namasurat . ' : ' . $datasoal1[1] . ' </a>
+                    <a href="' . $link . '" class="btn btn-block btn-lg btn-primary" target="_black"> ' . getNamaSurat($datasoal1[0]) . ' : ' . $datasoal1[1] . ' </a>
                     </div></div></div>';
                 } else {
 

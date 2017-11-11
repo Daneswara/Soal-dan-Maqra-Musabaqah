@@ -210,6 +210,7 @@ if (isset($_GET['uploadExcelTafsir'])) {
 //    echo 'echo ' . $_FILES["file"]["type"];
     if (($_FILES["file"]["type"] == "application/vnd.ms-excel") && in_array($extension, $allowedExts)) {
         if ($_FILES["file"]["error"] > 0) {
+            
         } else {
             move_uploaded_file($_FILES["file"]["tmp_name"], "ExcelTafsir/" . $_FILES["file"]["name"]);
 //                $query = mysqli_query($koneksi, "UPDATE pengaturan SET link_video = '".$_FILES["file"]["name"]."' LIMIT 1");
@@ -250,27 +251,49 @@ if (isset($_GET['uploadExcelTafsir'])) {
             }
 
             if ($data[0][0] != null) {
-                $queryoperasi = mysqli_query($koneksi, "TRUNCATE kategori_fahmil");
-                $queryoperasi = mysqli_query($koneksi, "TRUNCATE soal_fahmil");
+                // buat operasi database updatenya
+                //$queryoperasi = mysqli_query($koneksi, "TRUNCATE kategori_fahmil");
+                $sql = "SELECT kategori.id as kategori, paket.id as paket "
+                        . "FROM soal_tafsir left join paket on soal_tafsir.paket = paket.id left join kategori on paket.id_kategori = kategori.id;";
+                $setRec = mysqli_query($koneksi, $sql);
                 $temp = "";
                 $temp2 = "";
+                while ($datatafsir = mysqli_fetch_array($setRec)) {
+                    if($datatafsir['kategori'] != $temp){
+                        $temp = $datatafsir['kategori'];
+                        $queryoperasi = mysqli_query($koneksi, "DELETE FROM kategori where id = $temp;");
+                    }
+                    if($datatafsir['paket'] != $temp2){
+                        $temp2 = $datatafsir['paket'];
+                        $queryoperasi = mysqli_query($koneksi, "DELETE FROM paket where id = $temp2;");
+                    }
+                }
+
+                $queryoperasi = mysqli_query($koneksi, "TRUNCATE soal_tafsir;");
+                $temp = "";
+                $temp2 = "";
+                $temp3 = "";
                 for ($row = 0; $row < count($data); $row++) {
                     //$idpaket = explode("-", $data[$row][5]); // id urutan nama jenis index
                     if ($temp != $data[$row][1]) {
-                        $querytambah = mysqli_query($koneksi, "INSERT INTO kategori_fahmil VALUES(" . $data[$row][1] . ", '" . $data[$row][2] ."');") or die(mysqli_error($koneksi));
+                        $querytambah = mysqli_query($koneksi, "INSERT INTO kategori VALUES(" . $data[$row][1] . ", 8, 'Tafsir', '" . $data[$row][2] . "', '1-30');") or die(mysqli_error($koneksi));
                         $temp = $data[$row][1];
                     }
+                    if ($temp3 != $data[$row][3]) {
+                        $querytambah = mysqli_query($koneksi, "INSERT INTO paket VALUES(" . $data[$row][3] . "," . $data[$row][1] . ", '1-30', '" . $data[$row][4] . "');") or die(mysqli_error($koneksi));
+                        $temp3 = $data[$row][3];
+                    }
                     if ($temp2 != $data[$row][0]) {
-                        $querytambah = mysqli_query($koneksi, "INSERT INTO soal_fahmil VALUES(" . $data[$row][0] . ", " . $data[$row][1] . ", '" . $data[$row][3] . "', '" . $data[$row][4]."');") or die(mysqli_error($koneksi));
+                        $querytambah = mysqli_query($koneksi, "INSERT INTO soal_tafsir VALUES(" . $data[$row][0] . ", " . $data[$row][3] . ", " . $data[$row][5] . ", '" . $data[$row][6] . "', '" . $data[$row][7] . "');") or die(mysqli_error($koneksi));
                         $temp2 = $data[$row][0];
                     }
                 }
 
 
                 if ($querytambah) {
-                    header('location: pengaturan.php?note=8');
+                    header('location: pengaturan.php?note=9');
                 } else {
-                    header('location: pengaturan.php?note=81');
+                    header('location: pengaturan.php?note=91');
                 }
             }
             //}
@@ -319,54 +342,58 @@ $username = $user['username'];
         <![endif]-->
     </head>
     <body>
-<?php
-if (isset($_GET['note'])) {
-    $notifikasi = $_GET['note'];
-    if ($notifikasi == 1) {
-        echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Pengaturan perlombaan telah diubah', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
-    } else if ($notifikasi == 12) {
-        echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Pengaturan perlombaan tidak dapat diubah, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
-    } else if ($notifikasi == 2) {
-        echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Pengaturan website telah diubah', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
-    } else if ($notifikasi == 21) {
-        echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Gagal mengupload gambar, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
-    } else if ($notifikasi == 22) {
-        echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Ukuran gambar terlalu besar, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
-    } else if ($notifikasi == 23) {
-        echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Format file yang diperbolehkan hanya .jpg dan .png, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
-    } else if ($notifikasi == 3) {
-        echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Data Bank Soal telah direset', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
-    } else if ($notifikasi == 31) {
-        echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Data Bank Soal gagal direset, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
-    } else if ($notifikasi == 4) {
-        echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Data Perlombaan telah direset', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
-    } else if ($notifikasi == 41) {
-        echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Data Perlombaan tidak dapat direset, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
-    } else if ($notifikasi == 5) {
-        echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Akun telah diedit', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
-    } else if ($notifikasi == 51) {
-        echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Akun tidak dapat diedit, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
-    } else if ($notifikasi == 6) {
-        echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Import Bank Soal baru berhasil disimpan', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
-    } else if ($notifikasi == 61) {
-        echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Import Bank Soal gagal disimpan, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
-    } else if ($notifikasi == 62) {
-        echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Excel dengan nama sama sudah ada, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
-    } else if ($notifikasi == 63) {
-        echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Upload file dengan tipe xls, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
-    } else if ($notifikasi == 7) {
-        echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Video berhasil terupload', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
-    } else if ($notifikasi == 71) {
-        echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Video dengan nama sama sudah ada, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
-    } else if ($notifikasi == 72) {
-        echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Upload file dengan ekstensi mp4. silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
-    } else if ($notifikasi == 8) {
-        echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Import Soal Fahmil berhasil disimpan', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
-    } else if ($notifikasi == 81) {
-        echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Import Soal Fahmil gagal disimpan, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
-    }
-}
-?>
+        <?php
+        if (isset($_GET['note'])) {
+            $notifikasi = $_GET['note'];
+            if ($notifikasi == 1) {
+                echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Pengaturan perlombaan telah diubah', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
+            } else if ($notifikasi == 12) {
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Pengaturan perlombaan tidak dapat diubah, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+            } else if ($notifikasi == 2) {
+                echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Pengaturan website telah diubah', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
+            } else if ($notifikasi == 21) {
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Gagal mengupload gambar, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+            } else if ($notifikasi == 22) {
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Ukuran gambar terlalu besar, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+            } else if ($notifikasi == 23) {
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Format file yang diperbolehkan hanya .jpg dan .png, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+            } else if ($notifikasi == 3) {
+                echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Data Bank Soal telah direset', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
+            } else if ($notifikasi == 31) {
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Data Bank Soal gagal direset, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+            } else if ($notifikasi == 4) {
+                echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Data Perlombaan telah direset', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
+            } else if ($notifikasi == 41) {
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Data Perlombaan tidak dapat direset, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+            } else if ($notifikasi == 5) {
+                echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Akun telah diedit', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
+            } else if ($notifikasi == 51) {
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Akun tidak dapat diedit, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+            } else if ($notifikasi == 6) {
+                echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Import Bank Soal baru berhasil disimpan', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
+            } else if ($notifikasi == 61) {
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Import Bank Soal gagal disimpan, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+            } else if ($notifikasi == 62) {
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Excel dengan nama sama sudah ada, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+            } else if ($notifikasi == 63) {
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Upload file dengan tipe xls, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+            } else if ($notifikasi == 7) {
+                echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Video berhasil terupload', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
+            } else if ($notifikasi == 71) {
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Video dengan nama sama sudah ada, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+            } else if ($notifikasi == 72) {
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Upload file dengan ekstensi mp4. silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+            } else if ($notifikasi == 8) {
+                echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Import Soal Fahmil berhasil disimpan', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
+            } else if ($notifikasi == 81) {
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Import Soal Fahmil gagal disimpan, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+            } else if ($notifikasi == 9) {
+                echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Import Soal Tafsir berhasil disimpan', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
+            } else if ($notifikasi == 91) {
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Import Soal Tafsir gagal disimpan, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+            }
+        }
+        ?>
         <script type='text/javascript'>
             function resetBank() {
                 swal({title: 'Apakah anda yakin ingin mereset Bank Soal?',
@@ -493,7 +520,7 @@ if (isset($_GET['note'])) {
                                     </td>
                                     <td width="50%">
                                         <select id="jumlahsoalmudah" name="jumlahsoalmudah" class="form-control select select-primary" data-toggle="select">
-<?php echo "<option value='$jumlahsoalmudah' selected>$jumlahsoalmudah Soal</option>"; ?>
+                                            <?php echo "<option value='$jumlahsoalmudah' selected>$jumlahsoalmudah Soal</option>"; ?>
 
 
                                         </select>
@@ -615,11 +642,12 @@ if (isset($_GET['note'])) {
                                 <tr>
                                     <td width="50%">
                                     </td>
+
                                     <td>
-                                        <h5 style="text-align: center">Soal Fahmil </h5>
+                                        <h5 style="text-align: center">Soal Tafsir </h5>
                                         <input id="file" name="file" type="file" class="form-control"></input>
-                                        <button type="submit" style="margin-top: 10px" class="btn btn-block btn-lg btn-primary">Upload Soal Fahmil (xls)</button>
-                                        <a href="exportSoalFahmil.php" target="_blank" style="margin-top: 15px" class="btn btn-block btn-lg btn-primary">Export Soal Fahmil</a>
+                                        <button type="submit" style="margin-top: 10px" class="btn btn-block btn-lg btn-primary">Upload Soal Tafsir (xls)</button>
+                                        <a href="exportSoalTafsir.php" target="_blank" style="margin-top: 15px" class="btn btn-block btn-lg btn-primary">Export Soal Tafsir</a>
                                     </td>
                                 </tr>
                             </table>
