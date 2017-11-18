@@ -112,7 +112,7 @@ function getNamaSurat($surat) {
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Penjurian</a></li>
                         <li><a href="tafsir.php">Tafsir</a></li>
-                        <li class="active"><a href="fahmil.php">Fahmil</a></li>
+                        <li class="active"><a href="fahmil.php">MFQ</a></li>
                         <li><a href="linkmushaf.php">Link Mushaf</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -131,7 +131,7 @@ function getNamaSurat($surat) {
             <div class="col-xs-3">
             </div>
                     <div class="col-xs-6">
-                        <a href="acakpaket_fahmil.php" class="btn btn-block btn-lg btn-primary">Acak Soal Fahmil</a>
+                        <a href="acakpaket_fahmil.php" class="btn btn-block btn-lg btn-primary">Acak Soal MFQ</a>
                     </div> <!-- /.col-xs-3 -->
             </div> <!-- /.row -->
             <body>
@@ -224,7 +224,7 @@ function getNamaSurat($surat) {
                         <!--<dl class="palette palette-alizarin" style="height: 200px">-->
                         <?php
                         if (isset($psoal)) {
-                            echo '<h5><div class="tengah2" style="padding-top: 50px; padding-left: 0px">Paket Fahmil';
+                            echo '<h5><div class="tengah2" style="padding-top: 50px; padding-left: 0px">Paket MFQ';
                         } else {
                             echo '<h5><div class="tengah2" style="padding-top: 50px; padding-left: 0px">Paket ';
                             echo "?";
@@ -246,7 +246,7 @@ function getNamaSurat($surat) {
                 <!--                        <dl class="palette palette-alizarin" style="height: 140px">-->
                 <dt><div class="tengah2"><?php
                     if (isset($psoal)) {
-                        echo "Soal & Jawaban <br> Fahmil";
+                        echo "Soal & Jawaban <br> MFQ";
                     }
                     ?></div></dt>
                 <!--</dl>-->
@@ -264,7 +264,7 @@ function getNamaSurat($surat) {
                 <!--<dl class="palette palette-alizarin" style="height: 140px">-->
                 <dt><div class="tengah2"><?php
                     if (isset($psoal)) {
-                        echo "Soal <br>Fahmil";
+                        echo "Soal <br>MFQ";
                     }
                     ?></div></dt>
                 <!--</dl>-->

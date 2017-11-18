@@ -11,7 +11,7 @@ if (isset($_GET['acak'])) {
     $dbsoal = array();
     $dbjawab = array();
     $dbsoalke = array();
-    $jumlahsoal = 11;
+    $jumlahsoal = 15;
     for ($i=1; $i <= $jumlahsoal; $i++) { 
         # code...
         $dbsoal[$i] = $_SESSION['soal'.$i];
@@ -160,7 +160,7 @@ if (isset($_GET['acak'])) {
 
 
             <?php
-            $jumlahsoal = 11;
+            $jumlahsoal = 15;
             for ($i = 1; $i <= $jumlahsoal; $i++) {
 
                             echo '<div class="col-xs-12"><div class="col-xs-2">

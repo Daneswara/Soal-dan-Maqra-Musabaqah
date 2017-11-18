@@ -38,7 +38,7 @@ if (isset($_GET['soal1']) || isset($_GET['surat1'])) {
     $pengaturan = mysqli_fetch_array($queryview);
     $jumlahsoal = $pengaturan['jumlahsoal'];
     $jumlahsoalmudah = $pengaturan['jumlahsoalmudah'];
-
+    $query_mysql = null;
     if ($jumlahsoal == 6) {
         $soal1 = $_GET['soal1'];
         $soal2 = $_GET['soal2'];
@@ -78,7 +78,7 @@ if (isset($_GET['soal1']) || isset($_GET['surat1'])) {
     $kanan = array();
     $gambar = array();
     $i = 0;
-    
+
     if ($jumlahsoalmudah == 1) {
         $surat[$i] = $_GET['surat1'];
         $ayat[$i] = $_GET['ayat1'];
@@ -87,6 +87,7 @@ if (isset($_GET['soal1']) || isset($_GET['surat1'])) {
 
         $ig = $i + 1;
         $gambar[$i] = "gambar/okotak$ig.png";
+        $i++;
     } else if ($jumlahsoalmudah == 2) {
         $surat[$i] = $_GET['surat1'];
         $ayat[$i] = $_GET['ayat1'];
@@ -104,6 +105,7 @@ if (isset($_GET['soal1']) || isset($_GET['surat1'])) {
 
         $ig = $i + 1;
         $gambar[$i] = "gambar/okotak$ig.png";
+        $i++;
     } else if ($jumlahsoalmudah == 3) {
         $surat[$i] = $_GET['surat1'];
         $ayat[$i] = $_GET['ayat1'];
@@ -130,6 +132,7 @@ if (isset($_GET['soal1']) || isset($_GET['surat1'])) {
 
         $ig = $i + 1;
         $gambar[$i] = "gambar/okotak$ig.png";
+        $i++;
     } else if ($jumlahsoalmudah == 4) {
         $surat[$i] = $_GET['surat1'];
         $ayat[$i] = $_GET['ayat1'];
@@ -165,6 +168,7 @@ if (isset($_GET['soal1']) || isset($_GET['surat1'])) {
 
         $ig = $i + 1;
         $gambar[$i] = "gambar/okotak$ig.png";
+        $i++;
     } else if ($jumlahsoalmudah == 5) {
         $surat[$i] = $_GET['surat1'];
         $ayat[$i] = $_GET['ayat1'];
@@ -209,6 +213,7 @@ if (isset($_GET['soal1']) || isset($_GET['surat1'])) {
 
         $ig = $i + 1;
         $gambar[$i] = "gambar/okotak$ig.png";
+        $i++;
     } else if ($jumlahsoalmudah == 6) {
         $surat[$i] = $_GET['surat1'];
         $ayat[$i] = $_GET['ayat1'];
@@ -262,22 +267,25 @@ if (isset($_GET['soal1']) || isset($_GET['surat1'])) {
 
         $ig = $i + 1;
         $gambar[$i] = "gambar/okotak$ig.png";
-    }
-    $i++;
-    while ($data = mysqli_fetch_array($query_mysql)) {
-        $nos = $data['nosurat'];
-        $noa = $data['ayat'];
-        $idnya = $data['id'];
-        $acakmanual = mysqli_query($koneksi, "INSERT INTO penjurian VALUES('', $nos, $noa)") or die(mysqli_error($koneksi));
-        $deletedata = mysqli_query($koneksi, "DELETE FROM mutasyabihat WHERE id=$idnya") or die(mysqli_error($koneksi));
-        $surat[$i] = $nos;
-        $ayat[$i] = $noa;
-        $kanan[$i] = getHalaman($surat[$i], $ayat[$i]);
-        $namasurat[$i] = getNamaSurat($surat[$i]);
-
-        $ig = $i + 1;
-        $gambar[$i] = "gambar/kotak$ig.png";
         $i++;
+    }
+    
+    if ($query_mysql != null) {
+        while ($data = mysqli_fetch_array($query_mysql)) {
+            $nos = $data['nosurat'];
+            $noa = $data['ayat'];
+            $idnya = $data['id'];
+            $acakmanual = mysqli_query($koneksi, "INSERT INTO penjurian VALUES('', $nos, $noa)") or die(mysqli_error($koneksi));
+            $deletedata = mysqli_query($koneksi, "DELETE FROM mutasyabihat WHERE id=$idnya") or die(mysqli_error($koneksi));
+            $surat[$i] = $nos;
+            $ayat[$i] = $noa;
+            $kanan[$i] = getHalaman($surat[$i], $ayat[$i]);
+            $namasurat[$i] = getNamaSurat($surat[$i]);
+
+            $ig = $i + 1;
+            $gambar[$i] = "gambar/kotak$ig.png";
+            $i++;
+        }
     }
 }
 
@@ -419,8 +427,9 @@ function getNamaSurat($surat) {
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index.php">Penjurian</a></li>
                         <li ><a href="tafsir.php">Tafsir</a></li>
-                        <li ><a href="fahmil.php">Fahmil</a></li>
+                        <li ><a href="fahmil.php">MFQ</a></li>
                         <li><a href="linkmushaf.php">Link Mushaf</a></li>
+                        <li><a href="acak.php">Acak</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -443,10 +452,10 @@ function getNamaSurat($surat) {
                                 $query_mysql = mysqli_query($koneksi, "SELECT * FROM kategori WHERE nama != 'Tafsir' ORDER BY urutan") or die(mysqli_error($koneksi));
 
                                 while ($data = mysqli_fetch_array($query_mysql)) {
-                                    if ($pilihan == $data['index']."_". $data['id']) {
-                                        echo "<option value=" . $data['index'] ."_". $data['id'] ." selected> " . $data['jenis'] . " " . $data['nama'] . " (Juz " . $data['index'] . ")" . "</option>";
+                                    if ($pilihan == $data['index'] . "_" . $data['id']) {
+                                        echo "<option value=" . $data['index'] . "_" . $data['id'] . " selected> " . $data['jenis'] . " " . $data['nama'] . " (Juz " . $data['index'] . ")" . "</option>";
                                     } else {
-                                        echo "<option value=" . $data['index'] ."_". $data['id']. "> " . $data['jenis'] . " " . $data['nama'] . " (Juz " . $data['index'] . ")" . "</option>";
+                                        echo "<option value=" . $data['index'] . "_" . $data['id'] . "> " . $data['jenis'] . " " . $data['nama'] . " (Juz " . $data['index'] . ")" . "</option>";
                                     }
                                 }
                                 ?>

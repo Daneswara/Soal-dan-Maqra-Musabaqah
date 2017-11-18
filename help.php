@@ -55,6 +55,9 @@ if (empty($_SESSION['user_login'])) {
                 <div class="collapse navbar-collapse" id="navbar-collapse-8">
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Penjurian</a></li>
+                        <li ><a href="tafsir.php">Tafsir</a></li>
+                        <li ><a href="fahmil.php">MFQ</a></li>
+                        <li><a href="linkmushaf.php">Link Mushaf</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">

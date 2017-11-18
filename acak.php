@@ -4,10 +4,10 @@ session_start();
 if (empty($_SESSION['user_login'])) {
     header('location: login.php');
 }
-if(isset($_GET["surat1"]) && isset($_GET["ayat1"])){
+if (isset($_GET["surat1"]) && isset($_GET["ayat1"])) {
     $tempsurat = $_GET["surat1"];
     $tempayat = $_GET["ayat1"];
-    
+
     $hal = getHalaman($tempsurat, $tempayat);
     $namasurat = getNamaSurat($tempsurat);
     $namasurat = str_replace("'", "petik", $namasurat);
@@ -97,7 +97,8 @@ function getNamaSurat($surat) {
                         <li><a href="index.php">Penjurian</a></li>
                         <li ><a href="tafsir.php">Tafsir</a></li>
                         <li ><a href="fahmil.php">MFQ</a></li>
-                        <li class="active"><a href="linkmushaf.php">Link Mushaf</a></li>
+                        <li ><a href="linkmushaf.php">Link Mushaf</a></li>
+                        <li class="active"><a href="acak.php">Acak</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -112,80 +113,68 @@ function getNamaSurat($surat) {
                 </div><!-- /.navbar-collapse -->
             </nav>
             <div class="row">
-                <form method="GET" action="linkmushaf.php">
-                    <div class="col-xs-4">
+                    <div class="col-xs-12">
+                        <h3>Acak Kalimat</h3>
+                    </div>
+                    <div class="col-xs-6">
                         <div class="form-group">
-                            <select name="surat1" id="surat1" class="form-control select select-primary" data-toggle="select" required>
-                                <?php
-                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah ORDER BY nosurat") or die(mysqli_error($koneksi));
-                                $temp = "";
-                                while ($data = mysqli_fetch_array($query_mysql)) {
-                                    if ($data['nama'] == $temp) {
-                                        
-                                    } else if ($tempsurat == $data['nosurat']) {
-                                        echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
-                                    } else {
-                                        echo "<option value=" . $data['nosurat'] . ">" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
-                                    }
-                                    $temp = $data['nama'];
-                                }
-                                ?>
+                            <textarea type="text" name="kalimat" id="kalimat" placeholder="Isikan kalimat yang akan diacak, pisahkan dengan Enter" class="form-control"></textarea>
 
-                            </select></div>
-                    </div> <!-- /.col-xs-3 -->
-                    <div class="col-xs-4">
+                            <button  style="margin-top: 20px" id="acakkalimat" class="btn btn-block btn-lg btn-primary">Acak Angka</button></div>
+                    </div>
+                    <div class="col-xs-6">
                         <div class="form-group">
-                            <select name="ayat1" id="ayat1" class="form-control select select-primary" data-toggle="select" required>
+                            <textarea type="text" style="height: 150px" name="hasilkalimat" id="hasilkalimat" placeholder="Hasil acak kalimat" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <h3>Acak Angka</h3>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <input type="text" name="angkaawal" id="angkaawal" placeholder="Isikan angka awal yang akan diacak" class="form-control">
+                            <input type="text" name="angkaakhir" id="angkaakhir" placeholder="Isikan angka akhir yang akan diacak" style="margin-top: 10px"class="form-control">
 
-                                <?php
-                                if (isset($tempayat)) {
-                                    $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE nosurat = $tempsurat ORDER BY nosurat") or die(mysqli_error($koneksi));
-                                    echo "edit surat" . $where;
-                                    while ($data = mysqli_fetch_array($query_mysql)) {
+                            <button style="margin-top: 10px" id="acakangka" class="btn btn-block btn-lg btn-primary">Acak Angka</button></div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <textarea type="text" style="height: 150px" name="hasilangka" id="hasilangka" placeholder="Hasil acak angka" class="form-control"></textarea>
+                        </div>
+                    </div>
+            </div> <!-- /.col-xs-3 -->
+        </div> <!-- /.row -->
 
-                                        for ($a = $data['awal']; $a <= $data['akhir']; $a++) {
-                                            if ($tempayat == $a) {
-                                                echo "<option value=" . $a . " selected>" . $a . "</option>";
-                                            } else {
-                                                echo "<option value=" . $a . ">" . $a . "</option>";
-                                            }
-                                        }
-                                    }
-                                }
-                                ?>
-
-                            </select></div>
-                    </div> <!-- /.col-xs-3 -->
-                    <div class="col-xs-4">
-                        <button type="submit" class="btn btn-block btn-lg btn-primary">Link Mushaf</button>
-                    </div> <!-- /.col-xs-3 -->
-                </form>
-            </div> <!-- /.row -->
-
-        </div>
+    </div>
 
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#surat1").change(function () {
-                    $.post("ajax/ayatgoto.php", {surah: $("#surat1").val()})
-                            .success(function (data) {
-                                $("#ayat1").html(data);
-                                $("#ayat1").change();
-                            });
-                });
-                if ($("#ayat1").val() == "" || $("#ayat1").val() == "0" || $("#ayat1").val() == null) {
-                    $.post("ajax/ayatgoto.php", {surah: $("#surat1").val()})
-                            .success(function (data) {
-                                $("#ayat1").html(data);
-                                $("#ayat1").change();
-                            });
-                }
-            });
-        </script>
-        <script src="dist/js/vendor/jquery.min.js"></script>
-        <script src="dist/js/vendor/video.js"></script>
-        <script src="dist/js/flat-ui.min.js"></script>
-        <script src="docs/assets/js/application.js"></script>
-    </body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.getElementById("kalimat").addEventListener('keyup', function () {
+                this.style.overflow = 'hidden';
+                this.style.height = 85;
+                this.style.height = this.scrollHeight + 'px';
+            }, false);
+            
+            
+            document.getElementById("acakkalimat").addEventListener('click', function (){
+                var x = document.getElementById("kalimat").value;
+                var res = x.split("\n");
+                var acak = Math.floor((Math.random() * res.length));
+                document.getElementById("hasilkalimat").value = res[acak];
+            }, false);
+            
+            document.getElementById("acakangka").addEventListener('click', function (){
+                var x = document.getElementById("angkaawal").value;
+                var y = document.getElementById("angkaakhir").value;
+                var acak = Math.floor((Math.random() * (y-x+1)) + parseInt(x));
+                document.getElementById("hasilangka").value = acak;
+            }, false);
+        });
+    </script>
+    <script src="dist/js/vendor/jquery.min.js"></script>
+    <script src="dist/js/vendor/video.js"></script>
+    <script src="dist/js/flat-ui.min.js"></script>
+    <script src="docs/assets/js/application.js"></script>
+</body>
 </html>

@@ -9,7 +9,7 @@ $admin = $_SESSION['admin_login'];
 
 if (isset($_GET['uploadExcelFahmil'])) {
     $allowedExts = array("xls");
-    $extension = pathinfo($_FILES['file1']['name'], PATHINFO_EXTENSION);
+    $extension1 = pathinfo($_FILES['file1']['name'], PATHINFO_EXTENSION);
     $extension2 = pathinfo($_FILES['file2']['name'], PATHINFO_EXTENSION);
     $extension3 = pathinfo($_FILES['file3']['name'], PATHINFO_EXTENSION);
     $extension4 = pathinfo($_FILES['file4']['name'], PATHINFO_EXTENSION);
@@ -20,10 +20,14 @@ if (isset($_GET['uploadExcelFahmil'])) {
     $extension9 = pathinfo($_FILES['file9']['name'], PATHINFO_EXTENSION);
     $extension10 = pathinfo($_FILES['file10']['name'], PATHINFO_EXTENSION);
     $extension11 = pathinfo($_FILES['file11']['name'], PATHINFO_EXTENSION);
+    $extension12 = pathinfo($_FILES['file12']['name'], PATHINFO_EXTENSION);
+    $extension13 = pathinfo($_FILES['file13']['name'], PATHINFO_EXTENSION);
+    $extension14 = pathinfo($_FILES['file14']['name'], PATHINFO_EXTENSION);
+    $extension15 = pathinfo($_FILES['file15']['name'], PATHINFO_EXTENSION);
     $cek = 0;
     include "../koneksi.php";
     include './PHPExcel/IOFactory.php';
-    if (($_FILES["file1"]["type"] == "application/vnd.ms-excel") && in_array($extension, $allowedExts)) {
+    if (($_FILES["file1"]["type"] == "application/vnd.ms-excel") && in_array($extension1, $allowedExts)) {
         if ($_FILES["file1"]["error"] > 0) {
             
         } else {
@@ -63,7 +67,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     } else {
         $cek++;
     }
-    if (($_FILES["file2"]["type"] == "application/vnd.ms-excel") && in_array($extension, $allowedExts)) {
+    if (($_FILES["file2"]["type"] == "application/vnd.ms-excel") && in_array($extension2, $allowedExts)) {
         if ($_FILES["file2"]["error"] > 0) {
             
         } else {
@@ -103,7 +107,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     } else {
         $cek++;
     }
-    if (($_FILES["file3"]["type"] == "application/vnd.ms-excel") && in_array($extension, $allowedExts)) {
+    if (($_FILES["file3"]["type"] == "application/vnd.ms-excel") && in_array($extension3, $allowedExts)) {
         if ($_FILES["file3"]["error"] > 0) {
             
         } else {
@@ -143,7 +147,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     } else {
         $cek++;
     }
-    if (($_FILES["file4"]["type"] == "application/vnd.ms-excel") && in_array($extension, $allowedExts)) {
+    if (($_FILES["file4"]["type"] == "application/vnd.ms-excel") && in_array($extension4, $allowedExts)) {
         if ($_FILES["file4"]["error"] > 0) {
             
         } else {
@@ -183,7 +187,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     } else {
         $cek++;
     }
-    if (($_FILES["file5"]["type"] == "application/vnd.ms-excel") && in_array($extension, $allowedExts)) {
+    if (($_FILES["file5"]["type"] == "application/vnd.ms-excel") && in_array($extension5, $allowedExts)) {
         if ($_FILES["file5"]["error"] > 0) {
             
         } else {
@@ -223,7 +227,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     } else {
         $cek++;
     }
-    if (($_FILES["file6"]["type"] == "application/vnd.ms-excel") && in_array($extension, $allowedExts)) {
+    if (($_FILES["file6"]["type"] == "application/vnd.ms-excel") && in_array($extension6, $allowedExts)) {
         if ($_FILES["file6"]["error"] > 0) {
             
         } else {
@@ -263,7 +267,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     } else {
         $cek++;
     }
-    if (($_FILES["file7"]["type"] == "application/vnd.ms-excel") && in_array($extension, $allowedExts)) {
+    if (($_FILES["file7"]["type"] == "application/vnd.ms-excel") && in_array($extension7, $allowedExts)) {
         if ($_FILES["file7"]["error"] > 0) {
             
         } else {
@@ -303,7 +307,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     } else {
         $cek++;
     }
-    if (($_FILES["file8"]["type"] == "application/vnd.ms-excel") && in_array($extension, $allowedExts)) {
+    if (($_FILES["file8"]["type"] == "application/vnd.ms-excel") && in_array($extension8, $allowedExts)) {
         if ($_FILES["file8"]["error"] > 0) {
             
         } else {
@@ -343,7 +347,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     } else {
         $cek++;
     }
-    if (($_FILES["file9"]["type"] == "application/vnd.ms-excel") && in_array($extension, $allowedExts)) {
+    if (($_FILES["file9"]["type"] == "application/vnd.ms-excel") && in_array($extension9, $allowedExts)) {
         if ($_FILES["file9"]["error"] > 0) {
             
         } else {
@@ -383,7 +387,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     } else {
         $cek++;
     }
-    if (($_FILES["file10"]["type"] == "application/vnd.ms-excel") && in_array($extension, $allowedExts)) {
+    if (($_FILES["file10"]["type"] == "application/vnd.ms-excel") && in_array($extension10, $allowedExts)) {
         if ($_FILES["file10"]["error"] > 0) {
             
         } else {
@@ -423,7 +427,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     } else {
         $cek++;
     }
-    if (($_FILES["file11"]["type"] == "application/vnd.ms-excel") && in_array($extension, $allowedExts)) {
+    if (($_FILES["file11"]["type"] == "application/vnd.ms-excel") && in_array($extension11, $allowedExts)) {
         if ($_FILES["file11"]["error"] > 0) {
             
         } else {
@@ -463,7 +467,167 @@ if (isset($_GET['uploadExcelFahmil'])) {
     } else {
         $cek++;
     }
-    if ($cek == 11) {
+    if (($_FILES["file12"]["type"] == "application/vnd.ms-excel") && in_array($extension12, $allowedExts)) {
+        if ($_FILES["file12"]["error"] > 0) {
+            
+        } else {
+            move_uploaded_file($_FILES["file12"]["tmp_name"], "ExcelTafsir/" . $_FILES["file12"]["name"]);
+            $inputFileName = './ExcelTafsir/' . $_FILES["file12"]["name"];
+            try {
+                $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+                $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+                $objPHPExcel = $objReader->load($inputFileName);
+            } catch (Exception $e) {
+                die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME) . '": ' . $e->getMessage());
+            }
+            $sheet = $objPHPExcel->getSheet(0);
+            $highestRow = $sheet->getHighestRow();
+            $highestColumn = $sheet->getHighestColumn();
+            $colNumber = PHPExcel_Cell::columnIndexFromString($highestColumn);
+            $data = [];
+            for ($row = 2; $row <= $highestRow; $row++) {
+                for ($col = 0; $col <= $colNumber; $col++) {
+                    $data[$row - 2][$col] = $sheet->getCellByColumnAndRow($col, $row, true);
+                }
+            }
+
+            if ($data[0][0] != null) {
+//                $queryoperasi = mysqli_query($koneksi, "TRUNCATE kategori_fahmil");
+                $queryoperasi = mysqli_query($koneksi, "delete from soal_fahmil where id_kategori = 12");
+                $temp = "";
+                $temp2 = "";
+                for ($row = 0; $row < count($data); $row++) {
+                    if ($temp2 != $data[$row][0]) {
+                        $querytambah = mysqli_query($koneksi, "INSERT INTO soal_fahmil VALUES(null, " . 12 . ", '" . $data[$row][0] . "', '" . $data[$row][1] . "', 0);") or die(mysqli_error($koneksi));
+                        $temp2 = $data[$row][0];
+                    }
+                }
+            }
+        }
+    } else {
+        $cek++;
+    }
+    if (($_FILES["file13"]["type"] == "application/vnd.ms-excel") && in_array($extension13, $allowedExts)) {
+        if ($_FILES["file13"]["error"] > 0) {
+            
+        } else {
+            move_uploaded_file($_FILES["file13"]["tmp_name"], "ExcelTafsir/" . $_FILES["file13"]["name"]);
+            $inputFileName = './ExcelTafsir/' . $_FILES["file13"]["name"];
+            try {
+                $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+                $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+                $objPHPExcel = $objReader->load($inputFileName);
+            } catch (Exception $e) {
+                die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME) . '": ' . $e->getMessage());
+            }
+            $sheet = $objPHPExcel->getSheet(0);
+            $highestRow = $sheet->getHighestRow();
+            $highestColumn = $sheet->getHighestColumn();
+            $colNumber = PHPExcel_Cell::columnIndexFromString($highestColumn);
+            $data = [];
+            for ($row = 2; $row <= $highestRow; $row++) {
+                for ($col = 0; $col <= $colNumber; $col++) {
+                    $data[$row - 2][$col] = $sheet->getCellByColumnAndRow($col, $row, true);
+                }
+            }
+
+            if ($data[0][0] != null) {
+//                $queryoperasi = mysqli_query($koneksi, "TRUNCATE kategori_fahmil");
+                $queryoperasi = mysqli_query($koneksi, "delete from soal_fahmil where id_kategori = 13");
+                $temp = "";
+                $temp2 = "";
+                for ($row = 0; $row < count($data); $row++) {
+                    if ($temp2 != $data[$row][0]) {
+                        $querytambah = mysqli_query($koneksi, "INSERT INTO soal_fahmil VALUES(null, " . 13 . ", '" . $data[$row][0] . "', '" . $data[$row][1] . "', 0);") or die(mysqli_error($koneksi));
+                        $temp2 = $data[$row][0];
+                    }
+                }
+            }
+        }
+    } else {
+        $cek++;
+    }
+    if (($_FILES["file14"]["type"] == "application/vnd.ms-excel") && in_array($extension14, $allowedExts)) {
+        if ($_FILES["file14"]["error"] > 0) {
+            
+        } else {
+            move_uploaded_file($_FILES["file14"]["tmp_name"], "ExcelTafsir/" . $_FILES["file14"]["name"]);
+            $inputFileName = './ExcelTafsir/' . $_FILES["file14"]["name"];
+            try {
+                $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+                $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+                $objPHPExcel = $objReader->load($inputFileName);
+            } catch (Exception $e) {
+                die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME) . '": ' . $e->getMessage());
+            }
+            $sheet = $objPHPExcel->getSheet(0);
+            $highestRow = $sheet->getHighestRow();
+            $highestColumn = $sheet->getHighestColumn();
+            $colNumber = PHPExcel_Cell::columnIndexFromString($highestColumn);
+            $data = [];
+            for ($row = 2; $row <= $highestRow; $row++) {
+                for ($col = 0; $col <= $colNumber; $col++) {
+                    $data[$row - 2][$col] = $sheet->getCellByColumnAndRow($col, $row, true);
+                }
+            }
+
+            if ($data[0][0] != null) {
+//                $queryoperasi = mysqli_query($koneksi, "TRUNCATE kategori_fahmil");
+                $queryoperasi = mysqli_query($koneksi, "delete from soal_fahmil where id_kategori = 14");
+                $temp = "";
+                $temp2 = "";
+                for ($row = 0; $row < count($data); $row++) {
+                    if ($temp2 != $data[$row][0]) {
+                        $querytambah = mysqli_query($koneksi, "INSERT INTO soal_fahmil VALUES(null, " . 14 . ", '" . $data[$row][0] . "', '" . $data[$row][1] . "', 0);") or die(mysqli_error($koneksi));
+                        $temp2 = $data[$row][0];
+                    }
+                }
+            }
+        }
+    } else {
+        $cek++;
+    }
+    if (($_FILES["file15"]["type"] == "application/vnd.ms-excel") && in_array($extension15, $allowedExts)) {
+        if ($_FILES["file15"]["error"] > 0) {
+            
+        } else {
+            move_uploaded_file($_FILES["file15"]["tmp_name"], "ExcelTafsir/" . $_FILES["file15"]["name"]);
+            $inputFileName = './ExcelTafsir/' . $_FILES["file15"]["name"];
+            try {
+                $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+                $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+                $objPHPExcel = $objReader->load($inputFileName);
+            } catch (Exception $e) {
+                die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME) . '": ' . $e->getMessage());
+            }
+            $sheet = $objPHPExcel->getSheet(0);
+            $highestRow = $sheet->getHighestRow();
+            $highestColumn = $sheet->getHighestColumn();
+            $colNumber = PHPExcel_Cell::columnIndexFromString($highestColumn);
+            $data = [];
+            for ($row = 2; $row <= $highestRow; $row++) {
+                for ($col = 0; $col <= $colNumber; $col++) {
+                    $data[$row - 2][$col] = $sheet->getCellByColumnAndRow($col, $row, true);
+                }
+            }
+
+            if ($data[0][0] != null) {
+//                $queryoperasi = mysqli_query($koneksi, "TRUNCATE kategori_fahmil");
+                $queryoperasi = mysqli_query($koneksi, "delete from soal_fahmil where id_kategori = 15");
+                $temp = "";
+                $temp2 = "";
+                for ($row = 0; $row < count($data); $row++) {
+                    if ($temp2 != $data[$row][0]) {
+                        $querytambah = mysqli_query($koneksi, "INSERT INTO soal_fahmil VALUES(null, " . 15 . ", '" . $data[$row][0] . "', '" . $data[$row][1] . "', 0);") or die(mysqli_error($koneksi));
+                        $temp2 = $data[$row][0];
+                    }
+                }
+            }
+        }
+    } else {
+        $cek++;
+    }
+    if ($cek == 15) {
         header('location: fahmil.php?note=63');
     } else {
         if ($querytambah) {
@@ -545,9 +709,9 @@ if (isset($_GET['uploadExcelFahmil'])) {
             } else if ($notifikasi == 72) {
                 echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Upload file dengan ekstensi mp4. silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
             } else if ($notifikasi == 8) {
-                echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Import Soal Fahmil berhasil disimpan', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
+                echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Import Soal MFQ berhasil disimpan', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
             } else if ($notifikasi == 81) {
-                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Import Soal Fahmil gagal disimpan, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Import Soal MFQ gagal disimpan, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
             } else if ($notifikasi == 9) {
                 echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Import Soal Tafsir berhasil disimpan', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
             } else if ($notifikasi == 91) {
@@ -581,7 +745,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
                 <div class="collapse navbar-collapse" id="navbar-collapse-8">
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Bank Soal</a></li>
-                        <li class="active"><a href="fahmil.php">Bank Soal Fahmil</a></li>
+                        <li class="active"><a href="fahmil.php">Bank Soal MFQ</a></li>
                         <li><a href="juri.php">Daftar Juri</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -746,9 +910,61 @@ if (isset($_GET['uploadExcelFahmil'])) {
                                     </td>
                                 </tr>
                             </table>
+                            <table width="100%">
+                                <tr>
+                                    <td width="20%">
+                                        <h6>Kategori 12</h6>
+                                    </td>
+                                    <td width="60%">
+                                        <input id="file12" name="file12" type="file" class="form-control">
+                                    </td>
+                                    <td width="20%">
+                                        <a href="exportSoalFahmil.php?kategori=12" style="margin-left: 10px" target="_blank" class="btn btn-lg btn-inverse">Export Kategori 12</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="100%">
+                                <tr>
+                                    <td width="20%">
+                                        <h6>Kategori 13</h6>
+                                    </td>
+                                    <td width="60%">
+                                        <input id="file13" name="file13" type="file" class="form-control">
+                                    </td>
+                                    <td width="20%">
+                                        <a href="exportSoalFahmil.php?kategori=13" style="margin-left: 10px" target="_blank" class="btn btn-lg btn-inverse">Export Kategori 13</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="100%">
+                                <tr>
+                                    <td width="20%">
+                                        <h6>Kategori 14</h6>
+                                    </td>
+                                    <td width="60%">
+                                        <input id="file14" name="file14" type="file" class="form-control">
+                                    </td>
+                                    <td width="20%">
+                                        <a href="exportSoalFahmil.php?kategori=14" style="margin-left: 10px" target="_blank" class="btn btn-lg btn-inverse">Export Kategori 14</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="100%">
+                                <tr>
+                                    <td width="20%">
+                                        <h6>Kategori 15</h6>
+                                    </td>
+                                    <td width="60%">
+                                        <input id="file15" name="file15" type="file" class="form-control">
+                                    </td>
+                                    <td width="20%">
+                                        <a href="exportSoalFahmil.php?kategori=15" style="margin-left: 10px" target="_blank" class="btn btn-lg btn-inverse">Export Kategori 15</a>
+                                    </td>
+                                </tr>
+                            </table>
 
 
-                            <button type="submit" style="margin-top: 10px" class="btn btn-block btn-lg btn-primary">Upload Soal Fahmil (xls)</button>
+                            <button type="submit" style="margin-top: 10px" class="btn btn-block btn-lg btn-primary">Upload Soal MFQ (xls)</button>
                         </form>
                     </div> 
 
