@@ -130,9 +130,11 @@ if (isset($_GET['acak'])) {
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse-8">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.php">Penjurian</a></li>
-                        <li class="active"><a href="tafsir.php">Tafsir</a></li>
+                        <li><a href="index.php">Tilawah dan MHQ</a></li>
+                        <li><a href="tafsir.php">Tafsir</a></li>
+                        <li ><a href="fahmil.php">MFQ</a></li>
                         <li><a href="linkmushaf.php">Link Mushaf</a></li>
+                        <li><a href="acak.php">Acak</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -153,7 +155,7 @@ if (isset($_GET['acak'])) {
             </div>
             <div class="col-xs-10">
                 <div class="form-group">
-                    <button class="btn btn-block btn-lg btn-danger" onclick="#"> Paket Soal Fahmil</button>
+                    <button class="btn btn-block btn-lg btn-danger" onclick="#"> Paket Soal MFQ</button>
                 </div>
             </div>
 

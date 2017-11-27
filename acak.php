@@ -94,7 +94,7 @@ function getNamaSurat($surat) {
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse-8">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.php">Penjurian</a></li>
+                        <li><a href="index.php">Tilawah dan MHQ</a></li>
                         <li ><a href="tafsir.php">Tafsir</a></li>
                         <li ><a href="fahmil.php">MFQ</a></li>
                         <li ><a href="linkmushaf.php">Link Mushaf</a></li>
@@ -120,7 +120,7 @@ function getNamaSurat($surat) {
                         <div class="form-group">
                             <textarea type="text" name="kalimat" id="kalimat" placeholder="Isikan kalimat yang akan diacak, pisahkan dengan Enter" class="form-control"></textarea>
 
-                            <button  style="margin-top: 20px" id="acakkalimat" class="btn btn-block btn-lg btn-primary">Acak Angka</button></div>
+                            <button  style="margin-top: 20px" id="acakkalimat" class="btn btn-block btn-lg btn-primary">Acak</button></div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
@@ -135,7 +135,7 @@ function getNamaSurat($surat) {
                             <input type="text" name="angkaawal" id="angkaawal" placeholder="Isikan angka awal yang akan diacak" class="form-control">
                             <input type="text" name="angkaakhir" id="angkaakhir" placeholder="Isikan angka akhir yang akan diacak" style="margin-top: 10px"class="form-control">
 
-                            <button style="margin-top: 10px" id="acakangka" class="btn btn-block btn-lg btn-primary">Acak Angka</button></div>
+                            <button style="margin-top: 10px" id="acakangka" class="btn btn-block btn-lg btn-primary">Acak</button></div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">

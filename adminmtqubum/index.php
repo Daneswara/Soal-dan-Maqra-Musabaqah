@@ -558,14 +558,14 @@ if (isset($_GET['editpaket'])) {
                                     <input type="radio" name="optionsRadios" id="optionsRadios7" value="MHQ_30 Juz" data-toggle="radio">
                                     MHQ 30 Juz (Juz 1-30)
                                 </label>
-
-                            </div>
-
-                            <div class="col-xs-6">
                                 <label class="radio">
                                     <input type="radio" name="optionsRadios" id="optionsRadios7" value="Tartil_10 Juz" data-toggle="radio">
                                     Tartil (Juz 1-10)
                                 </label>
+                            </div>
+
+                            <div class="col-xs-6">
+
                                 <label class="radio">
                                     <input type="radio" name="optionsRadios" id="optionsRadios7" value="Tilawah Anak-anak_10 Juz" data-toggle="radio">
                                     Tilawah Anak-anak (Juz 1-10)
@@ -585,6 +585,10 @@ if (isset($_GET['editpaket'])) {
                                 <label class="radio">
                                     <input type="radio" name="optionsRadios" id="optionsRadios7" value="Tafsir Bahasa Arab_Tafsir" data-toggle="radio">
                                     Tafsir Bahasa Arab (Juz 1-30)
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios7" value="Tafsir Bahasa Inggris_Tafsir" data-toggle="radio">
+                                    Tafsir Bahasa Inggris (Juz 1-30)
                                 </label>
                                 <label class="radio">
                                     <input type="radio" name="optionsRadios" id="optionsRadios8" value="" data-toggle="radio">
