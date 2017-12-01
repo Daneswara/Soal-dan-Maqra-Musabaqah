@@ -242,7 +242,7 @@ if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
                 text-decoration: none;
                 position: absolute;
                 top: -10px;
-                right: -10px;	
+                right: -10px;
             }
             .window {
                 width: 500px;
@@ -278,7 +278,7 @@ if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Bank Soal</a></li>
                         <li><a href="fahmil.php">Bank Soal MFQ</a></li>
-                        <li><a href="juri.php">Daftar Juri</a></li>
+                        <li><a href="juri.php">Daftar Petugas</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -326,13 +326,13 @@ if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
                         if (isset($dbsoal[0])) {
                             $soalpertama = explode("-", $dbsoal[0]);
                             if ($data['nama'] == $temp) {
-                                
+
                             } else if ($soalpertama[0] == $data['nosurat']) {
                                 echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                             }
                         } else {
                             if ($data['nama'] == $temp) {
-                                
+
                             } else {
                                 echo "<option value=" . $data['nosurat'] . ">" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                             }

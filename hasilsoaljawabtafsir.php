@@ -122,7 +122,7 @@ if (isset($_GET['nopaket'])) {
                 text-decoration: none;
                 position: absolute;
                 top: -10px;
-                right: -10px;	
+                right: -10px;
             }
             .window {
                 width: 500px;
@@ -214,12 +214,12 @@ if (isset($_GET['nopaket'])) {
                         </div></div>
                     <div class="col-xs-5">
                         <div class="form-group">';
-                            echo '<textarea type="text" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control">' . $dbsoal[($i - 1)] . '</textarea>';
+                            echo '<textarea type="text" id="soal' . $i . '" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control">' . $dbsoal[($i - 1)] . '</textarea>';
                             echo '</div>
                     </div> <!-- /.col-xs-3 -->
                     <div class="col-xs-5">
                         <div class="form-group">';
-                            echo '<textarea type="text" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control">' . $dbjawab[($i - 1)] . '</textarea>';
+                            echo '<textarea type="text" id="jawaban' . $i . '" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control">' . $dbjawab[($i - 1)] . '</textarea>';
                         }
                     }
                     echo '</div>
@@ -233,7 +233,20 @@ if (isset($_GET['nopaket'])) {
             <!-- /.col-xs-3 -->
 
         </div></form>
-
+        <script type="text/javascript">
+            $(document).ready(function () {
+                for (i = 1; i <= 15; i++) {
+                    document.getElementById("soal"+i).addEventListener('keyup', function () {
+                        this.style.overflow = 'hidden';
+                        this.style.height = this.scrollHeight + 'px';
+                    }, false);
+                    document.getElementById("jawaban"+i).addEventListener('keyup', function () {
+                        this.style.overflow = 'hidden';
+                        this.style.height = this.scrollHeight + 'px';
+                    }, false);
+                }
+            });
+        </script>
     <script src="dist/js/vendor/jquery.min.js"></script>
     <script src="dist/js/vendor/video.js"></script>
     <script src="dist/js/flat-ui.min.js"></script>

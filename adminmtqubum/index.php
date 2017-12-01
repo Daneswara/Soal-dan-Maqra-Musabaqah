@@ -366,7 +366,7 @@ if (isset($_GET['editpaket'])) {
                 text-decoration: none;
                 position: absolute;
                 top: -10px;
-                right: -10px;	
+                right: -10px;
             }
             .window {
                 width: 550px;
@@ -403,7 +403,7 @@ if (isset($_GET['editpaket'])) {
                 position: relative;
                 color: white;
                 z-index: 1000;
-                padding-left: 25px; 
+                padding-left: 25px;
             }
             .tengah2 {
                 height: 40px;
@@ -431,7 +431,7 @@ if (isset($_GET['editpaket'])) {
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index.php">Bank Soal</a></li>
                         <li><a href="fahmil.php">Bank Soal MFQ</a></li>
-                        <li><a href="juri.php">Daftar Juri</a></li>
+                        <li><a href="juri.php">Daftar Petugas</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -448,8 +448,8 @@ if (isset($_GET['editpaket'])) {
             <div class="row">
                 <div class="col-xs-12" style="margin-bottom: 10px">
                     <a href="#popup1" class="btn btn-block btn-lg btn-primary">Tambah Kategori</a>
-                </div> 
-            </div> 
+                </div>
+            </div>
             <?php
             $query_mysql = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY urutan") or die(mysqli_error($koneksi));
 
@@ -471,7 +471,7 @@ if (isset($_GET['editpaket'])) {
                     <a href="input_soal_tasfir.php?id=' . $id_kategori . '&jenis=' . $jenis . '&namapaket=' . $data2['namapaket'] . '&nopaket=' . $data2['id'] . '">
                         <img src="../gambar/kotakmerah.png" class="img-responsive center-block">
                             <dt><div class="tengah">Paket ' . $data2['namapaket'] . '</div></dt></img>
-                        
+
                     </a>
                 </div>';
                         } else {
@@ -479,7 +479,7 @@ if (isset($_GET['editpaket'])) {
                     <a href="?kategori=' . $index . '&id=' . $id_kategori . '&namapaket=' . $data2['namapaket'] . '&nopaket=' . $data2['id'] . '#popup2">
                         <img src="../gambar/kotakmerah.png" class="img-responsive center-block">
                             <dt><div class="tengah">Paket ' . $data2['namapaket'] . '</div></dt></img>
-                        
+
                     </a>
                 </div>';
                         }
@@ -489,7 +489,7 @@ if (isset($_GET['editpaket'])) {
                     <a href="input_soal_tasfir.php?id=' . $id_kategori . '&jenis=' . $jenis . '&namapaket=' . $data2['namapaket'] . '&nopaket=' . $data2['id'] . '">
                         <img src="../gambar/kotak.png" class="img-responsive center-block">
                             <dt><div class="tengah">Paket ' . $data2['namapaket'] . '</div></dt></img>
-                        
+
                     </a>
                 </div>';
                         } else {
@@ -497,7 +497,7 @@ if (isset($_GET['editpaket'])) {
                     <a href="?kategori=' . $index . '&id=' . $id_kategori . '&namapaket=' . $data2['namapaket'] . '&nopaket=' . $data2['id'] . '#popup2">
                         <img src="../gambar/kotak.png" class="img-responsive center-block">
                             <dt><div class="tengah">Paket ' . $data2['namapaket'] . '</div></dt></img>
-                        
+
                     </a>
                 </div>';
                         }
@@ -508,14 +508,14 @@ if (isset($_GET['editpaket'])) {
                     echo '<a href="input_soal_tasfir.php?id=' . $id_kategori . '&jenis=' . $jenis . '">';
                     echo "<img src='../gambar/tambah.png' class='img-responsive center-block'>
                         <dt><div class='tengah'>Tambah</div></dt>
-                    
+
                     </a>
                 </div></div>";
                 } else {
                     echo '<a href="?kategori=' . $index . '&id=' . $id_kategori . '#popup2">';
                     echo "<img src='../gambar/tambah.png' class='img-responsive center-block'>
                         <dt><div class='tengah'>Tambah</div></dt>
-                    
+
                     </a>
                 </div></div>";
                 }
@@ -662,7 +662,7 @@ if (isset($_GET['editpaket'])) {
                                 $temp = "";
                                 while ($data = mysqli_fetch_array($query_mysql)) {
                                     if ($data['nama'] == $temp) {
-                                        
+
                                     } else if ($editsurat[0] == $data['nosurat']) {
                                         echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                                     } else {
@@ -704,7 +704,7 @@ if (isset($_GET['editpaket'])) {
                                 $temp = "";
                                 while ($data = mysqli_fetch_array($query_mysql)) {
                                     if ($data['nama'] == $temp) {
-                                        
+
                                     } else if ($editsuratakhir[0] == $data['nosurat']) {
                                         echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                                     } else {
@@ -749,7 +749,7 @@ if (isset($_GET['editpaket'])) {
                                 $temp = "";
                                 while ($data = mysqli_fetch_array($query_mysql)) {
                                     if ($data['nama'] == $temp) {
-                                        
+
                                     } else if ($editsurat[1] == $data['nosurat']) {
                                         echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                                     } else {
@@ -791,7 +791,7 @@ if (isset($_GET['editpaket'])) {
                                 $temp = "";
                                 while ($data = mysqli_fetch_array($query_mysql)) {
                                     if ($data['nama'] == $temp) {
-                                        
+
                                     } else if ($editsuratakhir[1] == $data['nosurat']) {
                                         echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                                     } else {
@@ -836,7 +836,7 @@ if (isset($_GET['editpaket'])) {
                                 $temp = "";
                                 while ($data = mysqli_fetch_array($query_mysql)) {
                                     if ($data['nama'] == $temp) {
-                                        
+
                                     } else if ($editsurat[2] == $data['nosurat']) {
                                         echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                                     } else {
@@ -878,7 +878,7 @@ if (isset($_GET['editpaket'])) {
                                 $temp = "";
                                 while ($data = mysqli_fetch_array($query_mysql)) {
                                     if ($data['nama'] == $temp) {
-                                        
+
                                     } else if ($editsuratakhir[2] == $data['nosurat']) {
                                         echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                                     } else {
@@ -923,7 +923,7 @@ if (isset($_GET['editpaket'])) {
                                 $temp = "";
                                 while ($data = mysqli_fetch_array($query_mysql)) {
                                     if ($data['nama'] == $temp) {
-                                        
+
                                     } else if ($editsurat[3] == $data['nosurat']) {
                                         echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                                     } else {
@@ -965,7 +965,7 @@ if (isset($_GET['editpaket'])) {
                                 $temp = "";
                                 while ($data = mysqli_fetch_array($query_mysql)) {
                                     if ($data['nama'] == $temp) {
-                                        
+
                                     } else if ($editsuratakhir[3] == $data['nosurat']) {
                                         echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                                     } else {
@@ -1010,7 +1010,7 @@ if (isset($_GET['editpaket'])) {
                                 $temp = "";
                                 while ($data = mysqli_fetch_array($query_mysql)) {
                                     if ($data['nama'] == $temp) {
-                                        
+
                                     } else if ($editsurat[4] == $data['nosurat']) {
                                         echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                                     } else {
@@ -1052,7 +1052,7 @@ if (isset($_GET['editpaket'])) {
                                 $temp = "";
                                 while ($data = mysqli_fetch_array($query_mysql)) {
                                     if ($data['nama'] == $temp) {
-                                        
+
                                     } else if ($editsuratakhir[4] == $data['nosurat']) {
                                         echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                                     } else {
@@ -1097,7 +1097,7 @@ if (isset($_GET['editpaket'])) {
                                 $temp = "";
                                 while ($data = mysqli_fetch_array($query_mysql)) {
                                     if ($data['nama'] == $temp) {
-                                        
+
                                     } else if ($editsurat[5] == $data['nosurat']) {
                                         echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                                     } else {
@@ -1139,7 +1139,7 @@ if (isset($_GET['editpaket'])) {
                                 $temp = "";
                                 while ($data = mysqli_fetch_array($query_mysql)) {
                                     if ($data['nama'] == $temp) {
-                                        
+
                                     } else if ($editsuratakhir[5] == $data['nosurat']) {
                                         echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                                     } else {

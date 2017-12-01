@@ -210,7 +210,7 @@ if (isset($_GET['uploadExcelTafsir'])) {
 //    echo 'echo ' . $_FILES["file"]["type"];
     if (($_FILES["file"]["type"] == "application/vnd.ms-excel") && in_array($extension, $allowedExts)) {
         if ($_FILES["file"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file"]["tmp_name"], "ExcelTafsir/" . $_FILES["file"]["name"]);
 //                $query = mysqli_query($koneksi, "UPDATE pengaturan SET link_video = '".$_FILES["file"]["name"]."' LIMIT 1");
@@ -467,7 +467,7 @@ $username = $user['username'];
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Bank Soal</a></li>
                         <li><a href="fahmil.php">Bank Soal MFQ</a></li>
-                        <li><a href="juri.php">Daftar Juri</a></li>
+                        <li><a href="juri.php">Daftar Petugas</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -536,7 +536,7 @@ $username = $user['username'];
                             </table>
 
                         </form>
-                    </div> 
+                    </div>
                     <div class="col-xs-12">
                         <form action="pengaturan.php?uploadLogo=1" method="POST" enctype="multipart/form-data">
                             <h5 style="margin-top: 25px">Pengaturan Website</h5>
@@ -665,7 +665,7 @@ $username = $user['username'];
                             </td>
                         </tr>
                         </table>
-                    </div> 
+                    </div>
 
                 </div>
             </div>

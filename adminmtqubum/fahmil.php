@@ -29,7 +29,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     include './PHPExcel/IOFactory.php';
     if (($_FILES["file1"]["type"] == "application/vnd.ms-excel") && in_array($extension1, $allowedExts)) {
         if ($_FILES["file1"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file1"]["tmp_name"], "ExcelTafsir/" . $_FILES["file1"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file1"]["name"];
@@ -69,7 +69,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     }
     if (($_FILES["file2"]["type"] == "application/vnd.ms-excel") && in_array($extension2, $allowedExts)) {
         if ($_FILES["file2"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file2"]["tmp_name"], "ExcelTafsir/" . $_FILES["file2"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file2"]["name"];
@@ -109,7 +109,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     }
     if (($_FILES["file3"]["type"] == "application/vnd.ms-excel") && in_array($extension3, $allowedExts)) {
         if ($_FILES["file3"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file3"]["tmp_name"], "ExcelTafsir/" . $_FILES["file3"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file3"]["name"];
@@ -149,7 +149,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     }
     if (($_FILES["file4"]["type"] == "application/vnd.ms-excel") && in_array($extension4, $allowedExts)) {
         if ($_FILES["file4"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file4"]["tmp_name"], "ExcelTafsir/" . $_FILES["file4"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file4"]["name"];
@@ -189,7 +189,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     }
     if (($_FILES["file5"]["type"] == "application/vnd.ms-excel") && in_array($extension5, $allowedExts)) {
         if ($_FILES["file5"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file5"]["tmp_name"], "ExcelTafsir/" . $_FILES["file5"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file5"]["name"];
@@ -229,7 +229,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     }
     if (($_FILES["file6"]["type"] == "application/vnd.ms-excel") && in_array($extension6, $allowedExts)) {
         if ($_FILES["file6"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file6"]["tmp_name"], "ExcelTafsir/" . $_FILES["file6"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file6"]["name"];
@@ -269,7 +269,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     }
     if (($_FILES["file7"]["type"] == "application/vnd.ms-excel") && in_array($extension7, $allowedExts)) {
         if ($_FILES["file7"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file7"]["tmp_name"], "ExcelTafsir/" . $_FILES["file7"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file7"]["name"];
@@ -309,7 +309,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     }
     if (($_FILES["file8"]["type"] == "application/vnd.ms-excel") && in_array($extension8, $allowedExts)) {
         if ($_FILES["file8"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file8"]["tmp_name"], "ExcelTafsir/" . $_FILES["file8"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file8"]["name"];
@@ -349,7 +349,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     }
     if (($_FILES["file9"]["type"] == "application/vnd.ms-excel") && in_array($extension9, $allowedExts)) {
         if ($_FILES["file9"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file9"]["tmp_name"], "ExcelTafsir/" . $_FILES["file9"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file9"]["name"];
@@ -389,7 +389,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     }
     if (($_FILES["file10"]["type"] == "application/vnd.ms-excel") && in_array($extension10, $allowedExts)) {
         if ($_FILES["file10"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file10"]["tmp_name"], "ExcelTafsir/" . $_FILES["file10"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file10"]["name"];
@@ -429,7 +429,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     }
     if (($_FILES["file11"]["type"] == "application/vnd.ms-excel") && in_array($extension11, $allowedExts)) {
         if ($_FILES["file11"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file11"]["tmp_name"], "ExcelTafsir/" . $_FILES["file11"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file11"]["name"];
@@ -469,7 +469,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     }
     if (($_FILES["file12"]["type"] == "application/vnd.ms-excel") && in_array($extension12, $allowedExts)) {
         if ($_FILES["file12"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file12"]["tmp_name"], "ExcelTafsir/" . $_FILES["file12"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file12"]["name"];
@@ -509,7 +509,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     }
     if (($_FILES["file13"]["type"] == "application/vnd.ms-excel") && in_array($extension13, $allowedExts)) {
         if ($_FILES["file13"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file13"]["tmp_name"], "ExcelTafsir/" . $_FILES["file13"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file13"]["name"];
@@ -549,7 +549,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     }
     if (($_FILES["file14"]["type"] == "application/vnd.ms-excel") && in_array($extension14, $allowedExts)) {
         if ($_FILES["file14"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file14"]["tmp_name"], "ExcelTafsir/" . $_FILES["file14"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file14"]["name"];
@@ -589,7 +589,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
     }
     if (($_FILES["file15"]["type"] == "application/vnd.ms-excel") && in_array($extension15, $allowedExts)) {
         if ($_FILES["file15"]["error"] > 0) {
-            
+
         } else {
             move_uploaded_file($_FILES["file15"]["tmp_name"], "ExcelTafsir/" . $_FILES["file15"]["name"]);
             $inputFileName = './ExcelTafsir/' . $_FILES["file15"]["name"];
@@ -746,7 +746,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Bank Soal</a></li>
                         <li class="active"><a href="fahmil.php">Bank Soal MFQ</a></li>
-                        <li><a href="juri.php">Daftar Juri</a></li>
+                        <li><a href="juri.php">Daftar Petugas</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -964,9 +964,9 @@ if (isset($_GET['uploadExcelFahmil'])) {
                             </table>
 
 
-                            <button type="submit" style="margin-top: 10px" class="btn btn-block btn-lg btn-primary">Upload Soal MFQ (xls)</button>
+                            <button type="submit" style="margin-top: 10px" class="btn btn-block btn-lg btn-primary">Import Soal MFQ (xls)</button>
                         </form>
-                    </div> 
+                    </div>
 
                 </div>
             </div>
