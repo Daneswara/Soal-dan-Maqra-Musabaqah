@@ -87,6 +87,8 @@ function getNamaSurat($surat) {
             body {
                 padding-bottom: 20px;
                 padding-top: 20px;
+                background-image: url("gambar/bg.jpg");
+                background-repeat: repeat;
             }
             .navbar {
                 margin-bottom: 20px;
@@ -186,7 +188,7 @@ function getNamaSurat($surat) {
                         text-decoration: none;
                         position: absolute;
                         top: -10px;
-                        right: -10px;	
+                        right: -10px;
                     }
                     .window {
                         width: 500px;

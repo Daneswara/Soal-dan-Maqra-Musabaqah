@@ -115,6 +115,8 @@ if (isset($_GET['update'])) {
             body {
                 padding-bottom: 20px;
                 padding-top: 20px;
+                background-image: url("../gambar/bg.jpg");
+                background-repeat: repeat;
             }
             .navbar {
                 margin-bottom: 20px;
@@ -215,7 +217,7 @@ if (isset($_GET['update'])) {
 
                 </div></form>
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-hover" bgcolor='#FF0000'>
 
                     <?php
                     $query_mysql = mysqli_query($koneksi, "SELECT * FROM user") or die(mysqli_error($koneksi));
@@ -223,7 +225,7 @@ if (isset($_GET['update'])) {
                     if (mysqli_num_rows($query_mysql) == 0) {
                         echo "<tr><td>Tidak ada juri yang terdaftar saat ini</td></tr>";
                     } else {
-                        echo "<thead><tr>
+                        echo "<thead bgcolor='#FFFFFF'><tr>
                             <th width='100px'>No</th>
                             <th width='400px'>Nama</th>
                             <th width='400px'>Username</th>
@@ -231,7 +233,7 @@ if (isset($_GET['update'])) {
                             <th width='100px'>Delete</th>
                         </tr></thead><tbody>";
                         while ($data = mysqli_fetch_array($query_mysql)) {
-                            echo "<tr><td>$nomor</td>";
+                            echo "<tr bgcolor='#FFFFFF'><td>$nomor</td>";
                             echo "<td>" . $data['nama'] . "</td>";
                             echo "<td>" . $data['username'] . "</td>";
                             echo "<td><a href='juri.php?edit=" . $data['id'] . "#popup' class='btn btn-warning btn-xs btn-block'>Edit</a>" . "</td>";

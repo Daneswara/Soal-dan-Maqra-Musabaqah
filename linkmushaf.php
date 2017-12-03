@@ -7,7 +7,7 @@ if (empty($_SESSION['user_login'])) {
 if(isset($_GET["surat1"]) && isset($_GET["ayat1"])){
     $tempsurat = $_GET["surat1"];
     $tempayat = $_GET["ayat1"];
-    
+
     $hal = getHalaman($tempsurat, $tempayat);
     $namasurat = getNamaSurat($tempsurat);
     $namasurat = str_replace("'", "petik", $namasurat);
@@ -70,6 +70,8 @@ function getNamaSurat($surat) {
             body {
                 padding-bottom: 20px;
                 padding-top: 20px;
+                background-image: url("gambar/bg.jpg");
+                background-repeat: repeat;
             }
             .navbar {
                 margin-bottom: 20px;
@@ -122,7 +124,7 @@ function getNamaSurat($surat) {
                                 $temp = "";
                                 while ($data = mysqli_fetch_array($query_mysql)) {
                                     if ($data['nama'] == $temp) {
-                                        
+
                                     } else if ($tempsurat == $data['nosurat']) {
                                         echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
                                     } else {

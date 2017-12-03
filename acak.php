@@ -70,6 +70,8 @@ function getNamaSurat($surat) {
             body {
                 padding-bottom: 20px;
                 padding-top: 20px;
+                background-image: url("gambar/bg.jpg");
+                background-repeat: repeat;
             }
             .navbar {
                 margin-bottom: 20px;
@@ -119,8 +121,19 @@ function getNamaSurat($surat) {
                     <div class="col-xs-6">
                         <div class="form-group">
                             <textarea type="text" name="kalimat" id="kalimat" placeholder="Isikan kalimat yang akan diacak, pisahkan dengan Enter" class="form-control"></textarea>
-
-                            <button  style="margin-top: 20px" id="acakkalimat" class="btn btn-block btn-lg btn-primary">Acak</button></div>
+                          </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <button id="resetkalimat" class="btn btn-block btn-lg btn-danger">Reset</button></div>
+                            </div>
+                            <div class="col-xs-6" id="tombolacakkalimat">
+                                <div class="form-group">
+                                    <button  id="acakkalimat" class="btn btn-block btn-lg btn-primary">Acak</button></div>
+                            </div>
+                            <div class="col-xs-6" id="tombolstopkalimat">
+                                <div class="form-group">
+                                    <button id="stopkalimat" class="btn btn-block btn-lg btn-warning">Stop</button></div>
+                            </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
@@ -132,10 +145,21 @@ function getNamaSurat($surat) {
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <input type="text" name="angkaawal" id="angkaawal" placeholder="Isikan angka awal yang akan diacak" class="form-control">
-                            <input type="text" name="angkaakhir" id="angkaakhir" placeholder="Isikan angka akhir yang akan diacak" style="margin-top: 10px"class="form-control">
-
-                            <button style="margin-top: 10px" id="acakangka" class="btn btn-block btn-lg btn-primary">Acak</button></div>
+                            <input type="number" name="angkaawal" id="angkaawal" placeholder="Isikan angka awal yang akan diacak" class="form-control">
+                            <input type="number" name="angkaakhir" id="angkaakhir" placeholder="Isikan angka akhir yang akan diacak" style="margin-top: 10px" class="form-control">
+                          </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <button id="resetangka" class="btn btn-block btn-lg btn-danger">Reset</button></div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group" id="tombolacakangka">
+                                    <button  id="acakangka" class="btn btn-block btn-lg btn-primary">Acak</button></div>
+                            </div>
+                            <div class="col-xs-6" id="tombolstopangka">
+                                <div class="form-group">
+                                    <button id="stopangka" class="btn btn-block btn-lg btn-warning">Stop</button></div>
+                            </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
@@ -149,27 +173,140 @@ function getNamaSurat($surat) {
 
 
     <script type="text/javascript">
+    function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
         $(document).ready(function () {
+          document.getElementById("tombolstopangka").style.display ='none';
+            document.getElementById("tombolstopkalimat").style.display ='none';
             document.getElementById("kalimat").addEventListener('keyup', function () {
                 this.style.overflow = 'hidden';
                 this.style.height = 85;
                 this.style.height = this.scrollHeight + 'px';
             }, false);
-            
-            
+
+            var res;
+            var angka = [];
+            var cek = 0;
+            var cek2 = 0;
+            var hasilacakkalimat;
+            var hasilangka;
             document.getElementById("acakkalimat").addEventListener('click', function (){
-                var x = document.getElementById("kalimat").value;
-                var res = x.split("\n");
-                var acak = Math.floor((Math.random() * res.length));
-                document.getElementById("hasilkalimat").value = res[acak];
+                if(cek == 0){
+                  var x = document.getElementById("kalimat").value;
+                  res = x.split("\n");
+                  cek = 1;
+                }
+
+                if(res.length == 0){
+                  document.getElementById("hasilkalimat").value = "Semua kalimat telah teracak, silahkan reset untuk mengacak ulang";
+                } else {
+                  document.getElementById("tombolacakkalimat").style.display ='none'
+                  document.getElementById("tombolstopkalimat").style.display ='block'
+                  addacakkalimat = setInterval(function () {
+                    hasilacakkalimat = Math.floor(Math.random() * res.length);
+                    document.getElementById("hasilkalimat").value = res[hasilacakkalimat];
+                  }, 100);
+                }
+                console.log(res);
+
             }, false);
-            
+
+            document.getElementById("stopkalimat").addEventListener('click', function (){
+            res.splice(hasilacakkalimat, 1);
+              clearInterval(addacakkalimat);
+                document.getElementById("tombolacakkalimat").style.display ='block'
+                document.getElementById("tombolstopkalimat").style.display ='none'
+            }, false);
+
+
+
+            document.getElementById("resetkalimat").addEventListener('click', function (){
+              var x = document.getElementById("kalimat").value;
+              res = x.split("\n");
+              document.getElementById("hasilkalimat").value = "";
+              console.log(res);
+            }, false);
+
             document.getElementById("acakangka").addEventListener('click', function (){
+
                 var x = document.getElementById("angkaawal").value;
                 var y = document.getElementById("angkaakhir").value;
-                var acak = Math.floor((Math.random() * (y-x+1)) + parseInt(x));
-                document.getElementById("hasilangka").value = acak;
+                if(!isReallyNumber(x) || !isReallyNumber(y)){
+                  document.getElementById("hasilangka").value = "Masukkan nilai berupa angka!";
+                  cek2 = 0;
+                } else if(x > y){
+                  document.getElementById("hasilangka").value = "Pastikan angka awal lebih kecil dari pada angka akhir!";
+                  cek2 = 0;
+                } else {
+                  if(cek2 == 0){
+                    angka = [];
+                      for (var i = x; i <= y; i++) {
+                          angka.push(i);
+                      }
+                      cek2 = 1;
+                    }
+                  if(angka.length == 0){
+                    document.getElementById("hasilangka").value = "Semua angka telah teracak, silahkan reset untuk mengacak ulang";
+                  } else {
+                    document.getElementById("tombolacakangka").style.display ='none'
+                    document.getElementById("tombolstopangka").style.display ='block'
+
+                    addacakangka = setInterval(function () {
+                      hasilangka = Math.floor(Math.random() * angka.length);
+                      document.getElementById("hasilangka").value = angka[hasilangka];
+                    }, 100);
+
+                  }
+                  console.log(angka);
+              }
             }, false);
+
+            document.getElementById("stopangka").addEventListener('click', function (){
+            angka.splice(hasilangka, 1);
+              clearInterval(addacakangka);
+                document.getElementById("tombolacakangka").style.display ='block'
+                document.getElementById("tombolstopangka").style.display ='none'
+            }, false);
+
+            document.getElementById("resetangka").addEventListener('click', function (){
+              var x = document.getElementById("angkaawal").value;
+              var y = document.getElementById("angkaakhir").value;
+              if(!isReallyNumber(x) || !isReallyNumber(y)){
+                document.getElementById("hasilangka").value = "Masukkan nilai berupa angka!";
+                cek2 = 0;
+              } else if(x > y){
+                document.getElementById("hasilangka").value = "Pastikan angka awal lebih kecil dari pada angka akhir!";
+                cek2 = 0;
+              } else {
+                angka = [];
+                for (var i = x; i <= y; i++) {
+                    angka.push(i);
+                }
+                document.getElementById("hasilangka").value = "";
+                console.log(angka);
+              }
+            }, false);
+            function isReallyNumber(data) {
+                data = (parseInt(data));
+                return typeof data === 'number' && !isNaN(data);
+            }
         });
     </script>
     <script src="dist/js/vendor/jquery.min.js"></script>
