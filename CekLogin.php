@@ -26,7 +26,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
         $check_log->close();
 
-        header('location: index.php?not=1');
+        header('location: index.php#popup3');
         exit();
     } else {
         header('location: login.php?note=1');

@@ -345,6 +345,16 @@ if (isset($_GET['editpaket'])) {
                 z-index: 9999;
                 visibility: hidden;
             }
+            #popup3 {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                background: rgba(0,0,0,.7);
+                top: 0;
+                left: 0;
+                z-index: 9999;
+                visibility: hidden;
+            }
             #popup2 {
                 width: 100%;
                 height: 100%;
@@ -391,8 +401,22 @@ if (isset($_GET['editpaket'])) {
                 margin: 3% auto;
             }
 
+            .window3 {
+                width: 900px;
+                height: 470px;
+                text-align: center;
+                background: #fff;
+                border-radius: 10px;
+                position: relative;
+                padding: 20px;
+                margin: 3% auto;
+            }
+
             /* Memunculkan Jendela Pop Up*/
             #popup1:target {
+                visibility: visible;
+            }
+            #popup3:target {
                 visibility: visible;
             }
             #popup2:target {
@@ -1187,9 +1211,23 @@ if (isset($_GET['editpaket'])) {
             </form>
         </div>
     </div>
+    <div id="popup3">
+            <div class="window3">
+                <a href="#" class="close-button" title="Close">X</a>
+                <div class="col-xs-6">
+                        <div><center><h3 style="text-align: center;">Kementrian Agama RI</h3><br><img src="../gambar/Kemenag.png" height="250" style="position: relative;"></center></div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div><center><h3 style="text-align: center;">LPTQ</h3><br><img src="../gambar/LPTQ.png" height="250" style="position: relative;"></center></div>
+                    </div>
+            </div>
+    </div>
+    <script>
+        //window.open("index.php#popup3", "_self");
+    }
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
-
             $("#surat1").change(function () {
                 $.post("../ajax/ayat.php", {surah: $("#surat1").val(), kategori: <?php echo "'" . $where . "'" ?>})
                         .success(function (data) {
