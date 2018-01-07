@@ -12,6 +12,7 @@ if (isset($_GET['acak'])) {
     $dbjawab = array();
     $dbsoalke = array();
     $jumlahsoal = 15;
+    $soalke = $_GET['soalke'];
     for ($i=1; $i <= $jumlahsoal; $i++) {
         # code...
         $dbsoal[$i] = $_SESSION['soal'.$i];
@@ -156,39 +157,50 @@ if (isset($_GET['acak'])) {
             </div>
             <div class="col-xs-10">
                 <div class="form-group">
-                    <button class="btn btn-block btn-lg btn-danger" onclick="#"> Paket Soal MFQ</button>
+                    <button class="btn btn-block btn-lg btn-danger" onclick="#"> Paket Soal MFQ Soal ke-<?php echo $soalke;?></button>
                 </div>
             </div>
 
 
             <?php
-            $jumlahsoal = 15;
-            for ($i = 1; $i <= $jumlahsoal; $i++) {
+            // $jumlahsoal = 15;
+            // for ($i = 1; $i <= $jumlahsoal; $i++) {
 
                             echo '<div class="col-xs-12"><div class="col-xs-2">
                         <div class="form-group">
-                            Soal ke-' . $i . '
+                            Soal
                         </div></div>
-                    <div class="col-xs-5">
+                    <div class="col-xs-10">
                         <div class="form-group">';
-                            echo '<textarea type="text" id="soal' . $i . '" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control">' . $dbsoal[($i)] . '</textarea>';
+                            echo '<textarea type="text" id="soal' . $soalke . '" name="soal' . $soalke . '" placeholder="Isikan soal nomer ' . $soalke . '" class="form-control" style="height: 200px">' . $dbsoal[($soalke)] . '</textarea>';
                             echo '</div>
                     </div> <!-- /.col-xs-3 -->
-                    <div class="col-xs-5">
-                        <div class="form-group">';
-                            echo '<textarea type="text" id="jawaban' . $i . '" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control">' . $dbjawab[($i)] . '</textarea>';
+                    <div class="col-xs-2">
+                        <div class="form-group">
+                            Jawaban
+                        </div></div>
+                    <div class="col-xs-10">
+                    <button id="bukajawaban" class="btn btn-block btn-lg btn-danger" onclick="showJawaban()" style="margin-bottom:20px">Lihat Jawaban</button>
+                        <div class="form-group" id="jawaban">';
+                            echo '<textarea type="text" id="jawaban' . $soalke . '" name="jawaban' . $soalke . '" placeholder="Isikan jawaban nomer ' . $soalke . '" class="form-control" style="height: 200px">' . $dbjawab[($soalke)] . '</textarea>';
                     echo '</div>
+                    
                     </div></div>';
-            }
+            // }
             ?>
             <!-- /.col-xs-3 -->
 
 
             <!-- /.col-xs-3 -->
 
-        </div></form>
+        </div>
         <script type="text/javascript">
+                document.getElementById('jawaban').style.visibility = 'hidden';
+                function showJawaban() {
+                    document.getElementById('jawaban').style.visibility = 'visible';
+                }
             $(document).ready(function () {
+                
                 for (i = 1; i <= 15; i++) {
                     document.getElementById("soal"+i).addEventListener('keyup', function () {
                         this.style.overflow = 'hidden';

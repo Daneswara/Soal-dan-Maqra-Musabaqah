@@ -5,8 +5,14 @@ if (empty($_SESSION['user_login'])) {
     header('location: login.php');
 }
 
+    $dbsoalke = array();
+    $jumlahsoal = 15;
 if (isset($_GET['acak'])) {
     $psoal = $_GET['acak'];
+    for ($i=1; $i <= $jumlahsoal; $i++) {
+        # code...
+        $dbsoalke[$i] = $i;
+    }
 }
 
 
@@ -137,7 +143,6 @@ function getNamaSurat($surat) {
                         <a href="acakpaket_fahmil.php" class="btn btn-block btn-lg btn-primary">Acak Soal MFQ</a>
                     </div> <!-- /.col-xs-3 -->
             </div> <!-- /.row -->
-            <body>
                 <style>
                     body {
                         padding-bottom: 20px;
@@ -188,9 +193,14 @@ function getNamaSurat($surat) {
                         visibility: visible;
                     }
                     .tengah {
-                        padding-top: 20%;
-                        text-align: center;
-                    }
+                height: 100px;
+                line-height: 120px;
+                text-align: center;
+                position: relative;
+                color: white;
+                z-index: 1000;
+                padding-left: 25px;
+            }
                     .tengah2 {
                         z-index: 1000;
                         padding-left: 9%;
@@ -207,7 +217,7 @@ function getNamaSurat($surat) {
                         cursor: hand;
                     }
                     #kotak2{
-                        margin-top: -125px;
+                        margin-top: -150px;
                         z-index: 10;
                     }
                     img {
@@ -235,51 +245,21 @@ function getNamaSurat($surat) {
                         ?></div></h5></div>
                     <!--</dl>-->
                 </div>
-        </div>
         <br><!-- /.row -->
         <div class="row" id="kotak2" name="kotak2">
-            <?php
-            $margin = "470px";
-            if (isset($psoal)) {
-                echo "<a target='_blank' href='hasilsoaljawabfahmil.php?acak=1'>";
-            }
-            ?>
-            <div class="col-md-2" style="margin-left: <?php echo $margin; ?>">
-                <img src="gambar/kotak.png" class="img-responsive center-block">
-                <!--                        <dl class="palette palette-alizarin" style="height: 140px">-->
-                <dt><div class="tengah2"><?php
-                    if (isset($psoal)) {
-                        echo "Soal & Jawaban <br> MFQ";
-                    }
-                    ?></div></dt>
-                <!--</dl>-->
-            </div>
-            <?php
-            if ($psoal) {
-                echo "</a>";
-            }
-            if ($psoal) {
-                echo "<a target='_blank' href='hasilsoalfahmil.php?acak=1'>";
-            }
-            ?>
-            <div class="col-md-2">
-                <img src="gambar/kotak.png" class="img-responsive center-block">
-                <!--<dl class="palette palette-alizarin" style="height: 140px">-->
-                <dt><div class="tengah2"><?php
-                    if (isset($psoal)) {
-                        echo "Soal <br>MFQ";
-                    }
-                    ?></div></dt>
-                <!--</dl>-->
-            </div>
-
-            <?php
-            if (isset($psoal)) {
-                echo "</a>";
-            }
+            <?php 
+                for ($i=1; $i <= $jumlahsoal; $i++) { 
+                    echo '<div class="col-xs-2 col-md-2" style="margin-bottom: 70px;  margin-top: 10px; margin-right:30px">
+                    <a target="_blank" href="hasilsoaljawabfahmil.php?acak=1&soalke=' . $dbsoalke[$i] . '">
+                        <img src="gambar/kotak.png" class="img-responsive center-block">
+                            <dt><div class="tengah">Soal ke ' . $dbsoalke[$i] . '</div></dt>
+                    </a>
+                </div>';
+                }
             ?>
         </div>
 
+        </div>
 
         <br>
         <br>
@@ -299,5 +279,5 @@ function getNamaSurat($surat) {
         <script src="dist/js/vendor/video.js"></script>
         <script src="dist/js/flat-ui.min.js"></script>
         <script src="docs/assets/js/application.js"></script>
-
-    </body>
+</body>
+</html>
