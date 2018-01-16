@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2017 at 11:29 AM
+-- Generation Time: Jan 16, 2018 at 02:41 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -1404,7 +1404,7 @@ INSERT INTO `daftarsurah` (`id`, `kategori`, `nosurat`, `nama`, `awal`, `akhir`)
 (19, 11, 9, 'At-Taubah', 94, 129),
 (20, 11, 10, 'Yunus', 1, 109),
 (21, 11, 11, 'Hud', 1, 5),
-(22, 12, 11, 'Hud', 6, 123),
+(22, 12, 11, 'Hud', 6, 163),
 (23, 12, 12, 'Yusuf', 1, 52),
 (24, 13, 12, 'Yusuf', 53, 111),
 (25, 13, 13, 'Ar-Ra''d', 1, 43),
@@ -1449,7 +1449,7 @@ INSERT INTO `daftarsurah` (`id`, `kategori`, `nosurat`, `nama`, `awal`, `akhir`)
 (64, 25, 44, 'Ad-Dukhan', 1, 59),
 (65, 25, 45, 'Al-Jatsiyah', 1, 37),
 (66, 26, 46, 'Al-Ahqaf', 1, 35),
-(67, 26, 47, 'Muhammad', 1, 38),
+(67, 26, 47, 'Muhammad', 1, 36),
 (68, 26, 48, 'Al-Fath', 1, 29),
 (69, 26, 49, 'Al-Hujurat', 1, 18),
 (70, 26, 50, 'Qaf', 1, 45),
@@ -2181,8 +2181,7 @@ INSERT INTO `kategori` (`id`, `urutan`, `nama`, `jenis`, `index`) VALUES
 (14, 2, '1 Juz', 'MHQ', '30'),
 (15, 9, 'custom', 'custom', '1,2,3'),
 (16, 9, 'custom', 'custom', '4,5,6'),
-(17, 9, 'custom', 'custom', '6,7,8'),
-(18, 8, 'Tafsir', 'Tafsir Bahasa Indonesia', '1-30');
+(17, 9, 'custom', 'custom', '6,7,8');
 
 -- --------------------------------------------------------
 
@@ -2192,7 +2191,7 @@ INSERT INTO `kategori` (`id`, `urutan`, `nama`, `jenis`, `index`) VALUES
 
 CREATE TABLE `kategori_fahmil` (
   `id` int(11) NOT NULL,
-  `nama_kategori` varchar(50) NOT NULL
+  `nama_kategori` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2210,11 +2209,7 @@ INSERT INTO `kategori_fahmil` (`id`, `nama_kategori`) VALUES
 (8, 'kategori8'),
 (9, 'kategori9'),
 (10, 'kategori10'),
-(11, 'kategori11'),
-(12, 'kategori12'),
-(13, 'kategori13'),
-(14, 'kategori14'),
-(15, 'kategori15');
+(11, 'kategori11');
 
 -- --------------------------------------------------------
 
@@ -2235,20 +2230,35 @@ CREATE TABLE `mutasyabihat` (
 
 INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (2, 1, 2, 1),
+(3, 1, 2, 2),
+(4, 1, 2, 5),
+(5, 1, 2, 8),
+(6, 1, 2, 13),
 (7, 1, 2, 14),
 (8, 1, 2, 16),
+(9, 1, 2, 18),
+(10, 1, 2, 22),
 (11, 1, 2, 23),
 (12, 1, 2, 28),
+(13, 1, 2, 32),
 (14, 1, 2, 34),
 (15, 1, 2, 35),
 (16, 1, 2, 36),
+(17, 1, 2, 39),
+(18, 1, 2, 40),
+(19, 1, 2, 48),
 (20, 1, 2, 49),
 (21, 1, 2, 54),
+(22, 1, 2, 58),
+(23, 1, 2, 59),
+(24, 1, 2, 61),
 (25, 1, 2, 62),
 (26, 1, 2, 67),
 (27, 1, 2, 76),
 (28, 1, 2, 80),
+(29, 1, 2, 86),
 (30, 1, 2, 87),
+(31, 1, 2, 91),
 (32, 1, 2, 95),
 (33, 1, 2, 106),
 (34, 1, 2, 107),
@@ -2257,9 +2267,11 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (37, 1, 2, 119),
 (38, 1, 2, 120),
 (39, 1, 2, 121),
+(40, 1, 2, 122),
 (41, 1, 2, 123),
 (42, 1, 2, 134),
 (43, 1, 2, 136),
+(44, 1, 2, 141),
 (45, 2, 2, 143),
 (46, 2, 2, 145),
 (47, 2, 2, 146),
@@ -2271,6 +2283,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (53, 2, 2, 164),
 (54, 2, 2, 170),
 (55, 2, 2, 171),
+(56, 2, 2, 173),
 (57, 2, 2, 174),
 (58, 2, 2, 175),
 (59, 2, 2, 190),
@@ -2392,6 +2405,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (175, 6, 5, 68),
 (176, 6, 5, 69),
 (177, 6, 5, 72),
+(178, 6, 5, 73),
 (179, 6, 5, 77),
 (180, 7, 5, 86),
 (181, 7, 5, 88),
@@ -2520,6 +2534,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (304, 9, 8, 2),
 (305, 9, 8, 2),
 (306, 9, 8, 4),
+(307, 9, 8, 7),
 (308, 9, 8, 10),
 (309, 9, 8, 13),
 (310, 9, 8, 22),
@@ -2659,6 +2674,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (444, 13, 13, 23),
 (445, 13, 13, 26),
 (446, 13, 13, 27),
+(447, 13, 13, 32),
 (448, 13, 13, 35),
 (449, 13, 13, 36),
 (450, 13, 13, 37),
@@ -2724,6 +2740,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (510, 14, 16, 55),
 (511, 14, 16, 58),
 (512, 14, 16, 61),
+(513, 14, 16, 65),
 (514, 14, 16, 66),
 (515, 14, 16, 70),
 (516, 14, 16, 72),
@@ -2854,6 +2871,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (641, 17, 21, 93),
 (642, 17, 21, 98),
 (643, 17, 21, 108),
+(644, 17, 21, 109),
 (645, 17, 22, 1),
 (646, 17, 22, 3),
 (647, 17, 22, 5),
@@ -2935,6 +2953,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (723, 19, 25, 53),
 (724, 19, 25, 55),
 (725, 19, 25, 56),
+(726, 19, 25, 59),
 (727, 19, 25, 70),
 (728, 19, 26, 1),
 (729, 19, 26, 2),
@@ -2989,6 +3008,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (778, 20, 27, 87),
 (779, 20, 27, 89),
 (780, 20, 27, 90),
+(781, 20, 27, 91),
 (782, 20, 27, 92),
 (783, 20, 27, 93),
 (784, 20, 28, 1),
@@ -2998,6 +3018,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (788, 20, 28, 20),
 (789, 20, 28, 29),
 (790, 20, 28, 30),
+(791, 20, 28, 31),
 (792, 20, 28, 43),
 (793, 20, 28, 46),
 (794, 20, 28, 48),
@@ -3488,6 +3509,7 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (1279, 30, 79, 11),
 (1280, 30, 79, 13),
 (1281, 30, 79, 42),
+(1282, 30, 80, 11),
 (1283, 30, 80, 36),
 (1284, 30, 81, 14),
 (1285, 30, 82, 1),
@@ -3499,12 +3521,14 @@ INSERT INTO `mutasyabihat` (`id`, `juz`, `nosurat`, `ayat`) VALUES
 (1291, 30, 84, 25),
 (1292, 30, 85, 1),
 (1293, 30, 85, 11),
+(1294, 30, 86, 1),
 (1295, 30, 88, 1),
 (1296, 30, 90, 1),
 (1297, 30, 91, 14),
 (1298, 30, 95, 6),
 (1299, 30, 97, 1),
-(1300, 30, 98, 5);
+(1300, 30, 98, 5),
+(1301, 30, 98, 7);
 
 -- --------------------------------------------------------
 
@@ -3962,7 +3986,7 @@ CREATE TABLE `pengaturan` (
 --
 
 INSERT INTO `pengaturan` (`id`, `qori`, `jumlahsoal`, `jumlahsoalmudah`, `acara`, `logo`, `link_video`) VALUES
-(1, 'husari', 1, 0, 'MTQ', 'penyelenggara.png', 'mtq.mp4');
+(1, 'husari', 3, 2, 'MTQ', 'penyelenggara.png', 'mtq.mp4');
 
 -- --------------------------------------------------------
 
@@ -3976,65 +4000,6 @@ CREATE TABLE `penjurian` (
   `ayat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `penjurian`
---
-
-INSERT INTO `penjurian` (`id`, `nosurat`, `ayat`) VALUES
-(1, 1, 6),
-(2, 2, 126),
-(3, 2, 59),
-(4, 2, 61),
-(5, 2, 122),
-(6, 78, 23),
-(7, 104, 8),
-(8, 80, 11),
-(9, 86, 1),
-(10, 98, 7),
-(11, 4, 10),
-(12, 4, 3),
-(13, 8, 7),
-(14, 13, 32),
-(15, 16, 65),
-(16, 27, 31),
-(17, 20, 41),
-(18, 5, 73),
-(19, 21, 109),
-(20, 25, 59),
-(21, 26, 93),
-(22, 8, 24),
-(23, 2, 173),
-(24, 27, 91),
-(25, 28, 31),
-(26, 2, 32),
-(27, 2, 127),
-(28, 2, 86),
-(29, 2, 98),
-(30, 2, 69),
-(31, 2, 108),
-(32, 2, 70),
-(33, 2, 41),
-(34, 1, 7),
-(35, 2, 125),
-(36, 1, 4),
-(37, 2, 68),
-(38, 2, 97),
-(39, 2, 96),
-(40, 1, 3),
-(41, 2, 100),
-(42, 2, 8),
-(43, 2, 141),
-(44, 2, 48),
-(45, 2, 2),
-(46, 2, 22),
-(47, 2, 13),
-(48, 2, 18),
-(49, 2, 40),
-(50, 2, 5),
-(51, 2, 39),
-(52, 2, 91),
-(53, 2, 58);
-
 -- --------------------------------------------------------
 
 --
@@ -4047,14 +4012,6 @@ CREATE TABLE `penjurianpaket` (
   `indexkategori` varchar(50) NOT NULL,
   `id_kategori` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `penjurianpaket`
---
-
-INSERT INTO `penjurianpaket` (`id`, `id_paket`, `indexkategori`, `id_kategori`) VALUES
-(1, 431, '1-30', 11),
-(2, 430, '1-30', 11);
 
 -- --------------------------------------------------------
 
@@ -4519,36 +4476,33 @@ CREATE TABLE `soal_fahmil` (
 --
 
 INSERT INTO `soal_fahmil` (`id`, `id_kategori`, `soal`, `jawaban`, `status`) VALUES
-(21, 3, '1', '1', 0),
-(22, 3, '2', '2', 0),
-(23, 4, '1', '1', 0),
-(24, 4, '2', '2', 0),
-(25, 5, '1', '1', 0),
-(26, 5, '2', '2', 0),
-(27, 6, '1', '1', 0),
-(28, 6, '2', '2', 0),
-(29, 7, '1', '1', 0),
-(30, 7, '2', '2', 0),
-(31, 8, '1', '1', 0),
-(32, 8, '2', '2', 0),
-(33, 9, '1', '1', 0),
-(34, 9, '2', '2', 0),
-(35, 10, '1', '1', 0),
-(36, 10, '2', '2', 0),
-(49, 1, '1', '1', 0),
-(50, 1, '2', '2', 0),
-(51, 2, '1', '1', 0),
-(52, 2, '2', '2', 0),
-(53, 11, '1', '1', 0),
-(54, 11, '2', '2', 0),
-(55, 15, '1', '1', 0),
-(56, 15, '2', '2', 0),
-(57, 14, '1', '1', 0),
-(58, 14, '2', '2', 0),
-(59, 13, '1', '1', 0),
-(60, 13, '2', '2', 0),
-(61, 12, '1', '1', 0),
-(62, 12, '2', '2', 0);
+(19, 4, 'soal1', 'soal2', 0),
+(20, 4, 'lain1', 'lain2', 0),
+(21, 5, 'soal1', 'soal2', 0),
+(22, 5, 'lain1', 'lain2', 0),
+(23, 6, 'soal1', 'soal2', 0),
+(24, 6, 'lain1', 'lain2', 0),
+(25, 7, 'soal1', 'soal2', 0),
+(26, 7, 'lain1', 'lain2', 0),
+(27, 8, 'soal1', 'soal2', 0),
+(28, 8, 'lain1', 'lain2', 0),
+(29, 9, 'soal1', 'soal2', 0),
+(30, 9, 'lain1', 'lain2', 0),
+(31, 10, 'soal1', 'soal2', 0),
+(32, 10, 'lain1', 'lain2', 0),
+(33, 11, 'soal1', 'soal2', 0),
+(34, 11, 'lain1', 'lain2', 0),
+(35, 12, 'soal1', 'soal2', 0),
+(36, 12, 'lain1', 'lain2', 0),
+(37, 13, 'soal1', 'soal2', 0),
+(38, 13, 'lain1', 'lain2', 0),
+(39, 14, 'soal1', 'soal2', 0),
+(40, 14, 'lain1', 'lain2', 0),
+(41, 15, 'soal1', 'soal2', 0),
+(42, 15, 'lain1', 'lain2', 0),
+(43, 1, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 0),
+(44, 2, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 0),
+(45, 3, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 0);
 
 -- --------------------------------------------------------
 
@@ -4569,11 +4523,12 @@ CREATE TABLE `soal_tafsir` (
 --
 
 INSERT INTO `soal_tafsir` (`id`, `paket`, `soalke`, `soal`, `jawaban`) VALUES
-(2, 430, 1, '1-2', '-'),
+(1, 429, 1, '1-6', 'mushaf.php?kanan=1&surah=1&ayat=6&namasurat=Al-Fatihah'),
+(2, 430, 1, '1-2', 'mushaf.php?kanan=1&surah=1&ayat=2&namasurat=Al-Fatihah'),
 (3, 430, 2, 'soal 1', 'jawab 1'),
 (4, 430, 3, 'soal 2 edit', 'jawab 2 edit'),
-(5, 431, 1, '4-4', '-'),
-(6, 431, 2, 'a\na\na\na\na\na\n', 'aaaaa');
+(5, 431, 1, '1-3', 'mushaf.php?kanan=1&surah=1&ayat=3&namasurat=Al-Fatihah'),
+(6, 431, 2, 'Ø§Ù„Ù„ØºØ© Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©', 'Ø§Ù„Ù„ØºØ© Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©');
 
 -- --------------------------------------------------------
 
@@ -4728,17 +4683,17 @@ ALTER TABLE `halaman`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `kategori_fahmil`
 --
 ALTER TABLE `kategori_fahmil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `mutasyabihat`
 --
 ALTER TABLE `mutasyabihat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1301;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1302;
 --
 -- AUTO_INCREMENT for table `paket`
 --
@@ -4753,12 +4708,12 @@ ALTER TABLE `pengaturan`
 -- AUTO_INCREMENT for table `penjurian`
 --
 ALTER TABLE `penjurian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `penjurianpaket`
 --
 ALTER TABLE `penjurianpaket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `soal`
 --
@@ -4768,7 +4723,7 @@ ALTER TABLE `soal`
 -- AUTO_INCREMENT for table `soal_fahmil`
 --
 ALTER TABLE `soal_fahmil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `soal_tafsir`
 --
