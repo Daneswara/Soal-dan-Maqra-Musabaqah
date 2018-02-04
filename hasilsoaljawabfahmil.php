@@ -71,6 +71,8 @@ if (isset($_GET['acak'])) {
             body {
                 padding-bottom: 20px;
                 padding-top: 20px;
+                background-image: url("gambar/bg.jpg");
+                background-repeat: repeat;
             }
             .navbar {
                 margin-bottom: 20px;
@@ -134,7 +136,7 @@ if (isset($_GET['acak'])) {
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Tilawah dan MHQ</a></li>
                         <li><a href="tafsir.php">Tafsir</a></li>
-                        <li ><a href="fahmil.php">MFQ</a></li>
+                        <li class="active"><a href="fahmil.php">MFQ</a></li>
                         <li><a href="linkmushaf.php">Link Mushaf</a></li>
                         <li><a href="acak.php">Acak</a></li>
                     </ul>
@@ -142,7 +144,7 @@ if (isset($_GET['acak'])) {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pengaturan <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="about.php">Tentang</a></li>
+                                <li><a href="about.php">Bantuan</a></li>
                                 <li><a href="pengaturan.php">Pengaturan</a></li>
                                 <li><a href="login.php">Keluar</a></li>
                             </ul>

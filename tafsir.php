@@ -7,8 +7,9 @@ if (empty($_SESSION['user_login'])) {
 
 if (isset($_GET['paket'])) {
     $psoal = $_GET['paket'];
+    $query_view = mysqli_query($koneksi, "SELECT * FROM soal_tafsir WHERE paket = '$psoal' ORDER BY soalke") or die(mysqli_error($koneksi));
+    $jumlahsoaltafsir = mysqli_num_rows($query_view);
 }
-
 
 function getHalaman($surat, $ayat) {
     include "koneksi.php";
@@ -140,10 +141,10 @@ function getNamaSurat($surat) {
                                 $query_mysql = mysqli_query($koneksi, "SELECT * FROM kategori where nama = 'Tafsir' ORDER BY urutan") or die(mysqli_error($koneksi));
 
                                 while ($data = mysqli_fetch_array($query_mysql)) {
-                                    if ($pilihan == $data['index']."_".$data['id']) {
-                                        echo "<option value=" . $data['index']."_".$data['id'] . " selected> " . $data['jenis'] . " (Juz " . $data['index'] . ")" . "</option>";
+                                    if ($pilihan == $data['index'] . "_" . $data['id']) {
+                                        echo "<option value=" . $data['index'] . "_" . $data['id'] . " selected> " . $data['jenis'] . " (Juz " . $data['index'] . ")" . "</option>";
                                     } else {
-                                        echo "<option value=" . $data['index']."_".$data['id'] . "> " . $data['jenis']. " (Juz " . $data['index'] . ")" . "</option>";
+                                        echo "<option value=" . $data['index'] . "_" . $data['id'] . "> " . $data['jenis'] . " (Juz " . $data['index'] . ")" . "</option>";
                                     }
                                 }
                                 ?>
@@ -155,150 +156,132 @@ function getNamaSurat($surat) {
                     </div> <!-- /.col-xs-3 -->
                 </form>
             </div> <!-- /.row -->
-            <body>
-                <style>
-                    body {
-                        padding-bottom: 20px;
-                        padding-top: 20px;
-                    }
-                    .navbar {
-                        margin-bottom: 20px;
-                    }
-                    /* Jendela Pop Up */
-                    #popup {
-                        width: 100%;
-                        height: 100%;
-                        position: fixed;
-                        background: rgba(0,0,0,.7);
-                        top: 0;
-                        left: 0;
-                        z-index: 9999;
-                        visibility: hidden;
-                    }
-                    /* Button Close */
-                    .close-button {
-                        width: 35px;
-                        height: 35px;
-                        background: #000;
-                        border-radius: 50%;
-                        border: 3px solid #fff;
-                        display: block;
-                        text-align: center;
-                        color: #fff;
-                        text-decoration: none;
-                        position: absolute;
-                        top: -10px;
-                        right: -10px;
-                    }
-                    .window {
-                        width: 500px;
-                        height: 400px;
-                        background: #fff;
-                        border-radius: 10px;
-                        position: relative;
-                        padding: 20px;
-                        text-align: center;
-                        margin: 6% auto;
-                    }
 
-                    /* Memunculkan Jendela Pop Up*/
-                    #popup:target {
-                        visibility: visible;
-                    }
-                    .tengah {
-                        padding-top: 20%;
-                        text-align: center;
-                    }
-                    .tengah2 {
-                        z-index: 1000;
-                        padding-left: 9%;
-                        padding-top: 25%;
-                        padding-right: 10px;
-                        text-align: center;
-                        position: relative;
-                        color: white;
-                    }
-                    .kotak {
-                        margin-top: 100px;
-                        margin-left: 360px;
-                        margin-right: 360px;
-                        cursor: hand;
-                    }
-                    #kotak2{
-                        margin-top: -125px;
-                        z-index: 10;
-                    }
-                    img {
-                        z-index: 1;
-                        position: absolute;
-                    }
-                </style>
+            <style>
+                .navbar {
+                    margin-bottom: 20px;
+                }
+                /* Jendela Pop Up */
+                #popup {
+                    width: 100%;
+                    height: 100%;
+                    position: fixed;
+                    background: rgba(0,0,0,.7);
+                    top: 0;
+                    left: 0;
+                    z-index: 9999;
+                    visibility: hidden;
+                }
+                /* Button Close */
+                .close-button {
+                    width: 35px;
+                    height: 35px;
+                    background: #000;
+                    border-radius: 50%;
+                    border: 3px solid #fff;
+                    display: block;
+                    text-align: center;
+                    color: #fff;
+                    text-decoration: none;
+                    position: absolute;
+                    top: -10px;
+                    right: -10px;
+                }
+                .window {
+                    width: 500px;
+                    height: 400px;
+                    background: #fff;
+                    border-radius: 10px;
+                    position: relative;
+                    padding: 20px;
+                    text-align: center;
+                    margin: 6% auto;
+                }
+
+                /* Memunculkan Jendela Pop Up*/
+                #popup:target {
+                    visibility: visible;
+                }
+                .tengah {
+                    /*padding-top: 20%;*/
+                    /*text-align: center;*/
+                    height: 100px;
+                    line-height: 120px;
+                    text-align: center;
+                    position: relative;
+                    color: white;
+                    z-index: 1000;
+                    padding-left: 25px;
+                }
+                .tengah2 {
+                    z-index: 1000;
+                    padding-left: 9%;
+                    padding-top: 25%;
+                    padding-right: 10px;
+                    text-align: center;
+                    position: relative;
+                    color: white;
+                }
+                .kotak {
+                    margin-top: 80px;
+                    margin-left: 360px;
+                    margin-right: 360px;
+                    cursor: hand;
+                }
+                #kotak2{
+                    margin-top: -150px;
+                    z-index: 10;
+                }
+                img {
+                    z-index: 1;
+                    position: absolute;
+                }
+            </style>
 
 
-                <div class="row" id="kotak1" name="kotak1" style="padding-left: 25px">
-                    <div class="kotak" <?php
+            <div class="row" id="kotak1" name="kotak1" style="padding-left: 25px">
+                <div class="kotak" <?php
+                                if (isset($psoal)) {
+                                    echo "onclick='showSoal()'";
+                                }
+                                ?> >
+                    <img src="gambar/kotak.png" class="img-responsive center-block">
+                    <!--<dl class="palette palette-alizarin" style="height: 200px">-->
+                    <?php
                     if (isset($psoal)) {
-                        echo "onclick='showSoal()'";
-                    }
-                    ?> >
+                        echo '<h5><div class="tengah2" style="padding-top: 50px; padding-left: 0px">Paket ';
+                        echo $psoal;
+                    } else {
+                        echo '<h5><div class="tengah2" style="padding-top: 50px; padding-left: 0px">Paket ';
+                        echo "?";
+                    };
+                    ?></div></h5></div>
+            <!--</dl>-->
+
+            <br><!-- /.row -->
+            <div class="row" id="kotak2" name="kotak2">
+                <?php
+                for ($i = 1; $i <= 15; $i++) {
+                    if($i <= $jumlahsoaltafsir){
+                    echo '<div class="col-xs-2 col-md-2" style="margin-bottom: 70px;  margin-top: 10px; margin-right:30px">
+                    <a target="_blank" href="hasilsoaljawabtafsir.php?nopaket='.$psoal.'&soalke=' . $i . '">
                         <img src="gambar/kotak.png" class="img-responsive center-block">
-                        <!--<dl class="palette palette-alizarin" style="height: 200px">-->
-                        <?php
-                        if (isset($psoal)) {
-                            echo '<h5><div class="tengah2" style="padding-top: 50px; padding-left: 0px">Paket ';
-                            echo $psoal;
-                        } else {
-                            echo '<h5><div class="tengah2" style="padding-top: 50px; padding-left: 0px">Paket ';
-                            echo "?";
-                        };
-                        ?></div></h5></div>
-                    <!--</dl>-->
-                </div>
-        </div>
-        <br><!-- /.row -->
-        <div class="row" id="kotak2" name="kotak2">
-            <?php
-            $margin = "470px";
-            if (isset($psoal)) {
-                echo "<a target='_blank' href='hasilsoaljawabtafsir.php?nopaket=$psoal'>";
-            }
-            ?>
-            <div class="col-md-2" style="margin-left: <?php echo $margin; ?>">
-                <img src="gambar/kotak.png" class="img-responsive center-block">
-                <!--                        <dl class="palette palette-alizarin" style="height: 140px">-->
-                <dt><div class="tengah2"><?php
-                    if (isset($psoal)) {
-                        echo "Soal & Jawaban <br> Paket $psoal";
+                            <dt><div class="tengah">Soal ke ' . $i . '</div></dt>
+                    </a>
+                </div>';
+                    } else {
+                        echo '<div class="col-xs-2 col-md-2" style="margin-bottom: 70px;  margin-top: 10px; margin-right:30px">
+                    
+                        <img src="gambar/kotakmerah.png" class="img-responsive center-block">
+                            <dt><div class="tengah">Soal ke ' . $i . '</div></dt>
+                    
+                </div>';
                     }
-                    ?></div></dt>
-                <!--</dl>-->
+                }
+                ?>
+               
             </div>
-            <?php
-            if ($psoal) {
-                echo "</a>";
-            }
-            if ($psoal) {
-                echo "<a target='_blank' href='hasilsoaltafsir.php?nopaket=$psoal'>";
-            }
-            ?>
-            <div class="col-md-2">
-                <img src="gambar/kotak.png" class="img-responsive center-block">
-                <!--<dl class="palette palette-alizarin" style="height: 140px">-->
-                <dt><div class="tengah2"><?php
-                    if (isset($psoal)) {
-                        echo "Soal <br>Paket $psoal";
-                    }
-                    ?></div></dt>
-                <!--</dl>-->
-            </div>
-
-            <?php
-            if (isset($psoal)) {
-                echo "</a>";
-            }
-            ?>
         </div>
-
 
         <br>
         <br>

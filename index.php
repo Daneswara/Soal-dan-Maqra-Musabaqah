@@ -1,6 +1,10 @@
 <?php
 include "koneksi.php";
 session_start();
+$queryview = mysqli_query($koneksi, "SELECT * FROM pengaturan LIMIT 1") or die(mysqli_error($koneksi));
+$pengaturan = mysqli_fetch_array($queryview);
+$acara = $pengaturan['acara'];
+$logo = $pengaturan['logo'];
 if (empty($_SESSION['user_login'])) {
     header('location: login.php');
 }
@@ -400,7 +404,7 @@ function getNamaSurat($surat) {
         <style>
             body {
                 padding-bottom: 20px;
-                padding-top: 20px;
+                /*padding-top: 20px;*/
                 background-image: url("gambar/bg.jpg");
                 background-repeat: repeat;
             }
@@ -415,6 +419,7 @@ function getNamaSurat($surat) {
         </style>
 
         <div class="container">
+            <div style="text-align: center; margin-left: -120px"><?php echo $acara;?><img width="120" src="gambar/<?php echo $logo; ?>"></div>
             <nav class="navbar navbar-inverse navbar-lg navbar-embossed" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -446,6 +451,7 @@ function getNamaSurat($surat) {
                 </div><!-- /.navbar-collapse -->
             </nav>
             <div class="row">
+                
                 <form method="GET">
                     <div class="col-xs-6">
                         <div class="form-group">
@@ -474,10 +480,6 @@ function getNamaSurat($surat) {
             </div> <!-- /.row -->
             <body>
                 <style>
-                    body {
-                        padding-bottom: 20px;
-                        padding-top: 20px;
-                    }
                     .navbar {
                         margin-bottom: 20px;
                     }

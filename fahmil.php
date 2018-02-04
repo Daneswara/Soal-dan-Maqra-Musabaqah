@@ -244,7 +244,6 @@ function getNamaSurat($surat) {
                         };
                         ?></div></h5></div>
                     <!--</dl>-->
-                </div>
         <br><!-- /.row -->
         <div class="row" id="kotak2" name="kotak2">
             <?php 
@@ -258,8 +257,8 @@ function getNamaSurat($surat) {
                 }
             ?>
         </div>
+                </div>
 
-        </div>
 
         <br>
         <br>

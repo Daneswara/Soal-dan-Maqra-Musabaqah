@@ -30,6 +30,7 @@ function getHalaman($surat, $ayat) {
 $id_paket = 0;
 if (isset($_GET['nopaket'])) {
     $id_paket = $_GET['nopaket'];
+    $soalke = $_GET['soalke'];
     $dbsoal = array();
     $dbjawab = array();
     $dbsoalke = array();
@@ -93,6 +94,8 @@ if (isset($_GET['nopaket'])) {
             body {
                 padding-bottom: 20px;
                 padding-top: 20px;
+                background-image: url("gambar/bg.jpg");
+                background-repeat: repeat;
             }
             .navbar {
                 margin-bottom: 20px;
@@ -154,15 +157,17 @@ if (isset($_GET['nopaket'])) {
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse-8">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.php">Penjurian</a></li>
+                        <li><a href="index.php">Tilawah dan MHQ</a></li>
                         <li class="active"><a href="tafsir.php">Tafsir</a></li>
+                        <li><a href="fahmil.php">MFQ</a></li>
                         <li><a href="linkmushaf.php">Link Mushaf</a></li>
+                        <li><a href="acak.php">Acak</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pengaturan <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="about.php">Tentang</a></li>
+                                <li><a href="about.php">Bantuan</a></li>
                                 <li><a href="pengaturan.php">Pengaturan</a></li>
                                 <li><a href="login.php">Keluar</a></li>
                             </ul>
@@ -183,48 +188,51 @@ if (isset($_GET['nopaket'])) {
 
 
             <?php
-            $jumlahsoal = 15;
-            for ($i = 1; $i <= $jumlahsoal; $i++) {
-                if ($i == 1) {
-                    $soalnya = $dbsoal[$i - 1];
-                    $datasoal1 = explode("-", $soalnya);
+            $i = $soalke;
+            if ($i == 1) {
+                $soalnya = $dbsoal[$i - 1];
+                $datasoal1 = explode("-", $soalnya);
 //                    $namasurat = getNamaSurat($datasoal1[0]);
-                    // batas
-                    $surat = $datasoal1[0];
-                    $ayat = $datasoal1[1];
-                    $hal = getHalaman($surat, $ayat);
-                    $namasurat = getNamaSurat($surat);
-                    $namasurat = str_replace("'", "petik", $namasurat);
-                    $link = "mushaf.php?kanan=$hal&surah=$surat&ayat=$ayat&namasurat=$namasurat";
-                    // batas link
-                    echo '<div class="col-xs-12"><div class="col-xs-2">
+                // batas
+                $surat = $datasoal1[0];
+                $ayat = $datasoal1[1];
+                $hal = getHalaman($surat, $ayat);
+                $namasurat = getNamaSurat($surat);
+                $namasurat = str_replace("'", "petik", $namasurat);
+                $link = "mushaf.php?kanan=$hal&surah=$surat&ayat=$ayat&namasurat=$namasurat";
+                // batas link
+                echo '<div class="col-xs-12"><div class="col-xs-2">
                         <div class="form-group">
                             Soal ke-' . $i . '
                         </div></div>
                     <div class="col-xs-10"><div class="form-group">
                     <a href="' . $link . '" class="btn btn-block btn-lg btn-primary" target="_black"> ' . getNamaSurat($datasoal1[0]) . ' : ' . $datasoal1[1] . ' </a>
                     </div></div></div>';
-                } else {
+            } else {
 
-                    if (isset($dbsoalke[$i - 1])) {
-                        if ($dbsoalke[($i - 1)] == $i) {
-                            echo '<div class="col-xs-12"><div class="col-xs-2">
+                if (isset($dbsoalke[$i - 1])) {
+                    if ($dbsoalke[($i - 1)] == $i) {
+                        echo '<div class="col-xs-12"><div class="col-xs-2">
                         <div class="form-group">
                             Soal ke-' . $i . '
                         </div></div>
-                    <div class="col-xs-5">
+                    <div class="col-xs-10">
                         <div class="form-group">';
-                            echo '<textarea type="text" id="soal' . $i . '" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control">' . $dbsoal[($i - 1)] . '</textarea>';
-                            echo '</div>
+                        echo '<textarea style="height: 200px" type="text" id="soal' . $i . '" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control">' . $dbsoal[($i - 1)] . '</textarea>';
+                        echo '</div>
                     </div> <!-- /.col-xs-3 -->
-                    <div class="col-xs-5">
-                        <div class="form-group">';
-                            echo '<textarea type="text" id="jawaban' . $i . '" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control">' . $dbjawab[($i - 1)] . '</textarea>';
-                        }
+                    <div class="col-xs-2">
+                        <div class="form-group">
+                            Jawaban ke-' . $i . '
+                        </div></div>
+                    <div class="col-xs-10">
+                    <button id="bukajawaban" class="btn btn-block btn-lg btn-danger" onclick="showJawaban()" style="margin-bottom:20px">Lihat Jawaban</button>
+                        <div class="form-group" id="jawaban">';
+                        echo '<textarea style="height: 200px" type="text" id="jawaban' . $i . '" name="jawaban' . $i . '" placeholder="Isikan jawaban nomer ' . $i . '" class="form-control">' . $dbjawab[($i - 1)] . '</textarea>';
                     }
-                    echo '</div>
-                    </div></div>';
                 }
+                echo '</div>
+                    </div></div>';
             }
             ?>
             <!-- /.col-xs-3 -->
@@ -233,20 +241,24 @@ if (isset($_GET['nopaket'])) {
             <!-- /.col-xs-3 -->
 
         </div></form>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                for (i = 1; i <= 15; i++) {
-                    document.getElementById("soal"+i).addEventListener('keyup', function () {
-                        this.style.overflow = 'hidden';
-                        this.style.height = this.scrollHeight + 'px';
-                    }, false);
-                    document.getElementById("jawaban"+i).addEventListener('keyup', function () {
-                        this.style.overflow = 'hidden';
-                        this.style.height = this.scrollHeight + 'px';
-                    }, false);
+    <script type="text/javascript">
+        document.getElementById('jawaban').style.visibility = 'hidden';
+                function showJawaban() {
+                    document.getElementById('jawaban').style.visibility = 'visible';
                 }
-            });
-        </script>
+        $(document).ready(function () {
+            for (i = 1; i <= 15; i++) {
+                document.getElementById("soal" + i).addEventListener('keyup', function () {
+                    this.style.overflow = 'hidden';
+                    this.style.height = this.scrollHeight + 'px';
+                }, false);
+                document.getElementById("jawaban" + i).addEventListener('keyup', function () {
+                    this.style.overflow = 'hidden';
+                    this.style.height = this.scrollHeight + 'px';
+                }, false);
+            }
+        });
+    </script>
     <script src="dist/js/vendor/jquery.min.js"></script>
     <script src="dist/js/vendor/video.js"></script>
     <script src="dist/js/flat-ui.min.js"></script>

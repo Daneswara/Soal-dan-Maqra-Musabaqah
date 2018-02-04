@@ -88,7 +88,7 @@ $video = $pengaturan['link_video'];
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pengaturan <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li class="active"><a href="about.php">Tentang</a></li>
+                                <li class="active"><a href="about.php">Bantuan</a></li>
                                 <li><a href="help.php">Bantuan</a></li>
                                 <li><a href="login.php">Keluar</a></li>
                             </ul>
@@ -104,8 +104,13 @@ $video = $pengaturan['link_video'];
                     </video>
                 </div>
                 <div id="inner">
-                    <h3><?php echo $acara; ?></h3>
-                    <img width="430" src="gambar/<?php echo $logo; ?>">
+                    <h5>Butuh bantuan? Silakan hubungi: </h5><b>
+                        Nur Yasin Shirotol Mustaqim (+62 8123 0000 177)<br>
+                        Satria Habiburrahman (+62 857 5842 6836)<br>
+                        Anang Hanafi (+62 852 3079 0796)<br>
+                        Daneswara Jauhari (+62 857 30 595 101)<br>
+                    </b>
+                    
                 </div> <!-- /video -->
 
 
