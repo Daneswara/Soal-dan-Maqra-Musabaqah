@@ -4,7 +4,11 @@ session_start();
 if (empty($_SESSION['user_login'])) {
     header('location: login.php');
 }
-
+$queryview = mysqli_query($koneksi, "SELECT * FROM pengaturan LIMIT 1") or die(mysqli_error($koneksi));
+$pengaturan = mysqli_fetch_array($queryview);
+$acara = $pengaturan['acara'];
+$acara = str_replace("<petik>", "'", $acara);
+$logo = $pengaturan['logo'];
 function getNamaSurat($surat) {
     include "koneksi.php";
     $queryview = mysqli_query($koneksi, "SELECT * FROM `daftarsurah` WHERE nosurat = $surat LIMIT 1") or die(mysqli_error($koneksi));
@@ -145,6 +149,7 @@ if (isset($_GET['nopaket'])) {
         </style>
 
         <div class="container">
+            <div style="text-align: center; padding: 20px"><b><?php echo $acara;?></b><img style="margin-top: -10px" width="220px" src="gambar/<?php echo $logo; ?>"></div>
             <nav class="navbar navbar-inverse navbar-lg navbar-embossed" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -168,7 +173,6 @@ if (isset($_GET['nopaket'])) {
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pengaturan <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="about.php">Bantuan</a></li>
-                                <li><a href="pengaturan.php">Pengaturan</a></li>
                                 <li><a href="login.php">Keluar</a></li>
                             </ul>
                         </li>

@@ -4,6 +4,11 @@ session_start();
 if (empty($_SESSION['admin_login'])) {
     header('location: login.php');
 }
+$queryview = mysqli_query($koneksi, "SELECT * FROM pengaturan LIMIT 1") or die(mysqli_error($koneksi));
+$pengaturan = mysqli_fetch_array($queryview);
+$acara = $pengaturan['acara'];
+$acara = str_replace("<petik>", "'", $acara);
+$logo = $pengaturan['logo'];
 if (isset($_POST['optionsRadios'])) {
     $radio = $_POST['optionsRadios'];
     $arraykategori = explode("_", $radio);
@@ -419,6 +424,7 @@ if (isset($_GET['editpaket'])) {
         </style>
 
         <div class="container">
+            <div style="text-align: center; padding: 20px; margin-left: -220px"><b><?php echo $acara;?></b><img style="margin-top: -10px" width="220px" src="../gambar/<?php echo $logo; ?>"></div>
             <nav class="navbar navbar-inverse navbar-lg navbar-embossed" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">

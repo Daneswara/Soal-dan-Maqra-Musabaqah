@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2018 at 02:43 PM
+-- Generation Time: Feb 10, 2018 at 07:26 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -1383,141 +1383,141 @@ CREATE TABLE `daftarsurah` (
 --
 
 INSERT INTO `daftarsurah` (`id`, `kategori`, `nosurat`, `nama`, `awal`, `akhir`) VALUES
-(1, 1, 1, 'Al-Fatihah', 1, 7),
+(1, 1, 1, 'Al-Faatihah', 1, 7),
 (2, 1, 2, 'Al-Baqarah', 1, 141),
 (3, 2, 2, 'Al-Baqarah', 142, 252),
 (4, 3, 2, 'Al-Baqarah', 253, 286),
-(5, 3, 3, 'Ali-Imran', 1, 91),
-(6, 4, 3, 'Ali-Imran', 92, 200),
-(7, 4, 4, 'An-Nisa''', 1, 23),
-(8, 5, 4, 'An-Nisa''', 24, 147),
-(9, 6, 4, 'An-Nisa''', 148, 176),
-(10, 6, 5, 'Al-Maidah', 1, 82),
-(11, 7, 5, 'Al-Maidah', 83, 120),
-(12, 7, 6, 'Al-An''am', 1, 110),
-(13, 8, 6, 'Al-An''am', 111, 165),
-(14, 8, 7, 'Al-A''raf', 1, 87),
-(15, 9, 7, 'Al-A''raf', 88, 206),
-(16, 9, 8, 'Al-Anfal', 1, 40),
-(17, 10, 8, 'Al-Anfal', 41, 75),
+(5, 3, 3, 'Ali-Imraan', 1, 91),
+(6, 4, 3, 'Ali-Imraan', 92, 200),
+(7, 4, 4, 'An-Nisaa''', 1, 23),
+(8, 5, 4, 'An-Nisaa''', 24, 147),
+(9, 6, 4, 'An-Nisaa''', 148, 176),
+(10, 6, 5, 'Al-Maaidah', 1, 82),
+(11, 7, 5, 'Al-Maaidah', 83, 120),
+(12, 7, 6, 'Al-An''aam', 1, 110),
+(13, 8, 6, 'Al-An''aam', 111, 165),
+(14, 8, 7, 'Al-A''raaf', 1, 87),
+(15, 9, 7, 'Al-A''raaf', 88, 206),
+(16, 9, 8, 'Al-Anfaal', 1, 40),
+(17, 10, 8, 'Al-Anfaal', 41, 75),
 (18, 10, 9, 'At-Taubah', 1, 93),
 (19, 11, 9, 'At-Taubah', 94, 129),
-(20, 11, 10, 'Yunus', 1, 109),
-(21, 11, 11, 'Hud', 1, 5),
-(22, 12, 11, 'Hud', 6, 163),
-(23, 12, 12, 'Yusuf', 1, 52),
-(24, 13, 12, 'Yusuf', 53, 111),
+(20, 11, 10, 'Yuunus', 1, 109),
+(21, 11, 11, 'Huud', 1, 5),
+(22, 12, 11, 'Huud', 6, 123),
+(23, 12, 12, 'Yuusuf', 1, 52),
+(24, 13, 12, 'Yuusuf', 53, 111),
 (25, 13, 13, 'Ar-Ra''d', 1, 43),
-(26, 13, 14, 'Ibrahim', 1, 52),
+(26, 13, 14, 'Ibrahiim', 1, 52),
 (27, 14, 15, 'Al-Hijr', 1, 99),
 (28, 14, 16, 'An-Nahl', 1, 128),
-(29, 15, 17, 'Al-Isra''', 1, 111),
+(29, 15, 17, 'Al-Israa''', 1, 111),
 (30, 15, 18, 'Al-Kahfi', 1, 74),
 (31, 16, 18, 'Al-Kahfi', 75, 110),
 (32, 16, 19, 'Maryam', 1, 98),
-(33, 16, 20, 'Tha-Ha', 1, 135),
-(34, 17, 21, 'Al-Anbiya''', 1, 112),
+(33, 16, 20, 'Thaaha', 1, 135),
+(34, 17, 21, 'Al-Anbiyaa''', 1, 112),
 (35, 17, 22, 'Al-Hajj', 1, 78),
-(36, 18, 23, 'Al-Mu''minun', 1, 118),
-(37, 18, 24, 'An-Nur', 1, 64),
-(38, 18, 25, 'Al-Furqan', 1, 20),
-(39, 19, 25, 'Al-Furqan', 21, 77),
-(40, 19, 26, 'Asy-Syu''ara', 1, 227),
+(36, 18, 23, 'Al-Mu''minuun', 1, 118),
+(37, 18, 24, 'An-Nuur', 1, 64),
+(38, 18, 25, 'Al-Furqaan', 1, 20),
+(39, 19, 25, 'Al-Furqaan', 21, 77),
+(40, 19, 26, 'Asy-Syu''araa''', 1, 227),
 (41, 19, 27, 'An-Naml', 1, 59),
 (42, 20, 27, 'An-Naml', 60, 93),
 (43, 20, 28, 'Al-Qashash', 1, 88),
-(44, 20, 29, 'Al-Ankabut', 1, 44),
-(45, 21, 29, 'Al-Ankabut', 45, 69),
-(46, 21, 30, 'Ar-Rum', 1, 60),
-(47, 21, 31, 'Luqman', 1, 34),
+(44, 20, 29, 'Al-Ankabuut', 1, 44),
+(45, 21, 29, 'Al-Ankabuut', 45, 69),
+(46, 21, 30, 'Ar-Ruum', 1, 60),
+(47, 21, 31, 'Luqmaan', 1, 34),
 (48, 21, 32, 'As-Sajdah', 1, 30),
-(49, 21, 33, 'Al-Ahzab', 1, 30),
-(50, 22, 33, 'Al-Ahzab', 31, 73),
+(49, 21, 33, 'Al-Ahzaab', 1, 30),
+(50, 22, 33, 'Al-Ahzaab', 31, 73),
 (51, 22, 34, 'Saba''', 1, 54),
-(52, 22, 35, 'Fathir', 1, 45),
-(53, 22, 36, 'Yasin', 1, 21),
-(54, 23, 36, 'Yasin', 22, 83),
-(55, 23, 37, 'As-Shaffat', 1, 182),
-(56, 23, 38, 'Shad', 1, 88),
+(52, 22, 35, 'Faathir', 1, 45),
+(53, 22, 36, 'Yaasiin', 1, 21),
+(54, 23, 36, 'Yaasiin', 22, 83),
+(55, 23, 37, 'Ash-Shaaffaat', 1, 182),
+(56, 23, 38, 'Shaad', 1, 88),
 (57, 23, 39, 'Az-Zumar', 1, 31),
 (58, 24, 39, 'Az-Zumar', 32, 75),
 (59, 24, 40, 'Al-Mu''min ', 1, 85),
-(60, 24, 41, 'Fushilat', 1, 46),
-(61, 25, 41, 'Fushilat', 47, 54),
-(62, 25, 42, 'Asy-Syura', 1, 53),
-(63, 25, 43, 'Az-Zukhruf', 1, 89),
-(64, 25, 44, 'Ad-Dukhan', 1, 59),
-(65, 25, 45, 'Al-Jatsiyah', 1, 37),
-(66, 26, 46, 'Al-Ahqaf', 1, 35),
-(67, 26, 47, 'Muhammad', 1, 36),
+(60, 24, 41, 'Fushshilat', 1, 46),
+(61, 25, 41, 'Fushshilat', 47, 54),
+(62, 25, 42, 'Asy-Syuuraa', 1, 53),
+(63, 25, 43, 'Az-Zukhruuf', 1, 89),
+(64, 25, 44, 'Ad-Dukhaan', 1, 59),
+(65, 25, 45, 'Al-Jaatsiyah', 1, 37),
+(66, 26, 46, 'Al-Ahqaaf', 1, 35),
+(67, 26, 47, 'Muhammad', 1, 38),
 (68, 26, 48, 'Al-Fath', 1, 29),
-(69, 26, 49, 'Al-Hujurat', 1, 18),
-(70, 26, 50, 'Qaf', 1, 45),
-(71, 26, 51, 'Adz-Dzariyat', 1, 30),
-(72, 27, 51, 'Adz-Dzariyat', 31, 60),
-(73, 27, 52, 'Ath-Thur', 1, 49),
+(69, 26, 49, 'Al-Hujuraat', 1, 18),
+(70, 26, 50, 'Qaaf', 1, 45),
+(71, 26, 51, 'Adz-Dzaariyaat', 1, 30),
+(72, 27, 51, 'Adz-Dzaariyaat', 31, 60),
+(73, 27, 52, 'Ath-Thuur', 1, 49),
 (74, 27, 53, 'An-Najm', 1, 62),
 (75, 27, 54, 'Al-Qamar', 1, 55),
-(76, 27, 55, 'Ar-Rahman', 1, 78),
-(77, 27, 56, 'Al-Waqi''ah', 1, 96),
-(78, 27, 57, 'Al-Hadid', 1, 29),
-(79, 28, 58, 'Al-Mujadilah', 1, 22),
+(76, 27, 55, 'Ar-Rahmaan', 1, 78),
+(77, 27, 56, 'Al-Waaqi''ah', 1, 96),
+(78, 27, 57, 'Al-Hadiid', 1, 29),
+(79, 28, 58, 'Al-Mujaadilah', 1, 22),
 (80, 28, 59, 'Al-Hasyr', 1, 24),
 (81, 28, 60, 'Al-Mumtahanah', 1, 13),
-(82, 28, 61, 'As-Shaf ', 1, 14),
-(83, 28, 62, 'Al-Jumuah', 1, 11),
-(84, 28, 63, 'Al-Munafiqun', 1, 11),
-(85, 28, 64, 'At-Taghabun', 1, 18),
-(86, 28, 65, 'Ath-Thalaq', 1, 12),
-(87, 28, 66, 'Ath-Tahrim', 1, 12),
+(82, 28, 61, 'As-Shaff', 1, 14),
+(83, 28, 62, 'Al-Jumu''ah', 1, 11),
+(84, 28, 63, 'Al-Munaafiquun', 1, 11),
+(85, 28, 64, 'At-Taghaabun', 1, 18),
+(86, 28, 65, 'Ath-Thalaaq', 1, 12),
+(87, 28, 66, 'At-Tahriim', 1, 12),
 (88, 29, 67, 'Al-Mulk', 1, 30),
-(89, 29, 68, 'Al-Qolam', 1, 52),
-(90, 29, 69, 'Al-Haqqah', 1, 52),
-(91, 29, 70, 'Al-Ma''arij', 1, 44),
-(92, 29, 71, 'Nuh', 1, 28),
-(93, 29, 72, 'Al-Jin', 1, 28),
+(89, 29, 68, 'Al-Qalam', 1, 52),
+(90, 29, 69, 'Al-Haaqqah', 1, 52),
+(91, 29, 70, 'Al-Ma''aarij', 1, 44),
+(92, 29, 71, 'Nuuh', 1, 28),
+(93, 29, 72, 'Al-Jinn', 1, 28),
 (94, 29, 73, 'Al-Muzzammil', 1, 20),
 (95, 29, 74, 'Al-Muddatstsir', 1, 56),
-(96, 29, 75, 'Al-Qiyamah', 1, 40),
-(97, 29, 76, 'Al-Insan', 1, 31),
-(98, 29, 77, 'Al-Mursalat', 1, 50),
+(96, 29, 75, 'Al-Qiyaamah', 1, 40),
+(97, 29, 76, 'Al-Insaan', 1, 31),
+(98, 29, 77, 'Al-Mursalaat', 1, 50),
 (99, 30, 78, 'An-Naba''', 1, 40),
-(100, 30, 79, 'An-Nazi''at', 1, 46),
-(101, 30, 80, 'Abasa', 1, 42),
-(102, 30, 81, 'At-Takwir', 1, 29),
-(103, 30, 82, 'Al-Infithar', 1, 19),
-(104, 30, 83, 'Al-Muthaffifin', 1, 36),
-(105, 30, 84, 'Al-Insyiqaa', 1, 25),
-(106, 30, 85, 'Al-Buruj', 1, 22),
-(107, 30, 86, 'Ath-Thariq', 1, 17),
-(108, 30, 87, 'Al-A''la', 1, 19),
-(109, 30, 88, 'Al-Ghasyiyah', 1, 26),
+(100, 30, 79, 'An-Naazi''aat', 1, 46),
+(101, 30, 80, '''Abasa', 1, 42),
+(102, 30, 81, 'At-Takwiir', 1, 29),
+(103, 30, 82, 'Al-Infithaar', 1, 19),
+(104, 30, 83, 'Al-Muthaffifiin', 1, 36),
+(105, 30, 84, 'Al-Insyiqaaq', 1, 25),
+(106, 30, 85, 'Al-Buruuj', 1, 22),
+(107, 30, 86, 'Ath-Thaariq', 1, 17),
+(108, 30, 87, 'Al-A''laa', 1, 19),
+(109, 30, 88, 'Al-Ghaasyiyah', 1, 26),
 (110, 30, 89, 'Al-Fajr', 1, 30),
 (111, 30, 90, 'Al-Balad', 1, 20),
 (112, 30, 91, 'Asy-Syams', 1, 15),
 (113, 30, 92, 'Al-Lail', 1, 21),
-(114, 30, 93, 'Adh-Dhuha', 1, 11),
-(115, 30, 94, 'Al-Insyirah', 1, 8),
-(116, 30, 95, 'At-Tin', 1, 8),
+(114, 30, 93, 'Adh-Dhuhaa', 1, 11),
+(115, 30, 94, 'Al-Insyiraah', 1, 8),
+(116, 30, 95, 'At-Tiin', 1, 8),
 (117, 30, 96, 'Al-''Alaq', 1, 19),
-(118, 30, 97, 'Al-Qadar', 1, 5),
+(118, 30, 97, 'Al-Qadr', 1, 5),
 (119, 30, 98, 'Al-Bayyinah', 1, 8),
 (120, 30, 99, 'Al-Zalzalah', 1, 8),
-(121, 30, 100, 'Al''Adiyat', 1, 11),
-(122, 30, 101, 'Al-Qariah', 1, 11),
-(123, 30, 102, 'At-Takatsur', 1, 8),
-(124, 30, 103, 'Al-''Asr', 1, 3),
+(121, 30, 100, 'Al''Aadiyaat', 1, 11),
+(122, 30, 101, 'Al-Qaariah', 1, 11),
+(123, 30, 102, 'At-Takaatsur', 1, 8),
+(124, 30, 103, 'Al-''Ashr', 1, 3),
 (125, 30, 104, 'Al-Humazah', 1, 9),
-(126, 30, 105, 'Al-Fil', 1, 5),
-(127, 30, 106, 'Al-Quraisy', 1, 4),
-(128, 30, 107, 'Al-Ma''un', 1, 7),
+(126, 30, 105, 'Al-Fiil', 1, 5),
+(127, 30, 106, 'Quraisy', 1, 4),
+(128, 30, 107, 'Al-Maa''uun', 1, 7),
 (129, 30, 108, 'Al-Kautsar', 1, 3),
-(130, 30, 109, 'Al-Kafirun', 1, 6),
+(130, 30, 109, 'Al-Kaafiruun', 1, 6),
 (131, 30, 110, 'An-Nashr', 1, 3),
 (132, 30, 111, 'Al-Lahab', 1, 5),
-(133, 30, 112, 'AL-Ikhlas', 1, 4),
+(133, 30, 112, 'Al-Ikhlaash', 1, 4),
 (134, 30, 113, 'Al-Falaq', 1, 5),
-(135, 30, 114, 'An-Nas ', 1, 6);
+(135, 30, 114, 'An-Naas', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -2181,7 +2181,9 @@ INSERT INTO `kategori` (`id`, `urutan`, `nama`, `jenis`, `index`) VALUES
 (14, 2, '1 Juz', 'MHQ', '30'),
 (15, 9, 'custom', 'custom', '1,2,3'),
 (16, 9, 'custom', 'custom', '4,5,6'),
-(17, 9, 'custom', 'custom', '6,7,8');
+(17, 9, 'custom', 'custom', '6,7,8'),
+(18, 8, 'Tafsir', 'Tafsir Bahasa Indonesia', '1-30'),
+(19, 8, 'Tafsir', 'Tafsir Bahasa Inggris', '1-30');
 
 -- --------------------------------------------------------
 
@@ -2191,7 +2193,7 @@ INSERT INTO `kategori` (`id`, `urutan`, `nama`, `jenis`, `index`) VALUES
 
 CREATE TABLE `kategori_fahmil` (
   `id` int(11) NOT NULL,
-  `nama_kategori` varchar(100) NOT NULL
+  `nama_kategori` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2209,7 +2211,11 @@ INSERT INTO `kategori_fahmil` (`id`, `nama_kategori`) VALUES
 (8, 'kategori8'),
 (9, 'kategori9'),
 (10, 'kategori10'),
-(11, 'kategori11');
+(11, 'kategori11'),
+(12, 'kategori12'),
+(13, 'kategori13'),
+(14, 'kategori14'),
+(15, 'kategori15');
 
 -- --------------------------------------------------------
 
@@ -3963,7 +3969,8 @@ INSERT INTO `paket` (`id`, `id_kategori`, `indexkategori`, `namapaket`) VALUES
 (426, 9, '1-30', '9-411'),
 (427, 10, '1-30', '10-1'),
 (430, 11, '1-30', '11-1'),
-(431, 11, '1-30', '11-2');
+(431, 11, '1-30', '11-2'),
+(432, 19, '1-30', '19-1');
 
 -- --------------------------------------------------------
 
@@ -3986,7 +3993,7 @@ CREATE TABLE `pengaturan` (
 --
 
 INSERT INTO `pengaturan` (`id`, `qori`, `jumlahsoal`, `jumlahsoalmudah`, `acara`, `logo`, `link_video`) VALUES
-(1, 'husari', 3, 2, 'MTQ', 'penyelenggara.png', 'mtq.mp4');
+(1, 'husari', 1, 0, 'Musabaqah Tilawatil Qur<petik>an Mahasiswa Nasional XV Tahun 2017', 'penyelenggara.png', 'mtq.mp4');
 
 -- --------------------------------------------------------
 
@@ -4012,6 +4019,13 @@ CREATE TABLE `penjurianpaket` (
   `indexkategori` varchar(50) NOT NULL,
   `id_kategori` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `penjurianpaket`
+--
+
+INSERT INTO `penjurianpaket` (`id`, `id_paket`, `indexkategori`, `id_kategori`) VALUES
+(1, 431, '1-30', 11);
 
 -- --------------------------------------------------------
 
@@ -4476,33 +4490,36 @@ CREATE TABLE `soal_fahmil` (
 --
 
 INSERT INTO `soal_fahmil` (`id`, `id_kategori`, `soal`, `jawaban`, `status`) VALUES
-(19, 4, 'soal1', 'soal2', 0),
-(20, 4, 'lain1', 'lain2', 0),
-(21, 5, 'soal1', 'soal2', 0),
-(22, 5, 'lain1', 'lain2', 0),
-(23, 6, 'soal1', 'soal2', 0),
-(24, 6, 'lain1', 'lain2', 0),
-(25, 7, 'soal1', 'soal2', 0),
-(26, 7, 'lain1', 'lain2', 0),
-(27, 8, 'soal1', 'soal2', 0),
-(28, 8, 'lain1', 'lain2', 0),
-(29, 9, 'soal1', 'soal2', 0),
-(30, 9, 'lain1', 'lain2', 0),
-(31, 10, 'soal1', 'soal2', 0),
-(32, 10, 'lain1', 'lain2', 0),
-(33, 11, 'soal1', 'soal2', 0),
-(34, 11, 'lain1', 'lain2', 0),
-(35, 12, 'soal1', 'soal2', 0),
-(36, 12, 'lain1', 'lain2', 0),
-(37, 13, 'soal1', 'soal2', 0),
-(38, 13, 'lain1', 'lain2', 0),
-(39, 14, 'soal1', 'soal2', 0),
-(40, 14, 'lain1', 'lain2', 0),
-(41, 15, 'soal1', 'soal2', 0),
-(42, 15, 'lain1', 'lain2', 0),
-(43, 1, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 0),
-(44, 2, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 0),
-(45, 3, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 0);
+(21, 3, '1', '1', 0),
+(22, 3, '2', '2', 1),
+(23, 4, '1', '1', 0),
+(24, 4, '2', '2', 1),
+(25, 5, '1', '1', 1),
+(26, 5, '2', '2', 0),
+(27, 6, '1', '1', 0),
+(28, 6, '2', '2', 1),
+(29, 7, '1', '1', 1),
+(30, 7, '2', '2', 0),
+(31, 8, '1', '1', 1),
+(32, 8, '2', '2', 0),
+(33, 9, '1', '1', 1),
+(34, 9, '2', '2', 0),
+(35, 10, '1', '1', 1),
+(36, 10, '2', '2', 0),
+(49, 1, '1', '1', 0),
+(50, 1, '2', '2', 1),
+(51, 2, '1', '1', 1),
+(52, 2, '2', '2', 0),
+(53, 11, '1', '1', 1),
+(54, 11, '2', '2', 0),
+(55, 15, '1', '1', 1),
+(56, 15, '2', '2', 0),
+(57, 14, '1', '1', 0),
+(58, 14, '2', '2', 1),
+(59, 13, '1', '1', 1),
+(60, 13, '2', '2', 0),
+(61, 12, '1', '1', 0),
+(62, 12, '2', '2', 1);
 
 -- --------------------------------------------------------
 
@@ -4523,12 +4540,15 @@ CREATE TABLE `soal_tafsir` (
 --
 
 INSERT INTO `soal_tafsir` (`id`, `paket`, `soalke`, `soal`, `jawaban`) VALUES
-(1, 429, 1, '1-6', 'mushaf.php?kanan=1&surah=1&ayat=6&namasurat=Al-Fatihah'),
-(2, 430, 1, '1-2', 'mushaf.php?kanan=1&surah=1&ayat=2&namasurat=Al-Fatihah'),
+(2, 430, 1, '1-2', '-'),
 (3, 430, 2, 'soal 1', 'jawab 1'),
 (4, 430, 3, 'soal 2 edit', 'jawab 2 edit'),
-(5, 431, 1, '1-3', 'mushaf.php?kanan=1&surah=1&ayat=3&namasurat=Al-Fatihah'),
-(6, 431, 2, 'Ø§Ù„Ù„ØºØ© Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©', 'Ø§Ù„Ù„ØºØ© Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©');
+(5, 431, 1, '4-4', '-'),
+(6, 431, 2, 'a\na\na\na\na\na\n', 'aaaaa'),
+(7, 432, 1, '20-1', 'mushaf.php?kanan=312&surah=20&ayat=1&namasurat=Tha-Ha'),
+(8, 432, 2, '1', '2'),
+(9, 432, 3, '3', '4'),
+(10, 432, 4, '5', '6');
 
 -- --------------------------------------------------------
 
@@ -4683,12 +4703,12 @@ ALTER TABLE `halaman`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `kategori_fahmil`
 --
 ALTER TABLE `kategori_fahmil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `mutasyabihat`
 --
@@ -4698,7 +4718,7 @@ ALTER TABLE `mutasyabihat`
 -- AUTO_INCREMENT for table `paket`
 --
 ALTER TABLE `paket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=432;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=433;
 --
 -- AUTO_INCREMENT for table `pengaturan`
 --
@@ -4713,7 +4733,7 @@ ALTER TABLE `penjurian`
 -- AUTO_INCREMENT for table `penjurianpaket`
 --
 ALTER TABLE `penjurianpaket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `soal`
 --
@@ -4723,12 +4743,12 @@ ALTER TABLE `soal`
 -- AUTO_INCREMENT for table `soal_fahmil`
 --
 ALTER TABLE `soal_fahmil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT for table `soal_tafsir`
 --
 ALTER TABLE `soal_tafsir`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `user`
 --

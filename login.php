@@ -1,6 +1,12 @@
 <?php
 session_start(); // memulai session
 session_destroy();
+include "koneksi.php";
+$queryview = mysqli_query($koneksi, "SELECT * FROM pengaturan LIMIT 1") or die(mysqli_error($koneksi));
+$pengaturan = mysqli_fetch_array($queryview);
+$acara = $pengaturan['acara'];
+$acara = str_replace("<petik>", "'", $acara);
+$logo = $pengaturan['logo'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,9 +53,11 @@ session_destroy();
                 padding: 15%;
             }
         </style>
-        <div class="container">
+        <div class="container" style="margin-top: -100px">
             <form action="CekLogin.php" method="POST">
                 <div class="login-form">
+                    <div style="text-align: center; padding: 20px"><img style="margin-top: -10px" width="400px" src="gambar/<?php echo $logo; ?>"></div>
+                <div style="margin-bottom: 20px; text-align: center"><b><center><?php echo $acara;?></center></b></div>
                     <div class="form-group">
                         <input type="text" name="username" class="form-control login-field" value="" placeholder="Enter your name" id="login-name" />
                         <label class="login-field-icon fui-user" for="login-name"></label>

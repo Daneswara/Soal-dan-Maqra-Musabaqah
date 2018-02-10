@@ -7,6 +7,7 @@ if (empty($_SESSION['admin_login'])) {
 $queryview = mysqli_query($koneksi, "SELECT * FROM pengaturan LIMIT 1") or die(mysqli_error($koneksi));
 $pengaturan = mysqli_fetch_array($queryview);
 $acara = $pengaturan['acara'];
+$acara = str_replace("<petik>", "'", $acara);
 $logo = $pengaturan['logo'];
 $video = $pengaturan['link_video'];
 ?>
@@ -66,6 +67,7 @@ $video = $pengaturan['link_video'];
             }
         </style>
         <div class="container">
+            <div style="text-align: center; padding: 20px"><b><?php echo $acara;?></b><img style="margin-top: -10px" width="220px" src="../gambar/<?php echo $logo; ?>"></div>
             <nav class="navbar navbar-inverse navbar-lg navbar-embossed" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -102,8 +104,12 @@ $video = $pengaturan['link_video'];
                     </video>
                 </div>
                 <div id="inner">
-                    <h3><?php echo $acara; ?></h3>
-                    <img width="430" src="../gambar/<?php echo $logo; ?>">
+                    <h5>Butuh bantuan? Silakan hubungi: </h5><b>
+                        Nur Yasin Shirotol Mustaqim (+62 8123 0000 177)<br>
+                        Satria Habiburrahman (+62 857 5842 6836)<br>
+                        Anang Hanafi (+62 852 3079 0796)<br>
+                        Daneswara Jauhari (+62 857 30 595 101)<br>
+                    </b>
                 </div> <!-- /video -->
 
 

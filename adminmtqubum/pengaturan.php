@@ -5,7 +5,11 @@ if (empty($_SESSION['admin_login'])) {
     header('location: login.php');
 }
 $admin = $_SESSION['admin_login'];
-
+$queryview = mysqli_query($koneksi, "SELECT * FROM pengaturan LIMIT 1") or die(mysqli_error($koneksi));
+$pengaturan = mysqli_fetch_array($queryview);
+$acara = $pengaturan['acara'];
+$acara = str_replace("<petik>", "'", $acara);
+$logo = $pengaturan['logo'];
 if (isset($_GET['operasi'])) {
     $operasi = $_GET['operasi'];
 
@@ -67,11 +71,12 @@ if (isset($_GET['editakun'])) {
 if (isset($_GET['uploadLogo'])) {
     $ekstensi_diperbolehkan = array('png', 'jpg');
     $namaacara = $_POST['acara'];
-    $nama = $_FILES['file']['name'];
+    $namaacara = str_replace("'", "<petik>", $namaacara);
+    $nama = $_FILES['filelogo']['name'];
     $x = explode('.', $nama);
     $ekstensi = strtolower(end($x));
-    $ukuran = $_FILES['file']['size'];
-    $file_tmp = $_FILES['file']['tmp_name'];
+    $ukuran = $_FILES['filelogo']['size'];
+    $file_tmp = $_FILES['filelogo']['tmp_name'];
     if (in_array($ekstensi, $ekstensi_diperbolehkan) === true) {
         if ($ukuran < 5044070) {
             move_uploaded_file($file_tmp, '../gambar/' . $nama);
@@ -308,6 +313,7 @@ $qori = $pengaturan['qori'];
 $jumlahsoal = $pengaturan['jumlahsoal'];
 $jumlahsoalmudah = $pengaturan['jumlahsoalmudah'];
 $acara = $pengaturan['acara'];
+$acara = str_replace("<petik>", "'", $acara);
 $logo = $pengaturan['logo'];
 $datadmin = mysqli_query($koneksi, "SELECT * FROM admin WHERE username = '$admin'") or die(mysqli_error($koneksi));
 $user = mysqli_fetch_array($datadmin);
@@ -455,6 +461,7 @@ $username = $user['username'];
             }
         </style>
         <div class="container">
+            <div style="text-align: center; padding: 20px"><b><?php echo $acara;?></b><img style="margin-top: -10px" width="220px" src="../gambar/<?php echo $logo; ?>"></div>
             <nav class="navbar navbar-inverse navbar-lg navbar-embossed" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -556,7 +563,7 @@ $username = $user['username'];
                                         <h6>Logo Penyelenggara </h6>
                                     </td>
                                     <td width="50%">
-                                        <input id="file" name="file" type="file" class="form-control"></input>
+                                        <input id="filelogo" name="filelogo" type="file" class="form-control"></input>
                                     </td>
                                 </tr>
                                 <tr>

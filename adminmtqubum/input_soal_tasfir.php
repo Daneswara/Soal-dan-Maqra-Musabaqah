@@ -8,7 +8,11 @@ if (isset($_GET['jenis'])) {
     $jenis = $_GET['jenis'];
     $id_paket = $_GET['id'];
 }
-
+$queryview = mysqli_query($koneksi, "SELECT * FROM pengaturan LIMIT 1") or die(mysqli_error($koneksi));
+$pengaturan = mysqli_fetch_array($queryview);
+$acara = $pengaturan['acara'];
+$acara = str_replace("<petik>", "'", $acara);
+$logo = $pengaturan['logo'];
 if (isset($_GET['tambah']) && isset($_POST['surat1']) && isset($_POST['ayat1'])) {
     $surat = $_POST["surat1"];
     $ayat = $_POST["ayat1"];
@@ -213,6 +217,8 @@ if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
             body {
                 padding-bottom: 20px;
                 padding-top: 20px;
+                background-image: url("../gambar/bg.jpg");
+                background-repeat: repeat;
             }
             .navbar {
                 margin-bottom: 20px;
@@ -264,6 +270,7 @@ if (isset($_GET['namapaket']) && isset($_GET['nopaket'])) {
         </style>
 
         <div class="container">
+            <div style="text-align: center; padding: 20px"><b><?php echo $acara;?></b><img style="margin-top: -10px" width="220px" src="../gambar/<?php echo $logo; ?>"></div>
             <nav class="navbar navbar-inverse navbar-lg navbar-embossed" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
