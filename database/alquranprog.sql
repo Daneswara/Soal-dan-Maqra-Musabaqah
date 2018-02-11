@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2018 at 07:26 AM
+-- Generation Time: Feb 11, 2018 at 01:41 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -1387,8 +1387,8 @@ INSERT INTO `daftarsurah` (`id`, `kategori`, `nosurat`, `nama`, `awal`, `akhir`)
 (2, 1, 2, 'Al-Baqarah', 1, 141),
 (3, 2, 2, 'Al-Baqarah', 142, 252),
 (4, 3, 2, 'Al-Baqarah', 253, 286),
-(5, 3, 3, 'Ali-Imraan', 1, 91),
-(6, 4, 3, 'Ali-Imraan', 92, 200),
+(5, 3, 3, 'Aali ''Imraan', 1, 91),
+(6, 4, 3, 'Aali ''Imraan', 92, 200),
 (7, 4, 4, 'An-Nisaa''', 1, 23),
 (8, 5, 4, 'An-Nisaa''', 24, 147),
 (9, 6, 4, 'An-Nisaa''', 148, 176),
@@ -1426,8 +1426,8 @@ INSERT INTO `daftarsurah` (`id`, `kategori`, `nosurat`, `nama`, `awal`, `akhir`)
 (41, 19, 27, 'An-Naml', 1, 59),
 (42, 20, 27, 'An-Naml', 60, 93),
 (43, 20, 28, 'Al-Qashash', 1, 88),
-(44, 20, 29, 'Al-Ankabuut', 1, 44),
-(45, 21, 29, 'Al-Ankabuut', 45, 69),
+(44, 20, 29, 'Al-''Ankabuut', 1, 44),
+(45, 21, 29, 'Al-''Ankabuut', 45, 69),
 (46, 21, 30, 'Ar-Ruum', 1, 60),
 (47, 21, 31, 'Luqmaan', 1, 34),
 (48, 21, 32, 'As-Sajdah', 1, 30),
@@ -1503,7 +1503,7 @@ INSERT INTO `daftarsurah` (`id`, `kategori`, `nosurat`, `nama`, `awal`, `akhir`)
 (118, 30, 97, 'Al-Qadr', 1, 5),
 (119, 30, 98, 'Al-Bayyinah', 1, 8),
 (120, 30, 99, 'Al-Zalzalah', 1, 8),
-(121, 30, 100, 'Al''Aadiyaat', 1, 11),
+(121, 30, 100, 'Al-''Aadiyaat', 1, 11),
 (122, 30, 101, 'Al-Qaariah', 1, 11),
 (123, 30, 102, 'At-Takaatsur', 1, 8),
 (124, 30, 103, 'Al-''Ashr', 1, 3),

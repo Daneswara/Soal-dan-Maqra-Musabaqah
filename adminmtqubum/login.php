@@ -55,7 +55,7 @@ $logo = $pengaturan['logo'];
         </style>
         <div class="container" style="margin-top: -100px">
             <div class="login-form">
-                <div style="text-align: center; padding: 20px"><img style="margin-top: -10px" width="400px" src="../gambar/<?php echo $logo; ?>"></div>
+                <div style="text-align: center; padding: 20px"><img style="margin-top: -10px" height="100px" src="../gambar/<?php echo $logo; ?>"></div>
                 <div style="margin-bottom: 20px; text-align: center"><b><center><?php echo $acara;?></center></b></div>
                 <form action="CekLogin.php" method="POST">
                     <div class="form-group">

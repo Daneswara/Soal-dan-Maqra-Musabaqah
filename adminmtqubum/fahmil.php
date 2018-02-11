@@ -739,7 +739,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
             }
         </style>
         <div class="container">
-            <div style="text-align: center; padding: 20px"><b><?php echo $acara;?></b><img style="margin-top: -10px" width="220px" src="../gambar/<?php echo $logo; ?>"></div>
+            <div style="text-align: center; padding: 20px"><b><?php echo $acara;?></b><img style="margin-top: -10px" height="50px" src="../gambar/<?php echo $logo; ?>"></div>
             <nav class="navbar navbar-inverse navbar-lg navbar-embossed" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
