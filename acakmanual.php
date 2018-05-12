@@ -94,8 +94,8 @@ $i = 0;
 $surahacak = array();
 $ayatacak = array();
 while ($i < $jumlahsoalmudah) {
-    $queryambilsoal1 = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where ORDER BY id") or die(mysqli_error($koneksi));
-    $queryambilsoal2 = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where ORDER BY id") or die(mysqli_error($koneksi));
+    $queryambilsoal1 = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where AND id != 1 ORDER BY id") or die(mysqli_error($koneksi));
+    $queryambilsoal2 = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where AND id != 1 ORDER BY id") or die(mysqli_error($koneksi));
     $random = rand(1, $jumlahacakmudah);
     $total = 0;
     while ($data = mysqli_fetch_array($queryambilsoal1)) {

@@ -123,6 +123,15 @@ if (isset($_GET['acak'])) {
             #popup:target {
                 visibility: visible;
             }
+            
+            @font-face {
+                font-family: "majalla";
+                src: url('fonts/majalla.TTF');
+            }
+            .fontfahmil {
+                font-family: "majalla";
+                font-size: 25px;
+            }
         </style>
 
         <div class="container">
@@ -178,7 +187,7 @@ if (isset($_GET['acak'])) {
                         </div></div>
                     <div class="col-xs-10">
                         <div class="form-group">';
-                            echo '<textarea type="text" id="soal' . $soalke . '" name="soal' . $soalke . '" placeholder="Isikan soal nomer ' . $soalke . '" class="form-control" style="height: 200px">' . $dbsoal[($soalke)] . '</textarea>';
+                            echo '<textarea type="text" id="soal' . $soalke . '" name="soal' . $soalke . '" placeholder="Isikan soal nomer ' . $soalke . '" class="form-control fontfahmil" style="height: 200px">' . $dbsoal[($soalke)] . '</textarea>';
                             echo '</div>
                     </div> <!-- /.col-xs-3 -->
                     <div class="col-xs-2">
@@ -188,7 +197,7 @@ if (isset($_GET['acak'])) {
                     <div class="col-xs-10">
                     <button id="bukajawaban" class="btn btn-block btn-lg btn-danger" onclick="showJawaban()" style="margin-bottom:20px">Lihat Jawaban</button>
                         <div class="form-group" id="jawaban">';
-                            echo '<textarea type="text" id="jawaban' . $soalke . '" name="jawaban' . $soalke . '" placeholder="Isikan jawaban nomer ' . $soalke . '" class="form-control" style="height: 200px">' . $dbjawab[($soalke)] . '</textarea>';
+                            echo '<textarea type="text" id="jawaban' . $soalke . '" name="jawaban' . $soalke . '" placeholder="Isikan jawaban nomer ' . $soalke . '" class="form-control fontfahmil" style="height: 200px">' . $dbjawab[($soalke)] . '</textarea>';
                     echo '</div>
                     
                     </div></div>';
@@ -205,19 +214,19 @@ if (isset($_GET['acak'])) {
                 function showJawaban() {
                     document.getElementById('jawaban').style.visibility = 'visible';
                 }
-            $(document).ready(function () {
-                
-                for (i = 1; i <= 15; i++) {
-                    document.getElementById("soal"+i).addEventListener('keyup', function () {
-                        this.style.overflow = 'hidden';
-                        this.style.height = this.scrollHeight + 'px';
-                    }, false);
-                    document.getElementById("jawaban"+i).addEventListener('keyup', function () {
-                        this.style.overflow = 'hidden';
-                        this.style.height = this.scrollHeight + 'px';
-                    }, false);
-                }
-            });
+//            $(document).ready(function () {
+//                
+//                for (i = 1; i <= 15; i++) {
+//                    document.getElementById("soal"+i).addEventListener('keyup', function () {
+//                        this.style.overflow = 'hidden';
+//                        this.style.height = this.scrollHeight + 'px';
+//                    }, false);
+//                    document.getElementById("jawaban"+i).addEventListener('keyup', function () {
+//                        this.style.overflow = 'hidden';
+//                        this.style.height = this.scrollHeight + 'px';
+//                    }, false);
+//                }
+//            });
         </script>
     <script src="dist/js/vendor/jquery.min.js"></script>
     <script src="dist/js/vendor/video.js"></script>
