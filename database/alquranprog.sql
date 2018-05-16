@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2018 at 01:41 PM
+-- Generation Time: May 16, 2018 at 09:31 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -3993,7 +3993,7 @@ CREATE TABLE `pengaturan` (
 --
 
 INSERT INTO `pengaturan` (`id`, `qori`, `jumlahsoal`, `jumlahsoalmudah`, `acara`, `logo`, `link_video`) VALUES
-(1, 'husari', 1, 0, 'Musabaqah Tilawatil Qur<petik>an Mahasiswa Nasional XV Tahun 2017', 'penyelenggara.png', 'mtq.mp4');
+(1, 'husari', 2, 3, 'Musabaqah Tilawatil Qur<petik>an Mahasiswa Nasional XV Tahun 2017', 'penyelenggara.png', 'tim mtq.mp4');
 
 -- --------------------------------------------------------
 
@@ -4007,6 +4007,15 @@ CREATE TABLE `penjurian` (
   `ayat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `penjurian`
+--
+
+INSERT INTO `penjurian` (`id`, `nosurat`, `ayat`) VALUES
+(1, 2, 97),
+(2, 2, 99),
+(3, 2, 98);
+
 -- --------------------------------------------------------
 
 --
@@ -4019,13 +4028,6 @@ CREATE TABLE `penjurianpaket` (
   `indexkategori` varchar(50) NOT NULL,
   `id_kategori` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `penjurianpaket`
---
-
-INSERT INTO `penjurianpaket` (`id`, `id_paket`, `indexkategori`, `id_kategori`) VALUES
-(1, 431, '1-30', 11);
 
 -- --------------------------------------------------------
 
@@ -4480,8 +4482,8 @@ INSERT INTO `soal` (`id`, `kategori`, `soal`, `surat`, `ayat`, `suratakhir`, `ay
 CREATE TABLE `soal_fahmil` (
   `id` int(11) NOT NULL,
   `id_kategori` int(11) NOT NULL,
-  `soal` varchar(1000) NOT NULL,
-  `jawaban` varchar(1000) NOT NULL,
+  `soal` text NOT NULL,
+  `jawaban` text NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -4490,36 +4492,119 @@ CREATE TABLE `soal_fahmil` (
 --
 
 INSERT INTO `soal_fahmil` (`id`, `id_kategori`, `soal`, `jawaban`, `status`) VALUES
-(21, 3, '1', '1', 0),
-(22, 3, '2', '2', 1),
-(23, 4, '1', '1', 0),
-(24, 4, '2', '2', 1),
-(25, 5, '1', '1', 1),
-(26, 5, '2', '2', 0),
-(27, 6, '1', '1', 0),
-(28, 6, '2', '2', 1),
-(29, 7, '1', '1', 1),
-(30, 7, '2', '2', 0),
-(31, 8, '1', '1', 1),
-(32, 8, '2', '2', 0),
-(33, 9, '1', '1', 1),
-(34, 9, '2', '2', 0),
-(35, 10, '1', '1', 1),
-(36, 10, '2', '2', 0),
-(49, 1, '1', '1', 0),
-(50, 1, '2', '2', 1),
-(51, 2, '1', '1', 1),
-(52, 2, '2', '2', 0),
-(53, 11, '1', '1', 1),
-(54, 11, '2', '2', 0),
-(55, 15, '1', '1', 1),
-(56, 15, '2', '2', 0),
-(57, 14, '1', '1', 0),
-(58, 14, '2', '2', 1),
-(59, 13, '1', '1', 1),
-(60, 13, '2', '2', 0),
-(61, 12, '1', '1', 0),
-(62, 12, '2', '2', 1);
+(1578, 1, '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 0),
+(1579, 2, '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 0),
+(1580, 3, '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 0),
+(1581, 4, '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 0),
+(1582, 5, '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 0),
+(1583, 6, '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 0),
+(1584, 7, '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 0),
+(1585, 8, '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 0),
+(1586, 9, '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 0),
+(1587, 10, '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 0),
+(1588, 11, '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 0),
+(1589, 12, '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 0),
+(1590, 13, '1', '1', 0),
+(1591, 13, '2', '2', 0),
+(1592, 13, '3', '3', 0),
+(1593, 13, '4', '4', 0),
+(1594, 13, '5', '5', 0),
+(1595, 13, '6', '6', 0),
+(1596, 13, '7', '7', 0),
+(1597, 13, '8', '8', 0),
+(1598, 13, '9', '9', 0),
+(1599, 13, '10', '10', 0),
+(1600, 13, '11', '11', 0),
+(1601, 13, '12', '12', 0),
+(1602, 13, '13', '13', 0),
+(1603, 13, '14', '14', 0),
+(1604, 13, '15', '15', 0),
+(1605, 13, '16', '16', 0),
+(1606, 13, '17', '17', 0),
+(1607, 13, '18', '18', 0),
+(1608, 13, '19', '19', 0),
+(1609, 13, '20', '20', 0),
+(1610, 13, '21', '21', 0),
+(1611, 13, '22', '22', 0),
+(1612, 13, '23', '23', 0),
+(1613, 13, '24', '24', 0),
+(1614, 13, '25', '25', 0),
+(1615, 13, '26', '26', 0),
+(1616, 13, '27', '27', 0),
+(1617, 13, '28', '28', 0),
+(1618, 13, '29', '29', 0),
+(1619, 13, '30', '30', 0),
+(1620, 13, '31', '31', 0),
+(1621, 13, '32', '32', 0),
+(1622, 13, '33', '33', 0),
+(1623, 13, '34', '34', 0),
+(1624, 13, '35', '35', 0),
+(1625, 13, '36', '36', 0),
+(1626, 13, '37', '37', 0),
+(1627, 13, '38', '38', 0),
+(1628, 13, '39', '39', 0),
+(1629, 13, '40', '40', 0),
+(1630, 13, '41', '41', 0),
+(1631, 13, '42', '42', 0),
+(1632, 13, '43', '43', 0),
+(1633, 13, '44', '44', 0),
+(1634, 13, '45', '45', 0),
+(1635, 13, '46', '46', 0),
+(1636, 13, '47', '47', 0),
+(1637, 13, '48', '48', 0),
+(1638, 13, '49', '49', 0),
+(1639, 13, '50', '50', 0),
+(1640, 13, '51', '51', 0),
+(1641, 13, '52', '52', 0),
+(1642, 13, '53', '53', 0),
+(1643, 13, '54', '54', 0),
+(1644, 13, '55', '55', 0),
+(1645, 13, '56', '56', 0),
+(1646, 13, '57', '57', 0),
+(1647, 13, '58', '58', 0),
+(1648, 13, '59', '59', 0),
+(1649, 13, '60', '60', 0),
+(1650, 13, '61', '61', 0),
+(1651, 13, '62', '62', 0),
+(1652, 13, '63', '63', 0),
+(1653, 13, '64', '64', 0),
+(1654, 13, '65', '65', 0),
+(1655, 13, '66', '66', 0),
+(1656, 13, '67', '67', 0),
+(1657, 13, '68', '68', 0),
+(1658, 13, '69', '69', 0),
+(1659, 13, '70', '70', 0),
+(1660, 13, '71', '71', 0),
+(1661, 13, '72', '72', 0),
+(1662, 13, '73', '73', 0),
+(1663, 13, '74', '74', 0),
+(1664, 13, '75', '75', 0),
+(1665, 13, '76', '76', 0),
+(1666, 13, '77', '77', 0),
+(1667, 13, '78', '78', 0),
+(1668, 13, '79', '79', 0),
+(1669, 13, '80', '80', 0),
+(1670, 13, '81', '81', 0),
+(1671, 13, '82', '82', 0),
+(1672, 13, '83', '83', 0),
+(1673, 13, '84', '84', 0),
+(1674, 13, '85', '85', 0),
+(1675, 13, '86', '86', 0),
+(1676, 13, '87', '87', 0),
+(1677, 13, '88', '88', 0),
+(1678, 13, '89', '89', 0),
+(1679, 13, '90', '90', 0),
+(1680, 13, '91', '91', 0),
+(1681, 13, '92', '92', 0),
+(1682, 13, '93', '93', 0),
+(1683, 13, '94', '94', 0),
+(1684, 13, '95', '95', 0),
+(1685, 13, '96', '96', 0),
+(1686, 13, '97', '97', 0),
+(1687, 13, '98', '98', 0),
+(1688, 13, '99', '99', 0),
+(1689, 14, '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 0),
+(1690, 15, '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '11111111111111111111A111111111111111111111111122222222222222222222222222222222222222222222222222222222222222222233333333333333333333333333333333333333333333333333333333333333333333333333333333334asdsssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddd aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa oooooooooooooooooooooooooooooooooooooooooooooooo o ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 0);
 
 -- --------------------------------------------------------
 
@@ -4531,8 +4616,8 @@ CREATE TABLE `soal_tafsir` (
   `id` int(11) NOT NULL,
   `paket` int(11) NOT NULL,
   `soalke` int(11) NOT NULL,
-  `soal` varchar(1000) NOT NULL,
-  `jawaban` varchar(1000) NOT NULL
+  `soal` text NOT NULL,
+  `jawaban` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -4728,12 +4813,12 @@ ALTER TABLE `pengaturan`
 -- AUTO_INCREMENT for table `penjurian`
 --
 ALTER TABLE `penjurian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `penjurianpaket`
 --
 ALTER TABLE `penjurianpaket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `soal`
 --
@@ -4743,7 +4828,7 @@ ALTER TABLE `soal`
 -- AUTO_INCREMENT for table `soal_fahmil`
 --
 ALTER TABLE `soal_fahmil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1691;
 --
 -- AUTO_INCREMENT for table `soal_tafsir`
 --
