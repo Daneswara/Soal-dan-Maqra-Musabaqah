@@ -8,7 +8,7 @@ include "koneksi.php";
  */
 session_start();
 $status = true;
-$fahmil = 15;
+$fahmil = 20;
 for ($j = 1; $j <= $fahmil; $j++) {
     # code...
     $acakkategori = mysqli_query($koneksi, "SELECT * FROM soal_fahmil WHERE id_kategori = $j AND status = 0 ORDER BY id;") or die(mysqli_error($koneksi));
@@ -23,8 +23,8 @@ for ($j = 1; $j <= $fahmil; $j++) {
                 $soal['jawaban' . $j] = $data['jawaban'];
                 $_SESSION['soal' . $j] = $data['soal'];
                 $_SESSION['jawaban' . $j] = $data['jawaban'];
-                $idkat = $data['id'];
-                $update = mysqli_query($koneksi, "UPDATE soal_fahmil SET `status` = 1 WHERE id = $idkat AND status = 0;") or die(mysqli_error($koneksi));
+                $idkat[$j] = $data['id'];
+                
             }
             $i++;
         }
@@ -37,6 +37,10 @@ for ($j = 1; $j <= $fahmil; $j++) {
 
 
 if ($status) {
+    for ($i = 1; $i <= $fahmil; $i++){
+        $idne = $idkat[$i];
+        $update = mysqli_query($koneksi, "UPDATE soal_fahmil SET `status` = 1 WHERE id = $idne AND status = 0;") or die(mysqli_error($koneksi));
+    }
     header('location: fahmil.php?note=1&acak=1');
 } else {
     header('location: fahmil.php?note=12');
