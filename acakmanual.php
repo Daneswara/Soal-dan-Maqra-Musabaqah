@@ -105,36 +105,32 @@ while ($i < $jumlahsoalmudah) {
 //    echo 'total' . $total;
     $random = rand(1, $total);
 //    echo 'hasil random ' . $random;
-    $total = 0;
+    $hasilacakcek = 0;
     while ($data = mysqli_fetch_array($queryambilsoal2)) {
-        $selisih = $data['akhir'] - $data['awal'] + 1;
-        $total += $selisih;
-        $surahke = 0;
-        $ayatke = 0;
-//        echo '<br>total ' . $total . ' random ' . $random;
-        if ($total >= $random) {
-//            echo 'masuk';
-            $surahke = $data['nosurat'];
-            $namake = $data['nama'];
-            $ayatke = $selisih - ($total - $random);
-//            echo ' surat ' . $surahke . ' ayatke ' . $ayatke;
-            if (isMutashabihat($surahke, $ayatke)) {
+        for ($awal = $data['awal']; $awal <= $data['akhir']; $awal++){
+            $hasilacakcek += 1;
+            if($hasilacakcek == $random){
+                $surahke = $data['nosurat'];
+                $namake = $data['nama'];
+                $ayatke = $awal;
+                if (isMutashabihat($surahke, $ayatke)) {
 //                echo 'tidak bisa';
-                $i--;
-            } else {
-//                echo 'bisa';
-                $querycek0 = mysqli_query($koneksi, "SELECT * FROM penjurian WHERE nosurat=$surahke AND ayat=$ayatke;") or die(mysqli_error($koneksi));
-                $cek = mysqli_num_rows($querycek0);
-                if ($cek == 0) {
-                    $db = mysqli_query($koneksi, "INSERT INTO penjurian VALUES('', $surahke, $ayatke);") or die(mysqli_error($koneksi));
-                    $surahacak[$i] = $surahke;
-                    $ayatacak[$i] = $ayatke;
-//                    echo 'masuk ke-' . $i;
-                } else {
                     $i--;
+                } else {
+    //                echo 'bisa';
+                    $querycek0 = mysqli_query($koneksi, "SELECT * FROM penjurian WHERE nosurat=$surahke AND ayat=$ayatke;") or die(mysqli_error($koneksi));
+                    $cek = mysqli_num_rows($querycek0);
+                    if ($cek == 0) {
+                        $db = mysqli_query($koneksi, "INSERT INTO penjurian VALUES('', $surahke, $ayatke);") or die(mysqli_error($koneksi));
+                        $surahacak[$i] = $surahke;
+                        $ayatacak[$i] = $ayatke;
+    //                    echo 'masuk ke-' . $i;
+                    } else {
+                        $i--;
+                    }
                 }
+                break;
             }
-            break;
         }
 //        echo 'keluar';
     }
@@ -238,7 +234,6 @@ if ($jumlahsoal == 6) {
         if ($jumlahsoalmudah == 1) {
             header('location: index.php?note=2&soal1=' . $soal1 . '&surat1=' . $surahacak[0] . '&ayat1=' . $ayatacak[0] . '&pilihan=' . $index);
         } else if ($jumlahsoalmudah == 2) {
-//            echo ' '.$surahacak[0].' '.$surahacak[1];
             header('location: index.php?note=2&soal1=' . $soal1 . '&surat1=' . $surahacak[0] . '&ayat1=' . $ayatacak[0] . '&surat2=' . $surahacak[1] . '&ayat2=' . $ayatacak[1] . '&pilihan=' . $index);
         } else if ($jumlahsoalmudah == 3) {
             header('location: index.php?note=2&soal1=' . $soal1 . '&surat1=' . $surahacak[0] . '&ayat1=' . $ayatacak[0] . '&surat2=' . $surahacak[1] . '&ayat2=' . $ayatacak[1] . '&surat3=' . $surahacak[2] . '&ayat3=' . $ayatacak[2] . '&pilihan=' . $index);
@@ -257,7 +252,6 @@ if ($jumlahsoal == 6) {
         if ($jumlahsoalmudah == 1) {
             header('location: index.php?note=2&surat1=' . $surahacak[0] . '&ayat1=' . $ayatacak[0] . '&pilihan=' . $index);
         } else if ($jumlahsoalmudah == 2) {
-//            echo ' '.$surahacak[0].' '.$surahacak[1];
             header('location: index.php?note=2&surat1=' . $surahacak[0] . '&ayat1=' . $ayatacak[0] . '&surat2=' . $surahacak[1] . '&ayat2=' . $ayatacak[1] . '&pilihan=' . $index);
         } else if ($jumlahsoalmudah == 3) {
             header('location: index.php?note=2&surat1=' . $surahacak[0] . '&ayat1=' . $ayatacak[0] . '&surat2=' . $surahacak[1] . '&ayat2=' . $ayatacak[1] . '&surat3=' . $surahacak[2] . '&ayat3=' . $ayatacak[2] . '&pilihan=' . $index);

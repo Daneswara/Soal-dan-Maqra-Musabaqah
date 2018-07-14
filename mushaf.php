@@ -15,6 +15,7 @@ if (isset($_GET["kanan"])) {
     if (isset($_GET["surah"]) && isset($_GET["ayat"])) {
         $surah = $_GET["surah"];
         $ayat = $_GET["ayat"];
+        $namasuratlink = $_GET["namasurat"];
         $awal = 0;
     } else {
         $awal = 1;
@@ -31,6 +32,7 @@ if (isset($_GET["surahakhir"])) {
     $surahakhir = $_GET["surahakhir"];
     $ayatakhir = $_GET["ayatakhir"];
     $akhirnamasurat = $_GET["akhirnamasurat"];
+    $akhirnamasuratlink = $_GET["akhirnamasurat"];
     $akhirnamasurat = str_replace("petik", "'", $akhirnamasurat);
     $sampai = "- $akhirnamasurat $surahakhir : $ayatakhir";
 }
@@ -231,20 +233,42 @@ $qori = $pengaturan['qori'];
             <div class="row">
                 <?php
                 if ($kanan == 603) {
-
-                    echo "<a href='mushaf.php?kanan=1'><img src='gambar/next.png' class='next'></a>";
+                    if($sampai){
+                        echo "<a href='mushaf.php?kanan=1&surah=$surah&ayat=$ayat&namasurat=$namasuratlink&surahakhir=$surahakhir&ayatakhir=$ayatakhir&akhirnamasurat=$akhirnamasuratlink'><img src='gambar/next.png' class='next'></a>";
+                    } else if(isset($_GET["namasurat"])){
+                        echo "<a href='mushaf.php?kanan=1&surah=$surah&ayat=$ayat&namasurat=$namasuratlink'><img src='gambar/next.png' class='next'></a>";
+                    } else {
+                        echo "<a href='mushaf.php?kanan=1'><img src='gambar/next.png' class='next'></a>";
+                    }
                 } else {
-
-                    echo "<a href='mushaf.php?kanan=" . ($kanan + 1) . "'><img src='gambar/next.png' class='next'></a>";
+                    if($sampai){
+                        echo "<a href='mushaf.php?kanan=" . ($kanan + 1) . "&surah=$surah&ayat=$ayat&namasurat=$namasuratlink&surahakhir=$surahakhir&ayatakhir=$ayatakhir&akhirnamasurat=$akhirnamasuratlink'><img src='gambar/next.png' class='next'></a>";
+                    } else if(isset($_GET["namasurat"])){
+                        echo "<a href='mushaf.php?kanan=" . ($kanan + 1) . "&surah=$surah&ayat=$ayat&namasurat=$namasuratlink'><img src='gambar/next.png' class='next'></a>";
+                    } else {
+                        echo "<a href='mushaf.php?kanan=" . ($kanan + 1) . "'><img src='gambar/next.png' class='next'></a>";
+                    }
                 }
                 ?>
 
 
                 <?php
                 if ($kanan == 1) {
-                    echo "<a href='mushaf.php?kanan=603'><img src='gambar/back.png' class='back'></a>";
+                    if($sampai){
+                        echo "<a href='mushaf.php?kanan=603&surah=$surah&ayat=$ayat&namasurat=$namasuratlink&surahakhir=$surahakhir&ayatakhir=$ayatakhir&akhirnamasurat=$akhirnamasuratlink'><img src='gambar/back.png' class='back'></a>";
+                    } else if(isset($_GET["namasurat"])){
+                        echo "<a href='mushaf.php?kanan=603&surah=$surah&ayat=$ayat&namasurat=$namasuratlink'><img src='gambar/back.png' class='back'></a>";
+                    } else {
+                        echo "<a href='mushaf.php?kanan=603'><img src='gambar/back.png' class='back'></a>";
+                    }
                 } else {
-                    echo "<a href='mushaf.php?kanan=" . ($kanan - 1) . "'><img src='gambar/back.png' class='back'></a>";
+                    if($sampai){
+                        echo "<a href='mushaf.php?kanan=" . ($kanan - 1) . "&surah=$surah&ayat=$ayat&namasurat=$namasuratlink&surahakhir=$surahakhir&ayatakhir=$ayatakhir&akhirnamasurat=$akhirnamasuratlink'><img src='gambar/back.png' class='back'></a>";
+                    } else if(isset($_GET["namasurat"])){
+                        echo "<a href='mushaf.php?kanan=" . ($kanan - 1) . "&surah=$surah&ayat=$ayat&namasurat=$namasuratlink'><img src='gambar/back.png' class='back'></a>";
+                    } else {
+                        echo "<a href='mushaf.php?kanan=" . ($kanan - 1) . "'><img src='gambar/back.png' class='back'></a>";
+                    }
                 }
                 ?>
             </div>

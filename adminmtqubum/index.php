@@ -42,6 +42,10 @@ if (isset($_POST['optionsRadios'])) {
     } else if ($kategori == "Tafsir") {
         $id = 8;
         $index = "1-30";
+    } else if ($kategori == "Surat") {
+        $id = 10;
+        $input = $_POST['kategorisurat'];
+        $index = $input;
     } else {
         $input = $_POST['custom'];
         $id = 9;
@@ -376,8 +380,8 @@ if (isset($_GET['editpaket'])) {
                 right: -10px;
             }
             .window {
-                width: 550px;
-                height: 470px;
+                width: 560px;
+                height: 510px;
                 background: #fff;
                 border-radius: 10px;
                 position: relative;
@@ -570,14 +574,15 @@ if (isset($_GET['editpaket'])) {
                                     <input type="radio" name="optionsRadios" id="optionsRadios7" value="Tartil_10 Juz" data-toggle="radio">
                                     Tartil (Juz 1-10)
                                 </label>
-                            </div>
-
-                            <div class="col-xs-6">
-
+                                
                                 <label class="radio">
                                     <input type="radio" name="optionsRadios" id="optionsRadios7" value="Tilawah Anak-anak_10 Juz" data-toggle="radio">
                                     Tilawah Anak-anak (Juz 1-10)
                                 </label>
+                            </div>
+
+                            <div class="col-xs-6">
+
                                 <label class="radio">
                                     <input type="radio" name="optionsRadios" id="optionsRadios7" value="Tilawah Remaja_20 Juz" data-toggle="radio">
                                     Tilawah Remaja (Juz 1-20)
@@ -597,6 +602,27 @@ if (isset($_GET['editpaket'])) {
                                 <label class="radio">
                                     <input type="radio" name="optionsRadios" id="optionsRadios7" value="Tafsir Bahasa Inggris_Tafsir" data-toggle="radio">
                                     Tafsir Bahasa Inggris (Juz 1-30)
+                                </label>
+                                
+                                <label class="radio">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios7" value="MHQ_Surat" data-toggle="radio">
+                                    <select id="kategorisurat" name="kategorisurat" style="min-width:206px" class="form-control select select-primary" data-toggle="select" required>
+                                        <option value="0">Pilih Surah</option>
+                                        <?php
+                                            $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah ORDER BY nosurat") or die(mysqli_error($koneksi));
+                                            $temp = "";
+                                            while ($data = mysqli_fetch_array($query_mysql)) {
+                                                if ($data['nama'] == $temp) {
+
+                                                } else if ($editsurat[0] == $data['nosurat']) {
+                                                    echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                                                } else {
+                                                    echo "<option value=" . $data['nosurat'] . ">" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                                                }
+                                                $temp = $data['nama'];
+                                            }
+                                        ?>
+                                    </select>
                                 </label>
                                 <label class="radio">
                                     <input type="radio" name="optionsRadios" id="optionsRadios8" value="" data-toggle="radio">
