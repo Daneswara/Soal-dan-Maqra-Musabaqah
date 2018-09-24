@@ -364,6 +364,16 @@ if (isset($_GET['editpaket'])) {
                 z-index: 9999;
                 visibility: hidden;
             }
+            #popup3 {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                background: rgba(0,0,0,.7);
+                top: 0;
+                left: 0;
+                z-index: 9999;
+                visibility: hidden;
+            }
             /* Button Close */
             .close-button {
                 width: 35px;
@@ -399,12 +409,25 @@ if (isset($_GET['editpaket'])) {
                 padding: 20px;
                 margin: 3% auto;
             }
+            .window3 {
+                width: 700px;
+                height: 580px;
+                text-align: center;
+                background: #fff;
+                border-radius: 10px;
+                position: relative;
+                padding: 20px;
+                margin: 3% auto;
+            }
 
             /* Memunculkan Jendela Pop Up*/
             #popup1:target {
                 visibility: visible;
             }
             #popup2:target {
+                visibility: visible;
+            }
+            #popup3:target {
                 visibility: visible;
             }
             .tengah {
@@ -467,6 +490,7 @@ if (isset($_GET['editpaket'])) {
 
             while ($data = mysqli_fetch_array($query_mysql)) {
                 echo "<div class='row'><h6 style='padding-left: 20px'>" . $data['jenis'] . " " . $data['nama'] . " (Juz " . $data['index'] . ")";
+                echo '<a href="?kategori=' . $data['id'] . '#popup3" class="btn btn-warning btn-xs" style="margin-left: 8px">Setting Acak</a>';
                 echo "<button onclick='hapusKategori(" . $data['id'] . ");' class='btn btn-danger btn-xs' style='margin-left: 8px'>Delete Kategori</button></h6>";
                 $index = $data['index'];
                 $nama = $data['nama'];
@@ -1213,6 +1237,329 @@ if (isset($_GET['editpaket'])) {
                     echo "<div class='col-xs-6'><button class='btn btn-block btn-lg btn-primary'>Edit Soal</button></div>";
                 } else {
                     echo "<div class='col-xs-1'></div><div class='col-xs-11'><button class='btn btn-block btn-lg btn-primary'>Tambah Soal</button></div>";
+                }
+                ?>
+            </div>
+            </form>
+        </div>
+    </div>
+    <div id="popup3">
+        <div class="window3">
+            <a href="#" class="close-button" title="Close">X</a>
+            <?php
+            if (isset($_GET["namapaket"])) {
+                $namapaket = $_GET["namapaket"];
+            }
+            if (isset($nopaket)) {
+                echo "<h3>Setting Acak Otomatis Kategori " . $namapaket . "</h3>";
+                $query_mysql = mysqli_query($koneksi, "SELECT * FROM soal WHERE kategori = $nopaket ORDER BY soal") or die(mysqli_error($koneksi));
+                $editsurat = array();
+                $editayat = array();
+                $i = 0;
+                while ($data = mysqli_fetch_array($query_mysql)) {
+                    $editsurat[$i] = $data['surat'];
+                    $editayat[$i] = $data['ayat'];
+                    $editsuratakhir[$i] = $data['suratakhir'];
+                    $editayatakhir[$i] = $data['ayatakhir'];
+                    $i++;
+                }
+                echo "<form action = 'index.php?editpaket=$nopaket' method = 'POST'>";
+            } else {
+                $idkat = $_GET["id"];
+                echo "<h3>Setting Acak Otomatis Kategori $kategori</h3>";
+                echo "<form action = 'index.php?kategori=$kategori&id=$idkat' method = 'POST'>";
+            }
+            ?>
+
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-xs-2">
+                        <div class="tengah2"></div>
+                    </div>
+                    <div class="col-xs-4" style="margin-left: 20px">
+                        <div class="tengah2">Juz Awal</div>
+                    </div>
+                    <div class="col-xs-4" style="margin-left: 60px">
+                        <div class="tengah2">Juz Akhir</div>
+                    </div>
+                    <div class="col-xs-2" style="padding-bottom: 20px; margin-left:20px">
+                        <div class="tengah2">Soal 1</div>
+                    </div>
+                    <div class="col-xs-4" style="padding-bottom: 20px">
+                        <select id="surat1" name="surat1" class="form-control select select-default" data-toggle="select" required>
+                            <option value="0">Pilih Surah</option>
+                            <?php
+                            if (isset($where)) {
+                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where ORDER BY nosurat") or die(mysqli_error($koneksi));
+                                $temp = "";
+                                while ($data = mysqli_fetch_array($query_mysql)) {
+                                    if ($data['nama'] == $temp) {
+
+                                    } else if ($editsurat[0] == $data['nosurat']) {
+                                        echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                                    } else {
+                                        echo "<option value=" . $data['nosurat'] . ">" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                                    }
+                                    $temp = $data['nama'];
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-xs-4" style="padding-bottom: 20px; margin-left: 35px">
+                        <select id="ayat1" name="ayat1" class="form-control select select-default" data-toggle="select" required>
+                            <option value="">Pilih Ayat</option>
+                            <?php
+                            if (isset($nopaket) && isset($editayat[0])) {
+                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE ($where) and nosurat = $editsurat[0] ORDER BY nosurat") or die(mysqli_error($koneksi));
+                                echo "edit surat" . $where;
+                                while ($data = mysqli_fetch_array($query_mysql)) {
+
+                                    for ($a = $data['awal']; $a <= $data['akhir']; $a++) {
+                                        if ($editayat[0] == $a) {
+                                            echo "<option value=" . $a . " selected>" . $a . "</option>";
+                                        } else {
+                                            echo "<option value=" . $a . ">" . $a . "</option>";
+                                        }
+                                    }
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-xs-2" style="padding-bottom: 20px; margin-left:20px">
+                        <div class="tengah2">Soal 2</div>
+                    </div>
+                    <div class="col-xs-4" style="padding-bottom: 20px">
+                        <select id="surat2" name="surat2" class="form-control select select-default" data-toggle="select">
+                            <option value="0">Pilih Surah</option>
+                            <?php
+                            if (isset($where)) {
+                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where ORDER BY nosurat") or die(mysqli_error($koneksi));
+                                $temp = "";
+                                while ($data = mysqli_fetch_array($query_mysql)) {
+                                    if ($data['nama'] == $temp) {
+
+                                    } else if ($editsurat[1] == $data['nosurat']) {
+                                        echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                                    } else {
+                                        echo "<option value=" . $data['nosurat'] . ">" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                                    }
+                                    $temp = $data['nama'];
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-xs-4" style="padding-bottom: 20px; margin-left: 35px">
+                        <select id="ayat2" name="ayat2" class="form-control select select-default" data-toggle="select">
+                            <option value="">Pilih Ayat</option>
+                            <?php
+                            if (isset($nopaket) && isset($editayat[1])) {
+                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE ($where) and nosurat = $editsurat[1] ORDER BY nosurat") or die(mysqli_error($koneksi));
+
+                                while ($data = mysqli_fetch_array($query_mysql)) {
+
+                                    for ($a = $data['awal']; $a <= $data['akhir']; $a++) {
+                                        if ($editayat[1] == $a) {
+                                            echo "<option value=" . $a . " selected>" . $a . "</option>";
+                                        } else {
+                                            echo "<option value=" . $a . ">" . $a . "</option>";
+                                        }
+                                    }
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-xs-2" style="padding-bottom: 20px; margin-left:20px">
+                        <div class="tengah2">Soal 3</div>
+                    </div>
+                    <div class="col-xs-4" style="padding-bottom: 20px">
+                        <select id="surat3" name="surat3" class="form-control select select-default" data-toggle="select">
+                            <option value="0">Pilih Surah</option>
+                            <?php
+                            if (isset($where)) {
+                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where ORDER BY nosurat") or die(mysqli_error($koneksi));
+                                $temp = "";
+                                while ($data = mysqli_fetch_array($query_mysql)) {
+                                    if ($data['nama'] == $temp) {
+
+                                    } else if ($editsurat[2] == $data['nosurat']) {
+                                        echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                                    } else {
+                                        echo "<option value=" . $data['nosurat'] . ">" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                                    }
+                                    $temp = $data['nama'];
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-xs-4" style="padding-bottom: 20px; margin-left: 35px">
+                        <select id="ayat3" name="ayat3" class="form-control select select-default" data-toggle="select">
+                            <option value="">Pilih Ayat</option>
+                            <?php
+                            if (isset($nopaket) && isset($editayat[2])) {
+                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE ($where) and nosurat = $editsurat[2] ORDER BY nosurat") or die(mysqli_error($koneksi));
+
+                                while ($data = mysqli_fetch_array($query_mysql)) {
+
+                                    for ($a = $data['awal']; $a <= $data['akhir']; $a++) {
+                                        if ($editayat[2] == $a) {
+                                            echo "<option value=" . $a . " selected>" . $a . "</option>";
+                                        } else {
+                                            echo "<option value=" . $a . ">" . $a . "</option>";
+                                        }
+                                    }
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-xs-2" style="padding-bottom: 20px; margin-left:20px">
+                        <div class="tengah2">Soal 4</div>
+                    </div>
+                    <div class="col-xs-4" style="padding-bottom: 20px">
+                        <select id="surat4" name="surat4" class="form-control select select-default" data-toggle="select">
+                            <option value="0">Pilih Surah</option>
+                            <?php
+                            if (isset($where)) {
+                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where ORDER BY nosurat") or die(mysqli_error($koneksi));
+                                $temp = "";
+                                while ($data = mysqli_fetch_array($query_mysql)) {
+                                    if ($data['nama'] == $temp) {
+
+                                    } else if ($editsurat[3] == $data['nosurat']) {
+                                        echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                                    } else {
+                                        echo "<option value=" . $data['nosurat'] . ">" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                                    }
+                                    $temp = $data['nama'];
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-xs-4" style="padding-bottom: 20px; margin-left: 35px">
+                        <select id="ayat4" name="ayat4" class="form-control select select-default" data-toggle="select">
+                            <option value="">Pilih Ayat</option>
+                            <?php
+                            if (isset($nopaket) && isset($editayat[3])) {
+                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE ($where) and nosurat = $editsurat[3] ORDER BY nosurat") or die(mysqli_error($koneksi));
+
+                                while ($data = mysqli_fetch_array($query_mysql)) {
+
+                                    for ($a = $data['awal']; $a <= $data['akhir']; $a++) {
+                                        if ($editayat[3] == $a) {
+                                            echo "<option value=" . $a . " selected>" . $a . "</option>";
+                                        } else {
+                                            echo "<option value=" . $a . ">" . $a . "</option>";
+                                        }
+                                    }
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-xs-2" style="padding-bottom: 20px; margin-left:20px">
+                        <div class="tengah2">Soal 5</div>
+                    </div>
+                    <div class="col-xs-4" style="padding-bottom: 20px">
+                        <select id="surat5" name="surat5" class="form-control select select-default" data-toggle="select">
+                            <option value="0">Pilih Surah</option>
+                            <?php
+                            if (isset($where)) {
+                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where ORDER BY nosurat") or die(mysqli_error($koneksi));
+                                $temp = "";
+                                while ($data = mysqli_fetch_array($query_mysql)) {
+                                    if ($data['nama'] == $temp) {
+
+                                    } else if ($editsurat[4] == $data['nosurat']) {
+                                        echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                                    } else {
+                                        echo "<option value=" . $data['nosurat'] . ">" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                                    }
+                                    $temp = $data['nama'];
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-xs-4" style="padding-bottom: 20px; margin-left: 35px">
+                        <select id="ayat5" name="ayat5" class="form-control select select-default" data-toggle="select">
+                            <option value="">Pilih Ayat</option>
+                            <?php
+                            if (isset($nopaket) && isset($editayat[4])) {
+                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE ($where) and nosurat = $editsurat[4] ORDER BY nosurat") or die(mysqli_error($koneksi));
+
+                                while ($data = mysqli_fetch_array($query_mysql)) {
+
+                                    for ($a = $data['awal']; $a <= $data['akhir']; $a++) {
+                                        if ($editayat[4] == $a) {
+                                            echo "<option value=" . $a . " selected>" . $a . "</option>";
+                                        } else {
+                                            echo "<option value=" . $a . ">" . $a . "</option>";
+                                        }
+                                    }
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-xs-2" style="padding-bottom: 20px; margin-left:20px">
+                        <div class="tengah2">Soal 6</div>
+                    </div>
+                    <div class="col-xs-4" style="padding-bottom: 20px">
+                        <select id="surat66" name="surat66" class="form-control select select-default" data-toggle="select">
+                            <option value="0">Pilih Surah</option>
+                            <?php
+                            if (isset($where)) {
+                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where ORDER BY nosurat") or die(mysqli_error($koneksi));
+                                $temp = "";
+                                while ($data = mysqli_fetch_array($query_mysql)) {
+                                    if ($data['nama'] == $temp) {
+
+                                    } else if ($editsurat[5] == $data['nosurat']) {
+                                        echo "<option value=" . $data['nosurat'] . " selected>" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                                    } else {
+                                        echo "<option value=" . $data['nosurat'] . ">" . $data['nosurat'] . ". " . $data['nama'] . "</option>";
+                                    }
+                                    $temp = $data['nama'];
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-xs-4" style="padding-bottom: 20px; margin-left: 35px">
+                        <select id="ayat66" name="ayat66" class="form-control select select-default" data-toggle="select">
+                            <option value="">Pilih Ayat</option>
+                            <?php
+                            if (isset($nopaket) && isset($editayat[5])) {
+                                $query_mysql = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE ($where) and nosurat = $editsurat[5] ORDER BY nosurat") or die(mysqli_error($koneksi));
+
+                                while ($data = mysqli_fetch_array($query_mysql)) {
+
+                                    for ($a = $data['awal']; $a <= $data['akhir']; $a++) {
+                                        if ($editayat[5] == $a) {
+                                            echo "<option value=" . $a . " selected>" . $a . "</option>";
+                                        } else {
+                                            echo "<option value=" . $a . ">" . $a . "</option>";
+                                        }
+                                    }
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <?php
+                if (isset($nopaket)) {
+                    echo "<div class='col-xs-6'><div onclick='hapusPaket($nopaket);' class='btn btn-block btn-lg btn-danger'>Hapus Paket Soal</div></div>";
+                    echo "<div class='col-xs-6'><button class='btn btn-block btn-lg btn-primary'>Edit Soal</button></div>";
+                } else {
+                    echo "<div class='col-xs-2' style='margin-left:20px'></div><div class='col-xs-9'><button class='btn btn-block btn-lg btn-primary'>Tambah Soal</button></div>";
                 }
                 ?>
             </div>
