@@ -68,7 +68,7 @@ $logo = $pengaturan['logo'];
                         <label class="login-field-icon fui-lock" for="login-pass"></label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" href="index.php">Log in</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" href="index.php">Log in Admin</button>
                     <a class="login-link" href="#">Lost your password?</a>
                 </form>
             </div>

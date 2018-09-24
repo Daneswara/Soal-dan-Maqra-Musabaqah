@@ -68,7 +68,7 @@ $logo = $pengaturan['logo'];
                         <label class="login-field-icon fui-lock" for="login-pass"></label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Log in</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Log in Pengguna</button>
                     <a class="login-link" href="#">Lost your password?</a>
                 </div>
             </form>
