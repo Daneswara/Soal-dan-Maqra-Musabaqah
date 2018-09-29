@@ -10,8 +10,8 @@ $acara = $pengaturan['acara'];
 $acara = str_replace("<petik>", "'", $acara);
 $logo = $pengaturan['logo'];
 
-    $dbsoalke = array();
-    $jumlahsoal = 20;
+$dbsoalke = array();
+$jumlahsoal = 15;
 if (isset($_GET['acak'])) {
     $psoal = $_GET['acak'];
     for ($i=1; $i <= $jumlahsoal; $i++) {

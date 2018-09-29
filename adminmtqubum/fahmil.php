@@ -17,9 +17,9 @@ if (isset($_GET['uploadExcelFahmil'])) {
     $cek = 0;
     include "../koneksi.php";
     include './PHPExcel/IOFactory.php';
-    for ($index = 1; $index <= 20; $index++) {
+    for ($index = 1; $index <= 15; $index++) {
         $extension = pathinfo($_FILES['file' . $index]['name'], PATHINFO_EXTENSION);
-        if (($_FILES["file". $index]["type"] == "application/vnd.ms-excel") && in_array($extension, $allowedExts)) {
+        if (($_FILES["file". $index]["type"] == "application/vnd.ms-excel") || in_array($extension, $allowedExts)) {
             if ($_FILES["file". $index]["error"] <= 0) {
                 move_uploaded_file($_FILES["file". $index]["tmp_name"], "ExcelTafsir/" . $_FILES["file". $index]["name"]);
                 $inputFileName = './ExcelTafsir/' . $_FILES["file". $index]["name"];
@@ -57,7 +57,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
             $cek++;
         }
     }
-    if ($cek == 20) {
+    if ($cek == 15) {
         header('location: fahmil.php?note=63');
     } else {
         if ($querytambah) {
@@ -200,7 +200,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
                     <div class="col-xs-12">
                         <form action="fahmil.php?uploadExcelFahmil=1" method="POST" enctype="multipart/form-data">
                             <h5 style="text-align: center">Export & Import Soal Fahmil </h5>
-                            <?php for ($i = 1; $i <= 20; $i++) { ?>
+                            <?php for ($i = 1; $i <= 15; $i++) { ?>
                                 <table width="100%">
                                     <tr>
                                         <td width="20%">

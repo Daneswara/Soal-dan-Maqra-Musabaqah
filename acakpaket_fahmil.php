@@ -8,7 +8,7 @@ include "koneksi.php";
  */
 session_start();
 $status = true;
-$fahmil = 20;
+$fahmil = 15;
 for ($j = 1; $j <= $fahmil; $j++) {
     # code...
     $acakkategori = mysqli_query($koneksi, "SELECT * FROM soal_fahmil WHERE id_kategori = $j AND status = 0 ORDER BY id;") or die(mysqli_error($koneksi));
