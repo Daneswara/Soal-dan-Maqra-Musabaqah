@@ -46,7 +46,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
                     $temp = "";
                     $temp2 = "";
                     for ($row = 0; $row < count($data); $row++) {
-                        if ($temp2 != $data[$row][0] && $data[$row][0] != "" && $data[$row][1] != "") {
+                        if ($data[$row][0] != "" && $data[$row][1] != "") {
                             $querytambah = mysqli_query($koneksi, "INSERT INTO soal_fahmil VALUES(null, $index , '" . $data[$row][0] . "', '" . $data[$row][1] . "', 0);") or die(mysqli_error($koneksi));
                             $temp2 = $data[$row][0];
                         }
