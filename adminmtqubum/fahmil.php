@@ -37,7 +37,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
                 $data = [];
                 for ($row = 2; $row <= $highestRow; $row++) {
                     for ($col = 0; $col <= $colNumber; $col++) {
-                        $data[$row - 2][$col] = $sheet->getCellByColumnAndRow($col, $row, true);
+                        $data[$row - 2][$col] = addslashes($sheet->getCellByColumnAndRow($col, $row, true));
                     }
                 }
 
