@@ -88,7 +88,7 @@ if (strpos($kategori, "-") != false) {
 } else {
     $where = "kategori = $kategori";
 }
-$querymudah = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where ORDER BY id") or die(mysqli_error($koneksi));
+$querymudah = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where AND id != 1 ORDER BY id") or die(mysqli_error($koneksi));
 $jumlahacakmudah = mysqli_num_rows($querymudah);
 $i = 0;
 $surahacak = array();
@@ -113,10 +113,10 @@ while ($i < $jumlahsoalmudah) {
                 $surahke = $data['nosurat'];
                 $namake = $data['nama'];
                 $ayatke = $awal;
-                if (isMutashabihat($surahke, $ayatke)) {
+                //if (isMutashabihat($surahke, $ayatke)) {
 //                echo 'tidak bisa';
-                    $i--;
-                } else {
+                //    $i--;
+                //} else {
     //                echo 'bisa';
                     $querycek0 = mysqli_query($koneksi, "SELECT * FROM penjurian WHERE nosurat=$surahke AND ayat=$ayatke;") or die(mysqli_error($koneksi));
                     $cek = mysqli_num_rows($querycek0);
@@ -128,7 +128,7 @@ while ($i < $jumlahsoalmudah) {
                     } else {
                         $i--;
                     }
-                }
+                // }
                 break;
             }
         }
