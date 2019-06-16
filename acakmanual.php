@@ -88,14 +88,14 @@ if (strpos($kategori, "-") != false) {
 } else {
     $where = "kategori = $kategori";
 }
-$querymudah = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where AND id != 1 ORDER BY id") or die(mysqli_error($koneksi));
+$querymudah = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where AND id != 1 AND id != 135 AND id != 134 AND id != 133 ORDER BY id") or die(mysqli_error($koneksi));
 $jumlahacakmudah = mysqli_num_rows($querymudah);
 $i = 0;
 $surahacak = array();
 $ayatacak = array();
 while ($i < $jumlahsoalmudah) {
-    $queryambilsoal1 = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where AND id != 1 ORDER BY id") or die(mysqli_error($koneksi));
-    $queryambilsoal2 = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where AND id != 1 ORDER BY id") or die(mysqli_error($koneksi));
+    $queryambilsoal1 = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where AND id != 1 AND id != 135 AND id != 134 AND id != 133 ORDER BY id") or die(mysqli_error($koneksi));
+    $queryambilsoal2 = mysqli_query($koneksi, "SELECT * FROM daftarsurah WHERE $where AND id != 1 AND id != 135 AND id != 134 AND id != 133 ORDER BY id") or die(mysqli_error($koneksi));
     $random = rand(1, $jumlahacakmudah);
     $total = 0;
     while ($data = mysqli_fetch_array($queryambilsoal1)) {
