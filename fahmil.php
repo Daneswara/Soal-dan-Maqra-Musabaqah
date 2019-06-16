@@ -126,7 +126,7 @@ function getNamaSurat($surat) {
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Tilawah dan MHQ</a></li>
                         <li><a href="tafsir.php">Tafsir</a></li>
-                        <li class="active"><a href="fahmil.php">MFQ</a></li>
+                        <li class="active"><a href="fahmil.php">AL-HADITS</a></li>
                         <li><a href="linkmushaf.php">Link Mushaf</a></li>
                         <li><a href="acak.php">Acak</a></li>
                     </ul>

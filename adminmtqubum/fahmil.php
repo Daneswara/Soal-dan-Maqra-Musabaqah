@@ -178,7 +178,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
                 <div class="collapse navbar-collapse" id="navbar-collapse-8">
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Bank Soal</a></li>
-                        <li class="active"><a href="fahmil.php">Bank Soal MFQ</a></li>
+                        <li class="active"><a href="fahmil.php">Bank Soal AL-HADITS</a></li>
                         <li><a href="juri.php">Daftar Petugas</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -199,7 +199,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
 
                     <div class="col-xs-12">
                         <form action="fahmil.php?uploadExcelFahmil=1" method="POST" enctype="multipart/form-data">
-                            <h5 style="text-align: center">Export & Import Soal Fahmil </h5>
+                            <h5 style="text-align: center">Export & Import Soal AL-HADITS </h5>
                             <?php for ($i = 1; $i <= 15; $i++) { ?>
                                 <table width="100%">
                                     <tr>
@@ -217,7 +217,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
                             <?php } ?>
 
 
-                            <button type="submit" style="margin-top: 10px" class="btn btn-block btn-lg btn-primary">Import Soal MFQ (xls)</button>
+                            <button type="submit" style="margin-top: 10px" class="btn btn-block btn-lg btn-primary">Import Soal AL-HADITS (xls)</button>
                         </form>
                     </div>
 
