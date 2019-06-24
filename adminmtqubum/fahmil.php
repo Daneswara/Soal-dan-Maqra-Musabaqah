@@ -139,9 +139,9 @@ if (isset($_GET['uploadExcelFahmil'])) {
             } else if ($notifikasi == 72) {
                 echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Upload file dengan ekstensi mp4. silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
             } else if ($notifikasi == 8) {
-                echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Import Soal MFQ berhasil disimpan', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
+                echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Import Soal Al-Hadits berhasil disimpan', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
             } else if ($notifikasi == 81) {
-                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Import Soal MFQ gagal disimpan, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
+                echo "<script type='text/javascript'>swal({title: 'Gagal!', text: 'Import Soal Al-Hadits gagal disimpan, silahkan coba lagi!', confirmButtonColor: '#1abc9c', type: 'error'})</script>";
             } else if ($notifikasi == 9) {
                 echo "<script type='text/javascript'>swal({title: 'Berhasil!', text: 'Import Soal Tafsir berhasil disimpan', confirmButtonColor: '#1abc9c', type: 'success'})</script>";
             } else if ($notifikasi == 91) {
@@ -178,7 +178,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
                 <div class="collapse navbar-collapse" id="navbar-collapse-8">
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Bank Soal</a></li>
-                        <li class="active"><a href="fahmil.php">Bank Soal AL-HADITS</a></li>
+                        <li class="active"><a href="fahmil.php">Bank Soal Al-Hadits</a></li>
                         <li><a href="juri.php">Daftar Petugas</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -199,7 +199,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
 
                     <div class="col-xs-12">
                         <form action="fahmil.php?uploadExcelFahmil=1" method="POST" enctype="multipart/form-data">
-                            <h5 style="text-align: center">Export & Import Soal AL-HADITS </h5>
+                            <h5 style="text-align: center">Export & Import Soal Al-Hadits </h5>
                             <?php for ($i = 1; $i <= 15; $i++) { ?>
                                 <table width="100%">
                                     <tr>
@@ -217,7 +217,7 @@ if (isset($_GET['uploadExcelFahmil'])) {
                             <?php } ?>
 
 
-                            <button type="submit" style="margin-top: 10px" class="btn btn-block btn-lg btn-primary">Import Soal AL-HADITS (xls)</button>
+                            <button type="submit" style="margin-top: 10px" class="btn btn-block btn-lg btn-primary">Import Soal Al-Hadits (xls)</button>
                         </form>
                     </div>
 

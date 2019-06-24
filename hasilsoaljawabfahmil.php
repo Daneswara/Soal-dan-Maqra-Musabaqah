@@ -150,7 +150,7 @@ if (isset($_GET['acak'])) {
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Tilawah dan MHQ</a></li>
                         <li><a href="tafsir.php">Tafsir</a></li>
-                        <li class="active"><a href="fahmil.php">MFQ</a></li>
+                        <li class="active"><a href="fahmil.php">Al-Hadits</a></li>
                         <li><a href="linkmushaf.php">Link Mushaf</a></li>
                         <li><a href="acak.php">Acak</a></li>
                     </ul>
@@ -172,7 +172,7 @@ if (isset($_GET['acak'])) {
             </div>
             <div class="col-xs-10">
                 <div class="form-group">
-                    <button class="btn btn-block btn-lg btn-danger" onclick="#"> Paket Soal MFQ Soal ke-<?php echo $soalke;?></button>
+                    <button class="btn btn-block btn-lg btn-danger" onclick="#"> Paket Soal Al-Hadits Soal ke-<?php echo $soalke;?></button>
                 </div>
             </div>
 
@@ -187,7 +187,7 @@ if (isset($_GET['acak'])) {
                         </div></div>
                     <div class="col-xs-10">
                         <div class="form-group">';
-                            echo '<textarea type="text" id="soal' . $soalke . '" name="soal' . $soalke . '" placeholder="Isikan soal nomer ' . $soalke . '" class="form-control fontfahmil" style="height: 200px">' . $dbsoal[($soalke)] . '</textarea>';
+                            echo '<textarea style="text-align: right;" type="text" id="soal' . $soalke . '" name="soal' . $soalke . '" placeholder="Isikan soal nomer ' . $soalke . '" class="form-control fontfahmil" style="height: 200px">' . $dbsoal[($soalke)] . '</textarea>';
                             echo '</div>
                     </div> <!-- /.col-xs-3 -->
                     <div class="col-xs-2">
@@ -197,7 +197,7 @@ if (isset($_GET['acak'])) {
                     <div class="col-xs-10">
                     <button id="bukajawaban" class="btn btn-block btn-lg btn-danger" onclick="showJawaban()" style="margin-bottom:20px">Lihat Jawaban</button>
                         <div class="form-group" id="jawaban">';
-                            echo '<textarea type="text" id="jawaban' . $soalke . '" name="jawaban' . $soalke . '" placeholder="Isikan jawaban nomer ' . $soalke . '" class="form-control fontfahmil" style="height: 200px">' . $dbjawab[($soalke)] . '</textarea>';
+                            echo '<textarea style="text-align: right;" type="text" id="jawaban' . $soalke . '" name="jawaban' . $soalke . '" placeholder="Isikan jawaban nomer ' . $soalke . '" class="form-control fontfahmil" style="height: 200px">' . $dbjawab[($soalke)] . '</textarea>';
                     echo '</div>
                     
                     </div></div>';

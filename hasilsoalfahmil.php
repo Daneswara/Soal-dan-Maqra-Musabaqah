@@ -137,7 +137,7 @@ if (isset($_GET['acak'])) {
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Tilawah dan MHQ</a></li>
                         <li><a href="tafsir.php">Tafsir</a></li>
-                        <li ><a href="fahmil.php">MFQ</a></li>
+                        <li ><a href="fahmil.php">Al-Hadits</a></li>
                         <li><a href="linkmushaf.php">Link Mushaf</a></li>
                         <li><a href="acak.php">Acak</a></li>
                     </ul>
@@ -159,7 +159,7 @@ if (isset($_GET['acak'])) {
             </div>
             <div class="col-xs-10">
                 <div class="form-group">
-                    <button class="btn btn-block btn-lg btn-danger" onclick="#"> Paket Soal MFQ</button>
+                    <button class="btn btn-block btn-lg btn-danger" onclick="#"> Paket Soal Al-Hadits</button>
                 </div>
             </div>
 
@@ -173,7 +173,7 @@ if (isset($_GET['acak'])) {
                         </div></div>
                     <div class="col-xs-10">
                         <div class="form-group">';
-                            echo '<textarea type="text" id="soal' . $i . '" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control">' . $dbsoal[$i] . '</textarea>';
+                            echo '<textarea style="text-align: right;" type="text" id="soal' . $i . '" name="soal' . $i . '" placeholder="Isikan soal nomer ' . $i . '" class="form-control">' . $dbsoal[$i] . '</textarea>';
 
                         echo '</div>
                     </div> <!-- /.col-xs-3 -->
@@ -184,7 +184,7 @@ if (isset($_GET['acak'])) {
             ?>
             <div class="col-xs-10 col-xs-offset-2">
                 <div class="form-group">
-                    <a target='_blank' href='hasilsoaljawabfahmil.php?acak=1' class="btn btn-block btn-lg btn-danger"> Lihat Jawaban Paket Soal Fahmil</a>
+                    <a target='_blank' href='hasilsoaljawabfahmil.php?acak=1' class="btn btn-block btn-lg btn-danger"> Lihat Jawaban Paket Soal Al-Hadits</a>
                 </div>
             </div>
 

@@ -126,7 +126,7 @@ function getNamaSurat($surat) {
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Tilawah dan MHQ</a></li>
                         <li><a href="tafsir.php">Tafsir</a></li>
-                        <li class="active"><a href="fahmil.php">AL-HADITS</a></li>
+                        <li class="active"><a href="fahmil.php">Al-Hadits</a></li>
                         <li><a href="linkmushaf.php">Link Mushaf</a></li>
                         <li><a href="acak.php">Acak</a></li>
                     </ul>
@@ -145,7 +145,7 @@ function getNamaSurat($surat) {
             <div class="col-xs-3">
             </div>
                     <div class="col-xs-6">
-                        <a href="acakpaket_fahmil.php" class="btn btn-block btn-lg btn-primary">Acak Soal MFQ</a>
+                        <a href="acakpaket_fahmil.php" class="btn btn-block btn-lg btn-primary">Acak Soal Al-Hadits</a>
                     </div> <!-- /.col-xs-3 -->
             </div> <!-- /.row -->
                 <style>
@@ -242,7 +242,7 @@ function getNamaSurat($surat) {
                         <!--<dl class="palette palette-alizarin" style="height: 200px">-->
                         <?php
                         if (isset($psoal)) {
-                            echo '<h5><div class="tengah2" style="padding-top: 50px; padding-left: 0px">Paket MFQ';
+                            echo '<h5><div class="tengah2" style="padding-top: 50px; padding-left: 0px">Paket Soal<br>Al-Hadits';
                         } else {
                             echo '<h5><div class="tengah2" style="padding-top: 50px; padding-left: 0px">Paket ';
                             echo "?";
