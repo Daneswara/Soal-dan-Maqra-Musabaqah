@@ -81,7 +81,7 @@ $video = $pengaturan['link_video'];
                 <div class="collapse navbar-collapse" id="navbar-collapse-8">
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Bank Soal</a></li>
-                        <li><a href="fahmil.php">Bank Soal MFQ</a></li>
+                        <li><a href="fahmil.php">Bank Soal Al-Hadits</a></li>
                         <li><a href="juri.php">Daftar Petugas</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
